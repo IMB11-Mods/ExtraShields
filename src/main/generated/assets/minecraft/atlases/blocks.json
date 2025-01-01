@@ -1,0 +1,60 @@
+{
+  "sources": [
+    {
+      "type": "single",
+      "resource": "shields:entity/plated_shield_base"
+    },
+    {
+      "type": "single",
+      "resource": "shields:entity/plated_shield_base_nopattern"
+    },
+    {
+      "type": "single",
+      "resource": "shields:entity/diamond_shield_base"
+    },
+    {
+      "type": "single",
+      "resource": "shields:entity/diamond_shield_base_nopattern"
+    },
+    {
+      "type": "single",
+      "resource": "shields:entity/plated_diamond_shield_base"
+    },
+    {
+      "type": "single",
+      "resource": "shields:entity/plated_diamond_shield_base_nopattern"
+    },
+    {
+      "type": "single",
+      "resource": "shields:entity/gold_shield_base"
+    },
+    {
+      "type": "single",
+      "resource": "shields:entity/gold_shield_base_nopattern"
+    },
+    {
+      "type": "single",
+      "resource": "shields:entity/plated_gold_shield_base"
+    },
+    {
+      "type": "single",
+      "resource": "shields:entity/plated_gold_shield_base_nopattern"
+    },
+    {
+      "type": "single",
+      "resource": "shields:entity/netherite_shield_base"
+    },
+    {
+      "type": "single",
+      "resource": "shields:entity/netherite_shield_base_nopattern"
+    },
+    {
+      "type": "single",
+      "resource": "shields:entity/plated_netherite_shield_base"
+    },
+    {
+      "type": "single",
+      "resource": "shields:entity/plated_netherite_shield_base_nopattern"
+    }
+  ]
+}

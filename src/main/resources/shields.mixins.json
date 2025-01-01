@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.imb11.shields.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ShieldsLibDatagenYeet"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

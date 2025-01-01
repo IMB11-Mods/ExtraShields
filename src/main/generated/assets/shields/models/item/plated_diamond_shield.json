@@ -1,0 +1,14 @@
+{
+  "parent": "fabricshieldlib:item/fabric_banner_shield",
+  "overrides": [
+    {
+      "model": "shields:item/plated_diamond_shield_blocking",
+      "predicate": {
+        "blocking": 1
+      }
+    }
+  ],
+  "textures": {
+    "shield": "shields:item/plated_diamond_shield"
+  }
+}
