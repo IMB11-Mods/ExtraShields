@@ -1,5 +1,7 @@
-// 1.21.1	2025-01-02T18:18:26.0521468	ExtraShields/Tags for minecraft:enchantment
+// 1.21.1	2025-01-02T18:33:32.4323177	ExtraShields/Tags for minecraft:enchantment
+a9444c964910336dd069cf3521c7a03efe0b3ca8 data\minecraft\tags\enchantment\in_enchanting_table.json
 8f9d75363d7c86f93363c0341663a696d8e2d38d data\shields\tags\enchantment\bracing_exclusive_set.json
+a9444c964910336dd069cf3521c7a03efe0b3ca8 data\minecraft\tags\enchantment\non_treasure.json
 d99b7c7a68469a4c9d87775b587765d9efea507b data\shields\tags\enchantment\evokering_exclusive_set.json
 d405637bce412526ae3bd39eda177532512720b0 data\shields\tags\enchantment\launching_exclusive_set.json
 ea63c073bb4083c6efca3525018292b103e546af data\shields\tags\enchantment\momentum_exclusive_set.json

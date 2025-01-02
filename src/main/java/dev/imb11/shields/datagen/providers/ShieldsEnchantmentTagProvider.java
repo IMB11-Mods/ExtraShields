@@ -7,6 +7,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.enchantment.Enchantment;
 
@@ -47,5 +48,19 @@ public class ShieldsEnchantmentTagProvider extends FabricTagProvider<Enchantment
         // Bracing is not allowed with momentum.
         this.tag(BRACING_EXCLUSIVE_SET)
                 .addOptional(ShieldsEnchantmentProvider.MOMENTUM.location());
+
+        this.tag(EnchantmentTags.IN_ENCHANTING_TABLE)
+                .addOptional(ShieldsEnchantmentProvider.EVOKERING.location())
+                .addOptional(ShieldsEnchantmentProvider.LAUNCHING.location())
+                .addOptional(ShieldsEnchantmentProvider.LIFEBOUND.location())
+                .addOptional(ShieldsEnchantmentProvider.MOMENTUM.location())
+                .addOptional(ShieldsEnchantmentProvider.BRACING.location());
+
+        this.tag(EnchantmentTags.NON_TREASURE)
+                .addOptional(ShieldsEnchantmentProvider.EVOKERING.location())
+                .addOptional(ShieldsEnchantmentProvider.LAUNCHING.location())
+                .addOptional(ShieldsEnchantmentProvider.LIFEBOUND.location())
+                .addOptional(ShieldsEnchantmentProvider.MOMENTUM.location())
+                .addOptional(ShieldsEnchantmentProvider.BRACING.location());
     }
 }
