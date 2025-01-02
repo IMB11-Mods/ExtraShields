@@ -32,6 +32,8 @@ public class ShieldsItems {
     public static final FabricBannerShieldItem PLATED_SHIELD;
     public static final FabricBannerShieldItem DIAMOND_SHIELD;
     public static final FabricBannerShieldItem PLATED_DIAMOND_SHIELD;
+    public static final FabricBannerShieldItem COPPER_SHIELD;
+    public static final FabricBannerShieldItem PLATED_COPPER_SHIELD;
     public static final FabricBannerShieldItem GOLD_SHIELD;
     public static final FabricBannerShieldItem PLATED_GOLD_SHIELD;
     public static final FabricBannerShieldItem NETHERITE_SHIELD;
@@ -40,6 +42,7 @@ public class ShieldsItems {
     public static final Item GOLD_SHIELD_PLATING;
     public static final Item DIAMOND_SHIELD_PLATING;
     public static final Item NETHERITE_SHIELD_PLATING;
+    public static final Item COPPER_SHIELD_PLATING;
 
     public static final ResourceKey<CreativeModeTab> CUSTOM_ITEM_GROUP_KEY;
     public static final CreativeModeTab CUSTOM_ITEM_GROUP;
@@ -52,18 +55,22 @@ public class ShieldsItems {
         PLATED_GOLD_SHIELD = create("plated_gold_shield", 563, 4 * 20, Items.GOLD_INGOT);
         NETHERITE_SHIELD = create("netherite_shield", 910, 5 * 20, Items.NETHERITE_INGOT);
         PLATED_NETHERITE_SHIELD = create("plated_netherite_shield", 1137, 6 * 20, Items.NETHERITE_INGOT);
+        COPPER_SHIELD = create("copper_shield", 240, 8 * 20, Items.COPPER_INGOT);
+        PLATED_COPPER_SHIELD = create("plated_copper_shield", 300, 10 * 20, Items.COPPER_INGOT);
 
         SHIELD_PLATING = register("shield_plating", Item::new);
         GOLD_SHIELD_PLATING = register("gold_shield_plating", Item::new);
         DIAMOND_SHIELD_PLATING = register("diamond_shield_plating", Item::new);
         NETHERITE_SHIELD_PLATING = register("netherite_shield_plating", Item::new);
+        COPPER_SHIELD_PLATING = register("copper_shield_plating", Item::new);
 
         SHIELD_PLATING_ITEMS.addAll(
                 List.of(
                         SHIELD_PLATING,
                         GOLD_SHIELD_PLATING,
                         DIAMOND_SHIELD_PLATING,
-                        NETHERITE_SHIELD_PLATING
+                        NETHERITE_SHIELD_PLATING,
+                        COPPER_SHIELD_PLATING
                 )
         );
 
@@ -75,7 +82,9 @@ public class ShieldsItems {
                         GOLD_SHIELD,
                         PLATED_GOLD_SHIELD,
                         NETHERITE_SHIELD,
-                        PLATED_NETHERITE_SHIELD
+                        PLATED_NETHERITE_SHIELD,
+                        COPPER_SHIELD,
+                        PLATED_COPPER_SHIELD
                 )
         );
 

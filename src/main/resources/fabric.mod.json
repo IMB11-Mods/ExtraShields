@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "shields",
   "version": "${version}",
-  "name": "Shields",
+  "name": "ExtraShields",
   "description": "Comprehensive backup tools for your singleplayer worlds and multiplayer servers.",
   "authors": [],
   "contact": {},

@@ -1,0 +1,14 @@
+{
+  "parent": "fabricshieldlib:item/fabric_banner_shield",
+  "overrides": [
+    {
+      "model": "shields:item/copper_shield_blocking",
+      "predicate": {
+        "blocking": 1
+      }
+    }
+  ],
+  "textures": {
+    "shield": "shields:item/copper_shield"
+  }
+}

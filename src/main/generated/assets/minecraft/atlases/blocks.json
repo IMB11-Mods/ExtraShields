@@ -55,6 +55,22 @@
     {
       "type": "single",
       "resource": "shields:entity/plated_netherite_shield_base_nopattern"
+    },
+    {
+      "type": "single",
+      "resource": "shields:entity/copper_shield_base"
+    },
+    {
+      "type": "single",
+      "resource": "shields:entity/copper_shield_base_nopattern"
+    },
+    {
+      "type": "single",
+      "resource": "shields:entity/plated_copper_shield_base"
+    },
+    {
+      "type": "single",
+      "resource": "shields:entity/plated_copper_shield_base_nopattern"
     }
   ]
 }

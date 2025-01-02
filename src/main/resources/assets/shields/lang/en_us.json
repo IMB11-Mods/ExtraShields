@@ -6,14 +6,17 @@
   "item.shields.plated_gold_shield": "Plated Gold Shield",
   "item.shields.netherite_shield": "Netherite Shield",
   "item.shields.plated_netherite_shield": "Plated Netherite Shield",
+  "item.shields.copper_shield": "Copper Shield",
+  "item.shields.plated_copper_shield": "Plated Copper Shield",
 
   "item.shields.shield_plating": "Shield Plating",
   "item.shields.gold_shield_plating": "Gold Shield Plating",
   "item.shields.diamond_shield_plating": "Diamond Shield Plating",
   "item.shields.netherite_shield_plating": "Netherite Shield Plating",
+  "item.shields.copper_shield_plating": "Copper Shield Plating",
 
   "enchantment.shields.launching": "Launching",
   "enchantment.shields.evokering": "Evokering",
 
-  "itemGroup.shields.shield_group": "§3Shields"
+  "itemGroup.shields.shield_group": "§3§lShields"
 }
