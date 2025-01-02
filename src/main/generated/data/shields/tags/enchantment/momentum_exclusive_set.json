@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "shields:lifebound",
+      "required": false
+    },
+    {
+      "id": "shields:bracing",
+      "required": false
+    }
+  ]
+}

@@ -1,20 +1,18 @@
-package dev.imb11.shields.datagen;
+package dev.imb11.shields.datagen.providers;
 
-import com.mojang.serialization.Codec;
 import dev.imb11.shields.client.ShieldsClient;
+import dev.imb11.shields.datagen.data.ShieldsAtlas;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricCodecDataProvider;
-import net.minecraft.client.resources.model.AtlasSet;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 
 public class ShieldsAtlasProvider extends FabricCodecDataProvider<ShieldsAtlas> {
-    protected ShieldsAtlasProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+    public ShieldsAtlasProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(dataOutput, registriesFuture, PackOutput.Target.RESOURCE_PACK, "atlases", ShieldsAtlas.CODEC);
     }
 
@@ -26,6 +24,6 @@ public class ShieldsAtlasProvider extends FabricCodecDataProvider<ShieldsAtlas> 
 
     @Override
     public String getName() {
-        return "Shields Atlas";
+        return "Extra Shields Atlas";
     }
 }

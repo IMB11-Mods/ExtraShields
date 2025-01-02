@@ -1,0 +1,21 @@
+{
+  "anvil_cost": 5,
+  "description": {
+    "translate": "enchantment.shields.launching"
+  },
+  "exclusive_set": "#shields:launching_exclusive_set",
+  "max_cost": {
+    "base": 31,
+    "per_level_above_first": 10
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 10,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "hand"
+  ],
+  "supported_items": "#c:tools/shield",
+  "weight": 5
+}

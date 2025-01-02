@@ -1,11 +1,10 @@
-package dev.imb11.shields.datagen;
+package dev.imb11.shields.datagen.providers;
 
 import com.github.crimsondawn45.fabricshieldlib.lib.object.FabricBannerShieldItem;
 import com.google.gson.Gson;
 import dev.imb11.shields.items.ShieldsItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
-import net.minecraft.client.model.Model;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.models.BlockModelGenerators;
 import net.minecraft.data.models.ItemModelGenerators;

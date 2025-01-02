@@ -1,4 +1,4 @@
-package dev.imb11.shields.datagen;
+package dev.imb11.shields.datagen.data;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

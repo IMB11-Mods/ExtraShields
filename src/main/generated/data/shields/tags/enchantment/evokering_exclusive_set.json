@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "shields:launching",
+      "required": false
+    },
+    {
+      "id": "shields:lifebound",
+      "required": false
+    }
+  ]
+}
