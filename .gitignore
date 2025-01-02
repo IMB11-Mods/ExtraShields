@@ -1,6 +1,9 @@
 # User-specific stuff
 .idea/
 
+# Minecraft Data Generation
+.cache/
+
 *.iml
 *.ipr
 *.iws
