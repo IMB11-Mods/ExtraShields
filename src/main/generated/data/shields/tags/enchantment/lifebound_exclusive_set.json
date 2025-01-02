@@ -5,6 +5,10 @@
       "required": false
     },
     {
+      "id": "shields:launching",
+      "required": false
+    },
+    {
       "id": "shields:momentum",
       "required": false
     }

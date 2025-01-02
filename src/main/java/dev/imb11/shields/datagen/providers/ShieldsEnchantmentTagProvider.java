@@ -26,26 +26,27 @@ public class ShieldsEnchantmentTagProvider extends FabricTagProvider<Enchantment
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        // Evokering is not allowed with launching or lifebound.
         this.tag(EVOKERING_EXCLUSIVE_SET)
                 .addOptional(ShieldsEnchantmentProvider.LAUNCHING.location())
-                .addOptional(ShieldsEnchantmentProvider.LIFEBOUND.location());
-
-        // Launching is not allowed with evokering.
-        this.tag(LAUNCHING_EXCLUSIVE_SET)
-                .addOptional(ShieldsEnchantmentProvider.EVOKERING.location());
-
-        // Lifebound is not allowed with evokering or momentum.
-        this.tag(LIFEBOUND_EXCLUSIVE_SET)
-                .addOptional(ShieldsEnchantmentProvider.EVOKERING.location())
+                .addOptional(ShieldsEnchantmentProvider.LIFEBOUND.location())
                 .addOptional(ShieldsEnchantmentProvider.MOMENTUM.location());
 
-        // Momentum is not allowed with lifebound or bracing.
+        this.tag(LAUNCHING_EXCLUSIVE_SET)
+                .addOptional(ShieldsEnchantmentProvider.EVOKERING.location())
+                .addOptional(ShieldsEnchantmentProvider.MOMENTUM.location())
+                .addOptional(ShieldsEnchantmentProvider.LIFEBOUND.location());
+
+        this.tag(LIFEBOUND_EXCLUSIVE_SET)
+                .addOptional(ShieldsEnchantmentProvider.EVOKERING.location())
+                .addOptional(ShieldsEnchantmentProvider.LAUNCHING.location())
+                .addOptional(ShieldsEnchantmentProvider.MOMENTUM.location());
+
         this.tag(MOMENTUM_EXCLUSIVE_SET)
                 .addOptional(ShieldsEnchantmentProvider.LIFEBOUND.location())
+                .addOptional(ShieldsEnchantmentProvider.LAUNCHING.location())
+                .addOptional(ShieldsEnchantmentProvider.EVOKERING.location())
                 .addOptional(ShieldsEnchantmentProvider.BRACING.location());
 
-        // Bracing is not allowed with momentum.
         this.tag(BRACING_EXCLUSIVE_SET)
                 .addOptional(ShieldsEnchantmentProvider.MOMENTUM.location());
 

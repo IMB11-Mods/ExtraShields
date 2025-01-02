@@ -3,6 +3,14 @@
     {
       "id": "shields:evokering",
       "required": false
+    },
+    {
+      "id": "shields:momentum",
+      "required": false
+    },
+    {
+      "id": "shields:lifebound",
+      "required": false
     }
   ]
 }
