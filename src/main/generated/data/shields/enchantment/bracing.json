@@ -5,13 +5,13 @@
   },
   "exclusive_set": "#shields:bracing_exclusive_set",
   "max_cost": {
-    "base": 31,
+    "base": 25,
     "per_level_above_first": 10
   },
   "max_level": 3,
   "min_cost": {
-    "base": 10,
-    "per_level_above_first": 10
+    "base": 8,
+    "per_level_above_first": 6
   },
   "slots": [
     "hand"
