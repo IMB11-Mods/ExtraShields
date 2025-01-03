@@ -56,7 +56,7 @@ public class ShieldsModelProvider extends FabricModelProvider {
         }
 
         for (Item shieldPlatingItem : ShieldsItems.SHIELD_PLATING_ITEMS) {
-            itemModelGenerators.generateFlatItem(shieldPlatingItem, ModelTemplates.FLAT_HANDHELD_ITEM);
+            itemModelGenerators.generateFlatItem(shieldPlatingItem, ModelTemplates.FLAT_ITEM);
         }
     }
 

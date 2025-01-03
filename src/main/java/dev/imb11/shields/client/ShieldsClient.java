@@ -22,10 +22,6 @@ public class ShieldsClient implements ClientModInitializer {
     @ApiStatus.Internal
     public static ArrayList<Material> REGISTERED_MATERIALS = new ArrayList<>();
 
-    @Override
-    public void onInitializeClient() {
-    }
-    
     public static void registerDynamicShield(String id, FabricBannerShieldItem shieldItem) {
         ModelLayerLocation modelLayer = new ModelLayerLocation(ResourceLocation.tryBuild("shields", id), "main");
 
@@ -47,5 +43,9 @@ public class ShieldsClient implements ClientModInitializer {
             if (modelShield.get() == null) return;
             FabricShieldLibClient.renderBanner(stack, matrices, vertexConsumers, light, overlay, modelShield.get(), shieldBase, shieldBaseNoPattern);
         });
+    }
+
+    @Override
+    public void onInitializeClient() {
     }
 }

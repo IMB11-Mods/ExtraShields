@@ -17,6 +17,10 @@
 
   "enchantment.shields.launching": "Launching",
   "enchantment.shields.evokering": "Evokering",
+  "enchantment.shields.bracing": "Bracing",
+  "enchantment.shields.lifebound": "Lifebound",
+  "enchantment.shields.momentum": "Momentum",
+  "enchantment.shields.momentum.tooltip_speed_for_x_seconds": "%1$ss of Speed III",
 
   "itemGroup.shields.shield_group": "Extra Shields"
 }

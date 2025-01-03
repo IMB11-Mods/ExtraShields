@@ -6,6 +6,23 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import java.util.List;
 
 public class ShieldsAtlas {
+    public static final Codec<ShieldsAtlas> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            Codec.list(Source.CODEC).fieldOf("sources").forGetter(ShieldsAtlas::getSources)
+    ).apply(instance, ShieldsAtlas::new));
+    private final List<Source> sources;
+
+    public ShieldsAtlas(List<Source> sources) {
+        this.sources = sources;
+    }
+
+    public List<Source> getSources() {
+        return sources;
+    }
+
+    public void add(Source source) {
+        sources.add(source);
+    }
+
     public static class Source {
         public static final Codec<Source> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 Codec.STRING.fieldOf("type").forGetter(Source::getType),
@@ -27,23 +44,5 @@ public class ShieldsAtlas {
         public String getResource() {
             return resource;
         }
-    }
-
-    public static final Codec<ShieldsAtlas> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            Codec.list(Source.CODEC).fieldOf("sources").forGetter(ShieldsAtlas::getSources)
-    ).apply(instance, ShieldsAtlas::new));
-
-    private final List<Source> sources;
-
-    public ShieldsAtlas(List<Source> sources) {
-        this.sources = sources;
-    }
-
-    public List<Source> getSources() {
-        return sources;
-    }
-
-    public void add(Source source) {
-        sources.add(source);
     }
 }

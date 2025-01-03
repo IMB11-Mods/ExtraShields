@@ -1,6 +1,7 @@
 plugins {
     id 'fabric-loom' version '1.9-SNAPSHOT'
     id 'maven-publish'
+    id 'org.moddedmc.wiki.toolkit' version '0.2.4'
 }
 
 version = project.mod_version
@@ -8,6 +9,15 @@ group = project.maven_group
 
 base {
     archivesName = project.archives_base_name
+}
+
+wiki {
+    docs {
+        shields {
+            root = file("docs/")
+            exportedAssetNamespaces = ['shields']
+        }
+    }
 }
 
 
@@ -19,19 +29,28 @@ repositories {
             includeGroup 'maven.modrinth'
         }
     }
+    maven {
+        name = 'ParchmentMC'
+        url = 'https://maven.parchmentmc.org'
+    }
     maven { url = 'https://jitpack.io' }
 }
 
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings loom.officialMojangMappings()
+    mappings loom.layered() {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-1.21.1:2024.11.17@zip")
+    }
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation include("maven.modrinth:fabricshieldlib:iNR8IwQB")
     modImplementation include("maven.modrinth:midnightlib:Ct1rAic5")
     modImplementation include("com.github.Chocohead:Fabric-ASM:v2.3")
+
+    modRuntimeOnly "org.sinytra:item-asset-export-fabric:1.0.2+1.21"
 }
 
 fabricApi {

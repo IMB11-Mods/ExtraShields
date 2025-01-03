@@ -1,0 +1,54 @@
+---
+title: Shield Platings
+id: shields:shield_plating
+type: item
+---
+
+Shield Platings can be used to upgrade your shields to their "Plated" variant. Plated shields have a higher durability but are heavier meaning that the cooldown when your shield is disabled (hit by an axe) is longer.
+
+## Basic Platings
+
+For iron, copper, gold and diamond, shield platings can be crafted by combining 4 ingots of the respective material with 5 planks of any type.
+
+<div className={"flex flex-row justify-center flex-wrap max-w-full md:flex-col"}>
+    <CraftingRecipe
+        slots={[
+            'minecraft:iron_ingot', 'minecraft:oak_planks', 'minecraft:iron_ingot',
+            'minecraft:oak_planks', 'minecraft:oak_planks', 'minecraft:oak_planks',
+            'minecraft:iron_ingot', 'minecraft:oak_planks', 'minecraft:iron_ingot',
+        ]}
+        result="shields:shield_plating"
+        count={1}
+    />
+    <CraftingRecipe
+        slots={[
+            'minecraft:copper_ingot', 'minecraft:oak_planks', 'minecraft:copper_ingot',
+            'minecraft:oak_planks', 'minecraft:oak_planks', 'minecraft:oak_planks',
+            'minecraft:copper_ingot', 'minecraft:oak_planks', 'minecraft:copper_ingot',
+        ]}
+        result="shields:copper_shield_plating"
+        count={1}
+    />
+    <CraftingRecipe
+        slots={[
+            'minecraft:diamond', 'minecraft:oak_planks', 'minecraft:diamond',
+            'minecraft:oak_planks', 'minecraft:oak_planks', 'minecraft:oak_planks',
+            'minecraft:diamond', 'minecraft:oak_planks', 'minecraft:diamond',
+        ]}
+        result="shields:diamond_shield_plating"
+        count={1}
+    />
+    <CraftingRecipe
+        slots={[
+            'minecraft:gold_ingot', 'minecraft:oak_planks', 'minecraft:gold_ingot',
+            'minecraft:oak_planks', 'minecraft:oak_planks', 'minecraft:oak_planks',
+            'minecraft:gold_ingot', 'minecraft:oak_planks', 'minecraft:gold_ingot',
+        ]}
+        result="shields:gold_shield_plating"
+        count={1}
+    />
+</div>
+
+## Netherite Shield Plating
+
+Netherite shield platings are slightly more difficult to craft, you will need to upgrade a diamond shield plating to a netherite shield plating. This can be done by combining a diamond shield plating with a netherite ingot in the smithing table using a netherite upgrade template.

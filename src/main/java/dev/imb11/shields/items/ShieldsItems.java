@@ -1,11 +1,10 @@
 package dev.imb11.shields.items;
 
-import com.github.crimsondawn45.fabricshieldlib.lib.object.FabricBannerShieldItem;
 import dev.imb11.shields.Shields;
 import dev.imb11.shields.client.ShieldsClient;
+import dev.imb11.shields.datagen.providers.ShieldsEnchantmentProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -16,28 +15,31 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import org.jetbrains.annotations.ApiStatus;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.IntStream;
 
 public class ShieldsItems {
     @ApiStatus.Internal
-    public static final ArrayList<FabricBannerShieldItem> SHIELD_ITEMS = new ArrayList<>();
+    public static final ArrayList<BannerShieldItemWrapper> SHIELD_ITEMS = new ArrayList<>();
     @ApiStatus.Internal
     public static final ArrayList<Item> SHIELD_PLATING_ITEMS = new ArrayList<>();
 
-    public static final FabricBannerShieldItem PLATED_SHIELD;
-    public static final FabricBannerShieldItem DIAMOND_SHIELD;
-    public static final FabricBannerShieldItem PLATED_DIAMOND_SHIELD;
-    public static final FabricBannerShieldItem COPPER_SHIELD;
-    public static final FabricBannerShieldItem PLATED_COPPER_SHIELD;
-    public static final FabricBannerShieldItem GOLD_SHIELD;
-    public static final FabricBannerShieldItem PLATED_GOLD_SHIELD;
-    public static final FabricBannerShieldItem NETHERITE_SHIELD;
-    public static final FabricBannerShieldItem PLATED_NETHERITE_SHIELD;
+    public static final BannerShieldItemWrapper PLATED_SHIELD;
+    public static final BannerShieldItemWrapper DIAMOND_SHIELD;
+    public static final BannerShieldItemWrapper PLATED_DIAMOND_SHIELD;
+    public static final BannerShieldItemWrapper COPPER_SHIELD;
+    public static final BannerShieldItemWrapper PLATED_COPPER_SHIELD;
+    public static final BannerShieldItemWrapper GOLD_SHIELD;
+    public static final BannerShieldItemWrapper PLATED_GOLD_SHIELD;
+    public static final BannerShieldItemWrapper NETHERITE_SHIELD;
+    public static final BannerShieldItemWrapper PLATED_NETHERITE_SHIELD;
     public static final Item SHIELD_PLATING;
     public static final Item GOLD_SHIELD_PLATING;
     public static final Item DIAMOND_SHIELD_PLATING;
@@ -46,6 +48,9 @@ public class ShieldsItems {
 
     public static final ResourceKey<CreativeModeTab> CUSTOM_ITEM_GROUP_KEY;
     public static final CreativeModeTab CUSTOM_ITEM_GROUP;
+    // [plating (2nd input)], [1st input, output]
+    @ApiStatus.Experimental
+    public static final Map<Item, Item[]> PLATING_UPGRADE_MAP;
 
     static {
         PLATED_SHIELD = create("plated_shield", 420, 6 * 20, ItemTags.PLANKS);
@@ -95,9 +100,32 @@ public class ShieldsItems {
                 .title(Component.translatable("itemGroup.shields.shield_group"))
                 .displayItems((itemDisplayParameters, output) -> {
                     output.acceptAll(SHIELD_PLATING_ITEMS.stream().map(Item::getDefaultInstance).toList());
+                    output.accept(Items.SHIELD);
                     output.acceptAll(SHIELD_ITEMS.stream().map(Item::getDefaultInstance).toList());
+
+                    itemDisplayParameters.holders().lookup(Registries.ENCHANTMENT).ifPresent(enchantments -> {
+                        for (ResourceKey<Enchantment> registeredEnchantment : ShieldsEnchantmentProvider.REGISTERED_ENCHANTMENTS) {
+                            var reference = enchantments.getOrThrow(registeredEnchantment);
+                            IntStream.rangeClosed(
+                                    reference.value().getMinLevel(),
+                                    reference.value().getMaxLevel()
+                            ).mapToObj(level ->
+                                    EnchantedBookItem.createForEnchantment(new EnchantmentInstance(reference, level))
+                            ).forEach(itemStack ->
+                                    output.accept(itemStack, CreativeModeTab.TabVisibility.PARENT_TAB_ONLY)
+                            );
+                        }
+                    });
                 })
                 .build();
+
+        PLATING_UPGRADE_MAP = Map.of(
+                SHIELD_PLATING, new Item[]{Items.SHIELD, PLATED_SHIELD},
+                GOLD_SHIELD_PLATING, new Item[]{GOLD_SHIELD, PLATED_COPPER_SHIELD},
+                DIAMOND_SHIELD_PLATING, new Item[]{DIAMOND_SHIELD, PLATED_DIAMOND_SHIELD},
+                NETHERITE_SHIELD_PLATING, new Item[]{NETHERITE_SHIELD, PLATED_NETHERITE_SHIELD},
+                COPPER_SHIELD_PLATING, new Item[]{COPPER_SHIELD, PLATED_COPPER_SHIELD}
+        );
     }
 
     public static void initialize() {
@@ -106,8 +134,8 @@ public class ShieldsItems {
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, CUSTOM_ITEM_GROUP_KEY, CUSTOM_ITEM_GROUP);
     }
 
-    private static FabricBannerShieldItem create(String id, int durability, int blockingDelay, Item... repairItems) {
-        var item = register(id, (settings) -> new FabricBannerShieldItem(settings.durability(durability), blockingDelay, 9, repairItems));
+    private static BannerShieldItemWrapper create(String id, int durability, int blockingDelay, Item... repairItems) {
+        var item = register(id, (settings) -> new BannerShieldItemWrapper(settings.durability(durability), blockingDelay, 9, repairItems));
 
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
             ShieldsClient.registerDynamicShield(id, item);
@@ -116,8 +144,8 @@ public class ShieldsItems {
         return item;
     }
 
-    private static FabricBannerShieldItem create(String id, int durability, int blockingDelay, TagKey<Item> repairItems) {
-        var item = register(id, (settings) -> new FabricBannerShieldItem(settings.durability(durability), blockingDelay, 9, repairItems));
+    private static BannerShieldItemWrapper create(String id, int durability, int blockingDelay, TagKey<Item> repairItems) {
+        var item = register(id, (settings) -> new BannerShieldItemWrapper(settings.durability(durability), blockingDelay, 9, repairItems));
 
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
             ShieldsClient.registerDynamicShield(id, item);

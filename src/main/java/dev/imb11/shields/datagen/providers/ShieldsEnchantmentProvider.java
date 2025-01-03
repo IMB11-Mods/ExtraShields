@@ -1,6 +1,5 @@
 package dev.imb11.shields.datagen.providers;
 
-import dev.imb11.shields.enchantments.EvokeringEnchantmentEffect;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
@@ -11,12 +10,15 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
-import net.minecraft.world.item.enchantment.EnchantmentTarget;
+import org.jetbrains.annotations.ApiStatus;
 
+import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 
 public class ShieldsEnchantmentProvider extends FabricDynamicRegistryProvider {
+    @ApiStatus.Internal
+    public static final ArrayList<ResourceKey<Enchantment>> REGISTERED_ENCHANTMENTS = new ArrayList<>();
+
     public static final ResourceKey<Enchantment> EVOKERING = of("evokering");
     public static final ResourceKey<Enchantment> LAUNCHING = of("launching");
     public static final ResourceKey<Enchantment> LIFEBOUND = of("lifebound");
@@ -25,6 +27,13 @@ public class ShieldsEnchantmentProvider extends FabricDynamicRegistryProvider {
 
     public ShieldsEnchantmentProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
+    }
+
+    private static ResourceKey<Enchantment> of(String path) {
+        ResourceLocation id = ResourceLocation.tryBuild("shields", path);
+        var key = ResourceKey.create(Registries.ENCHANTMENT, id);
+        REGISTERED_ENCHANTMENTS.add(key);
+        return key;
     }
 
     @Override
@@ -101,7 +110,7 @@ public class ShieldsEnchantmentProvider extends FabricDynamicRegistryProvider {
                         // Weight
                         10,
                         // Max level
-                        3,
+                        5,
                         // min cost for each level: 8 + (level - 1)*6
                         Enchantment.dynamicCost(8, 6),
                         // max cost for each level: 25 + (level - 1)*10
@@ -109,15 +118,11 @@ public class ShieldsEnchantmentProvider extends FabricDynamicRegistryProvider {
                         5,
                         EquipmentSlotGroup.HAND
                 )).exclusiveWith(enchantmentsLookup.getOrThrow(ShieldsEnchantmentTagProvider.BRACING_EXCLUSIVE_SET))
-        );}
+        );
+    }
 
     private void register(Entries entries, ResourceKey<Enchantment> key, Enchantment.Builder builder, ResourceCondition... resourceConditions) {
         entries.add(key, builder.build(key.location()), resourceConditions);
-    }
-
-    private static ResourceKey<Enchantment> of(String path) {
-        ResourceLocation id = ResourceLocation.tryBuild("shields", path);
-        return ResourceKey.create(Registries.ENCHANTMENT, id);
     }
 
     @Override

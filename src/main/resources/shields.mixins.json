@@ -4,9 +4,12 @@
   "package": "dev.imb11.shields.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "AnvilMenuMixin",
+    "PlayerMixin",
     "ShieldsLibDatagenYeet"
   ],
   "client": [
+    "FabricShieldsClientEntrypointMixin"
   ],
   "injectors": {
     "defaultRequire": 1
