@@ -3,6 +3,7 @@ package dev.imb11.shields.items;
 import dev.imb11.shields.Shields;
 import dev.imb11.shields.client.ShieldsClient;
 import dev.imb11.shields.datagen.providers.ShieldsEnchantmentProvider;
+import dev.imb11.shields.items.custom.ShieldPatchKitItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.loader.api.FabricLoader;
@@ -45,6 +46,7 @@ public class ShieldsItems {
     public static final Item DIAMOND_SHIELD_PLATING;
     public static final Item NETHERITE_SHIELD_PLATING;
     public static final Item COPPER_SHIELD_PLATING;
+    public static final Item SHIELD_REPAIR_KIT;
 
     public static final ResourceKey<CreativeModeTab> CUSTOM_ITEM_GROUP_KEY;
     public static final CreativeModeTab CUSTOM_ITEM_GROUP;
@@ -68,6 +70,8 @@ public class ShieldsItems {
         DIAMOND_SHIELD_PLATING = register("diamond_shield_plating", Item::new);
         NETHERITE_SHIELD_PLATING = register("netherite_shield_plating", Item::new);
         COPPER_SHIELD_PLATING = register("copper_shield_plating", Item::new);
+
+        SHIELD_REPAIR_KIT = register("shield_repair_kit", (properties) -> new ShieldPatchKitItem(properties.durability(4)));
 
         SHIELD_PLATING_ITEMS.addAll(
                 List.of(
@@ -100,6 +104,7 @@ public class ShieldsItems {
                 .title(Component.translatable("itemGroup.shields.shield_group"))
                 .displayItems((itemDisplayParameters, output) -> {
                     output.acceptAll(SHIELD_PLATING_ITEMS.stream().map(Item::getDefaultInstance).toList());
+                    output.accept(SHIELD_REPAIR_KIT);
                     output.accept(Items.SHIELD);
                     output.acceptAll(SHIELD_ITEMS.stream().map(Item::getDefaultInstance).toList());
 

@@ -3,6 +3,7 @@ package dev.imb11.shields.datagen.providers;
 import dev.imb11.shields.items.ShieldsItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -79,5 +80,12 @@ public class ShieldsRecipeProvider extends FabricRecipeProvider {
                 .pattern("wcw")
                 .pattern("whw")
                 .pattern(" w ");
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ShieldsItems.SHIELD_REPAIR_KIT, 1)
+                .define('i', Items.IRON_INGOT)
+                .define('s', Items.STICK)
+                .pattern(" i ")
+                .pattern("isi")
+                .pattern(" i ");
     }
 }

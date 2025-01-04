@@ -58,6 +58,8 @@ public class ShieldsModelProvider extends FabricModelProvider {
         for (Item shieldPlatingItem : ShieldsItems.SHIELD_PLATING_ITEMS) {
             itemModelGenerators.generateFlatItem(shieldPlatingItem, ModelTemplates.FLAT_ITEM);
         }
+
+        itemModelGenerators.generateFlatItem(ShieldsItems.SHIELD_REPAIR_KIT, ModelTemplates.FLAT_HANDHELD_ROD_ITEM);
     }
 
     private Map<String, Object> createShieldModelJson(String shieldName) {

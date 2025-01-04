@@ -1,0 +1,37 @@
+{
+  "guides": "Guides",
+  "guides.shield_platings": {
+    "name": "Shield Platings",
+    "icon": "ShieldPlus"
+  },
+  "guides.shields": {
+    "name": "Shields",
+    "icon": "ShieldHalf"
+  },
+  "guides.shield_repair_kits": {
+    "name": "Shield Repair Kits",
+    "icon": "Wrench"
+  },
+
+  "enchantments": "Enchantments",
+  "enchantments.evokering": {
+    "name": "Evokering",
+    "icon": "Mountain"
+  },
+  "enchantments.lifebound": {
+    "name": "Lifebound",
+    "icon": "HeartPulse"
+  },
+  "enchantments.launching": {
+    "name": "Launching",
+    "icon": "Rocket"
+  },
+  "enchantments.momentum": {
+    "name": "Momentum",
+    "icon": "Gauge"
+  },
+  "enchantments.bracing": {
+    "name": "Bracing",
+    "icon": "BicepsFlexed"
+  }
+}

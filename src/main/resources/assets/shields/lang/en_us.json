@@ -15,6 +15,8 @@
   "item.shields.netherite_shield_plating": "Netherite Shield Plating",
   "item.shields.copper_shield_plating": "Copper Shield Plating",
 
+  "item.shields.shield_repair_kit": "Shield Repair Kit",
+
   "enchantment.shields.launching": "Launching",
   "enchantment.shields.evokering": "Evokering",
   "enchantment.shields.bracing": "Bracing",
@@ -22,5 +24,6 @@
   "enchantment.shields.momentum": "Momentum",
   "enchantment.shields.momentum.tooltip_speed_for_x_seconds": "%1$ss of Speed III",
 
-  "itemGroup.shields.shield_group": "Extra Shields"
+  "itemGroup.shields.shield_group": "Extra Shields",
+  "item.shields.shield_patch_kit.no_damage": "Your shield isn't damaged enough to use the repair kit!"
 }
