@@ -49,16 +49,15 @@ public class ShieldsEnchantmentTagProvider extends FabricTagProvider<Enchantment
                 .addOptional(ShieldsEnchantmentProvider.MOMENTUM.location());
 
         this.tag(EnchantmentTags.IN_ENCHANTING_TABLE)
-                .addOptional(ShieldsEnchantmentProvider.EVOKERING.location())
-                .addOptional(ShieldsEnchantmentProvider.LAUNCHING.location())
-                .addOptional(ShieldsEnchantmentProvider.LIFEBOUND.location())
                 .addOptional(ShieldsEnchantmentProvider.MOMENTUM.location())
                 .addOptional(ShieldsEnchantmentProvider.BRACING.location());
 
-        this.tag(EnchantmentTags.NON_TREASURE)
+        this.tag(EnchantmentTags.TREASURE)
                 .addOptional(ShieldsEnchantmentProvider.EVOKERING.location())
                 .addOptional(ShieldsEnchantmentProvider.LAUNCHING.location())
-                .addOptional(ShieldsEnchantmentProvider.LIFEBOUND.location())
+                .addOptional(ShieldsEnchantmentProvider.LIFEBOUND.location());
+
+        this.tag(EnchantmentTags.NON_TREASURE)
                 .addOptional(ShieldsEnchantmentProvider.MOMENTUM.location())
                 .addOptional(ShieldsEnchantmentProvider.BRACING.location());
     }
