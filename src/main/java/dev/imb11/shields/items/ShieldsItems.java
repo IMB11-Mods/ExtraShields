@@ -26,6 +26,8 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
+import static dev.imb11.shields.Util.removeFirstOrDefault;
+
 public class ShieldsItems {
     @ApiStatus.Internal
     public static final ArrayList<BannerShieldItemWrapper> SHIELD_ITEMS = new ArrayList<>();
@@ -103,11 +105,7 @@ public class ShieldsItems {
                 .icon(() -> new ItemStack(GOLD_SHIELD))
                 .title(Component.translatable("itemGroup.shields.shield_group"))
                 .displayItems((itemDisplayParameters, output) -> {
-                    output.acceptAll(SHIELD_PLATING_ITEMS.stream().map(Item::getDefaultInstance).toList());
-                    output.accept(SHIELD_REPAIR_KIT);
-                    output.accept(Items.SHIELD);
-                    output.acceptAll(SHIELD_ITEMS.stream().map(Item::getDefaultInstance).toList());
-
+                    var enchantmentStacks = new ArrayList<ItemStack>();
                     itemDisplayParameters.holders().lookup(Registries.ENCHANTMENT).ifPresent(enchantments -> {
                         for (ResourceKey<Enchantment> registeredEnchantment : ShieldsEnchantmentProvider.REGISTERED_ENCHANTMENTS) {
                             var reference = enchantments.getOrThrow(registeredEnchantment);
@@ -116,11 +114,31 @@ public class ShieldsItems {
                                     reference.value().getMaxLevel()
                             ).mapToObj(level ->
                                     EnchantedBookItem.createForEnchantment(new EnchantmentInstance(reference, level))
-                            ).forEach(itemStack ->
-                                    output.accept(itemStack, CreativeModeTab.TabVisibility.PARENT_TAB_ONLY)
-                            );
+                            ).forEach(enchantmentStacks::add);
                         }
                     });
+
+                    // Output in rows of material.
+                    // Fill gap with enchantments.
+                    output.accept(Items.SHIELD);
+                    output.accept(SHIELD_PLATING);
+                    output.accept(PLATED_SHIELD);
+                    output.accept(COPPER_SHIELD);
+                    output.accept(COPPER_SHIELD_PLATING);
+                    output.accept(PLATED_COPPER_SHIELD);
+                    output.accept(GOLD_SHIELD);
+                    output.accept(GOLD_SHIELD_PLATING);
+                    output.accept(PLATED_GOLD_SHIELD);
+
+                    output.accept(DIAMOND_SHIELD);
+                    output.accept(DIAMOND_SHIELD_PLATING);
+                    output.accept(PLATED_DIAMOND_SHIELD);
+                    output.accept(NETHERITE_SHIELD);
+                    output.accept(NETHERITE_SHIELD_PLATING);
+                    output.accept(PLATED_NETHERITE_SHIELD);
+                    output.accept(SHIELD_REPAIR_KIT);
+
+                    enchantmentStacks.forEach(output::accept);
                 })
                 .build();
 
