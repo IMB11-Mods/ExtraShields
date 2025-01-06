@@ -21,6 +21,8 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
     @Final
     private DataSlot cost;
 
+    @Shadow @Nullable private String itemName;
+
     protected AnvilMenuMixin(@Nullable MenuType<?> type, int containerId, Inventory playerInventory, ContainerLevelAccess access) {
         super(type, containerId, playerInventory, access);
     }
@@ -45,7 +47,8 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
             // Check if the input items are the same as the expected items
             if (expectedInput1.getItem() == input1 && expectedPlating.getItem() == plating) {
                 this.resultSlots.setItem(0, expectedInput1.transmuteCopy(output));
-                this.cost.set(0);
+                this.itemName = expectedInput1.getHoverName().getString();
+                this.cost.set(1);
                 info.cancel();
                 return;
             }
