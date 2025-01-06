@@ -2,36 +2,36 @@
   "guides": "Guides",
   "guides.shield_platings": {
     "name": "Shield Platings",
-    "icon": "ShieldPlus"
+    "icon": "ShieldPlusIcon"
   },
   "guides.shields": {
     "name": "Shields",
-    "icon": "ShieldHalf"
+    "icon": "ShieldHalfIcon"
   },
   "guides.shield_repair_kits": {
     "name": "Shield Repair Kits",
-    "icon": "Wrench"
+    "icon": "WrenchIcon"
   },
 
   "enchantments": "Enchantments",
   "enchantments.evokering": {
     "name": "Evokering",
-    "icon": "Mountain"
+    "icon": "MountainIcon"
   },
   "enchantments.lifebound": {
     "name": "Lifebound",
-    "icon": "HeartPulse"
+    "icon": "HeartPulseIcon"
   },
   "enchantments.launching": {
     "name": "Launching",
-    "icon": "Rocket"
+    "icon": "RocketIcon"
   },
   "enchantments.momentum": {
     "name": "Momentum",
-    "icon": "Gauge"
+    "icon": "GaugeIcon"
   },
   "enchantments.bracing": {
     "name": "Bracing",
-    "icon": "BicepsFlexed"
+    "icon": "BicepsFlexedIcon"
   }
 }
