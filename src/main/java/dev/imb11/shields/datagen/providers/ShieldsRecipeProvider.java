@@ -30,7 +30,8 @@ public class ShieldsRecipeProvider extends FabricRecipeProvider {
                 .pattern("ccc")
                 .pattern("ici")
                 .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
-                .group("shield_platings");
+                .group("shield_platings")
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ShieldsItems.DIAMOND_SHIELD_PLATING, 1)
                 .define('c', ItemTags.PLANKS)
@@ -39,7 +40,8 @@ public class ShieldsRecipeProvider extends FabricRecipeProvider {
                 .pattern("ccc")
                 .pattern("dcd")
                 .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
-                .group("shield_platings");
+                .group("shield_platings")
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ShieldsItems.COPPER_SHIELD_PLATING, 1)
                 .define('c', ItemTags.PLANKS)
@@ -48,7 +50,8 @@ public class ShieldsRecipeProvider extends FabricRecipeProvider {
                 .pattern("ccc")
                 .pattern("pcp")
                 .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
-                .group("shield_platings");
+                .group("shield_platings")
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ShieldsItems.GOLD_SHIELD_PLATING, 1)
                 .define('c', ItemTags.PLANKS)
@@ -57,21 +60,26 @@ public class ShieldsRecipeProvider extends FabricRecipeProvider {
                 .pattern("ccc")
                 .pattern("gcg")
                 .unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
-                .group("shield_platings");
+                .group("shield_platings")
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ShieldsItems.GOLD_SHIELD, 1)
                 .define('g', Items.GOLD_INGOT)
                 .define('w', ItemTags.PLANKS)
                 .pattern("wgw")
                 .pattern("www")
-                .pattern(" w ");
+                .pattern(" w ")
+                .unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ShieldsItems.DIAMOND_SHIELD, 1)
                 .define('d', Items.DIAMOND)
                 .define('w', ItemTags.PLANKS)
                 .pattern("wdw")
                 .pattern("www")
-                .pattern(" w ");
+                .pattern(" w ")
+                .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ShieldsItems.COPPER_SHIELD, 1)
                 .define('c', Items.COPPER_INGOT)
@@ -79,13 +87,18 @@ public class ShieldsRecipeProvider extends FabricRecipeProvider {
                 .define('h', Items.HONEYCOMB)
                 .pattern("wcw")
                 .pattern("whw")
-                .pattern(" w ");
+                .pattern(" w ")
+                .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
+                .unlockedBy(getHasName(Items.HONEYCOMB), has(Items.HONEYCOMB))
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ShieldsItems.SHIELD_REPAIR_KIT, 1)
                 .define('i', Items.IRON_INGOT)
                 .define('s', Items.STICK)
                 .pattern(" i ")
                 .pattern("isi")
-                .pattern(" i ");
+                .pattern(" i ")
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .save(recipeOutput);
     }
 }

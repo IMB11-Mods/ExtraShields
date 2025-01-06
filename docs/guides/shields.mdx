@@ -1,0 +1,47 @@
+---
+title: Shields
+id: shields:copper_shield
+type: item
+---
+
+Extra shields adds new variants of shields, included plated shields, for the following materials:
+
+- Copper
+- Gold
+- Diamond
+- Iron
+- Netherite
+
+## Crafting
+
+<Callout variant="info">
+    For more information on plated shields, you should check out the [Shield Platings](./shield_platings) guide.
+</Callout>
+
+You can craft all of these shields using the standard shield recipe, just replacing the iron ingot with the material of your choice.
+
+<div className={"flex flex-row justify-center flex-wrap max-w-full md:flex-col"}>
+    <CraftingRecipe
+        slots={[
+            'minecraft:oak_planks', 'minecraft:diamond', 'minecraft:oak_planks',
+            'minecraft:oak_planks', 'minecraft:oak_planks', 'minecraft:oak_planks',
+            '', 'minecraft:oak_planks', '',
+        ]}
+        result="shields:diamond_shield"
+        count={1}
+    />
+</div>
+
+Copper shields will require **honeycomb** alongside a copper ingot, this is to prevent the shield from oxidizing. (In the future, I plan to remove this and allow copper shields to oxidize.)
+
+<div className={"flex flex-row justify-center flex-wrap max-w-full md:flex-col"}>
+    <CraftingRecipe
+        slots={[
+            'minecraft:oak_planks', 'minecraft:copper_ingot', 'minecraft:oak_planks',
+            'minecraft:oak_planks', 'minecraft:honeycomb', 'minecraft:oak_planks',
+            '', 'minecraft:oak_planks', '',
+        ]}
+        result="shields:copper_shield"
+        count={1}
+    />
+</div>

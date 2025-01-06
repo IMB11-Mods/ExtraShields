@@ -1,7 +1,6 @@
 {
   "id": "extra-shields",
   "platforms": {
-    "curseforge": "extra-shields",
-    "modrinth":  "extra-shields"
+    "curseforge": "extra-shields"
   }
 }

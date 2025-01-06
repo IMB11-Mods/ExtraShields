@@ -1,7 +1,7 @@
 plugins {
     id 'fabric-loom' version '1.9-SNAPSHOT'
     id 'maven-publish'
-    id 'org.moddedmc.wiki.toolkit' version '0.2.4'
+    id 'org.moddedmc.wiki.toolkit' version '+'
 }
 
 version = project.mod_version
@@ -13,10 +13,17 @@ base {
 
 wiki {
     docs {
-        shields {
+        "extra-shields" {
             root = file("docs/")
             exportedAssetNamespaces = ['shields']
         }
+    }
+
+    // If local.properties exists, load WIKI_ACCESS_TOKEN property into "wikiAccessToken =" field.
+    if (file("local.properties").exists()) {
+        def localProperties = new Properties()
+        localProperties.load(file("local.properties").newDataInputStream())
+        wikiAccessToken = localProperties.getProperty("WIKI_ACCESS_TOKEN")
     }
 }
 
