@@ -4,8 +4,17 @@
   "version": "${mod_version}",
   "name": "Extra Shields",
   "description": "A vanilla+ expansion to shields. Adds various new shields inline with the vanilla armor system and shield plating upgrades. Includes new and improved enchantment support.",
-  "authors": [],
-  "contact": {},
+  "authors": [
+    {
+      "name": "IMB11",
+      "contact": "https://discord.imb11.dev/"
+    }
+  ],
+  "contact": {
+    "homepage": "https://moddedmc.wiki/en/project/extra-shields",
+    "sources": "https://github.com/IMB11/ExtraShields",
+    "issues": "https://github.com/IMB11/ExtraShields/issues"
+  },
   "license": "All-Rights-Reserved",
   "icon": "assets/shields/icon.png",
   "environment": "client",
