@@ -1,0 +1,22 @@
+{
+  "evokering.mdx": {
+    "name": "Evokering",
+    "icon": "Mountain"
+  },
+  "lifebound.mdx": {
+    "name": "Lifebound",
+    "icon": "HeartPulse"
+  },
+  "launching.mdx": {
+    "name": "Launching",
+    "icon": "Rocket"
+  },
+  "momentum.mdx": {
+    "name": "Momentum",
+    "icon": "Gauge"
+  },
+  "bracing.mdx": {
+    "name": "Bracing",
+    "icon": "BicepsFlexed"
+  }
+}

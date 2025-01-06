@@ -1,0 +1,14 @@
+{
+  "shield_platings.mdx": {
+    "name": "Shield Platings",
+    "icon": "ShieldPlus"
+  },
+  "shields.mdx": {
+    "name": "Shields",
+    "icon": "ShieldHalf"
+  },
+  "shield_repair_kits.mdx": {
+    "name": "Shield Repair Kits",
+    "icon": "Wrench"
+  }
+}

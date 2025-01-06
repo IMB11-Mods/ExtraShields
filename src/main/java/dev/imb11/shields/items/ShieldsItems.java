@@ -26,8 +26,6 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
-import static dev.imb11.shields.Util.removeFirstOrDefault;
-
 public class ShieldsItems {
     @ApiStatus.Internal
     public static final ArrayList<BannerShieldItemWrapper> SHIELD_ITEMS = new ArrayList<>();

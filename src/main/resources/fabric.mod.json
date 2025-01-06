@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "shields",
-  "version": "${version}",
+  "version": "${mod_version}",
   "name": "Extra Shields",
   "description": "A vanilla+ expansion to shields. Adds various new shields inline with the vanilla armor system and shield plating upgrades. Includes new and improved enchantment support.",
   "authors": [],
@@ -24,8 +24,8 @@
     "shields.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=${loader_version}",
-    "fabric": "*",
-    "minecraft": "${minecraft_version}"
+    "fabricloader": ">=0.15.0",
+    "minecraft": "${target_minecraft}",
+    "fabric-api": ">=${target_fabric_api}"
   }
 }
