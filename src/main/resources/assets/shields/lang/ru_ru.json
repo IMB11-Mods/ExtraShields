@@ -1,0 +1,34 @@
+{
+  "item.shields.diamond_shield": "Алмазный щит",
+  "item.shields.plated_diamond_shield": "Латный алмазный щит",
+  "item.shields.plated_shield": "Латный щит",
+  "item.shields.gold_shield": "Золотой щит",
+  "item.shields.plated_gold_shield": "Латный золотой щит",
+  "item.shields.netherite_shield": "Незеритовый щит",
+  "item.shields.plated_netherite_shield": "Латный незеритовый щит",
+  "item.shields.copper_shield": "Медный щит",
+  "item.shields.plated_copper_shield": "Латный медный щит",
+
+  "item.shields.shield_plating": "Латная обшивка",
+  "item.shields.gold_shield_plating": "Золотая латная обшивка",
+  "item.shields.diamond_shield_plating": "Алмазная латная обшивка",
+  "item.shields.netherite_shield_plating": "Незеритовая латная обшивка",
+  "item.shields.copper_shield_plating": "Медная латная обшивка",
+
+  "item.shields.shield_repair_kit": "Ремонтный набор для щита",
+
+  "enchantment.shields.launching": "Подкидывание",
+  "enchantment.shields.launching.desc": "Даёт шанс отбросить атакующих, когда щит отключен.",
+  "enchantment.shields.evokering": "Заклятие",
+  "enchantment.shields.evokering.desc": "Предоставляет шанс появления клыков заклинателя под атакующими при блокировании атаки.",
+  "enchantment.shields.bracing": "Крепление",
+  "enchantment.shields.bracing.desc": "Уменьшает время восстановления при отключении щита в результате атаки топором.",
+  "enchantment.shields.lifebound": "Жизнеглот",
+  "enchantment.shields.lifebound.desc": "Даёт шанс поглотить здоровье у атакующего при блокировании атаки.",
+  "enchantment.shields.momentum": "Импульс",
+  "enchantment.shields.momentum.desc": "Даёт кратковременный прирост скорости, когда их щит отключен.",
+  "enchantment.shields.momentum.tooltip_speed_for_x_seconds": "%1$s сек Скорости III",
+
+  "itemGroup.shields.shield_group": "Дополнительные щиты",
+  "item.shields.shield_patch_kit.no_damage": "Ваш щит недостаточно повреждён, чтобы использовать ремонтный набор!"
+}
