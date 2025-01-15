@@ -18,10 +18,15 @@
   "item.shields.shield_repair_kit": "Shield Repair Kit",
 
   "enchantment.shields.launching": "Launching",
+  "enchantment.shields.launching.desc": "Gives a chance to launch attackers away when the shield is disabled.",
   "enchantment.shields.evokering": "Evokering",
+  "enchantment.shields.evokering.desc": "Introduces a chance for evoker fangs to spawn underneath attackers when blocking an attack.",
   "enchantment.shields.bracing": "Bracing",
+  "enchantment.shields.bracing.desc": "Decreases the cooldown when the shield is disabled by an axe attack.",
   "enchantment.shields.lifebound": "Lifebound",
+  "enchantment.shields.lifebound.desc": "Gives a chance to absorb health from the attacker when blocking an attack.",
   "enchantment.shields.momentum": "Momentum",
+  "enchantment.shields.momentum.desc": "Gives a brief speed boost when their shield is disabled.",
   "enchantment.shields.momentum.tooltip_speed_for_x_seconds": "%1$ss of Speed III",
 
   "itemGroup.shields.shield_group": "Extra Shields",
