@@ -18,7 +18,7 @@
   "item.shields.shield_repair_kit": "Набір лагодження щита",
 
   "enchantment.shields.launching": "Запускач",
-  "enchantment.shields.launching.desc": "Дає шанс відкинути нападників, коли щит вимкнено",
+  "enchantment.shields.launching.desc": "Дає шанс відкинути нападників, коли щит неактивний",
   "enchantment.shields.evokering": "Заклинач",
   "enchantment.shields.evokering.desc": "Під час блокування атаки під нападником з’являються ікла заклинача",
   "enchantment.shields.bracing": "Антиваряг",
@@ -26,7 +26,7 @@
   "enchantment.shields.lifebound": "Вапміризм",
   "enchantment.shields.lifebound.desc": "Дає шанс поглинути здоров'я нападника під час блокування атаки",
   "enchantment.shields.momentum": "Імпульс",
-  "enchantment.shields.momentum.desc": "Дає короткий приріст швидкости, коли щит неактивовано",
+  "enchantment.shields.momentum.desc": "Дає короткий приріст швидкости, коли щит неактивний",
   "enchantment.shields.momentum.tooltip_speed_for_x_seconds": "%1$s секунд швидкости III",
 
   "itemGroup.shields.shield_group": "Extra Shields",
