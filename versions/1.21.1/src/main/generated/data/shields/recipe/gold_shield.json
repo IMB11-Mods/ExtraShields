@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "g": {
+      "item": "minecraft:gold_ingot"
+    },
+    "w": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "wgw",
+    "www",
+    " w "
+  ],
+  "result": {
+    "count": 1,
+    "id": "shields:gold_shield"
+  }
+}

@@ -6,7 +6,11 @@
 
 Extra Shields is a vanilla+ expansion to shields. It adds various new shields inline with the vanilla armor system and shield plating upgrades and also includes new and improved enchantment support.
 
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/o0FKPorO1TY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 Extra Shields has been carefully crafted to ensure it remains inline with vanilla progression.
+
+*Check out [More Shield Variants's Compatability Add-on](https://modrinth.com/mod/more-extra-shield-variants), it works well with Extra Shields.*
 
 ## Shields & Plated Shields
 

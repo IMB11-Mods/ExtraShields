@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "shield_platings",
+  "key": {
+    "c": {
+      "tag": "minecraft:planks"
+    },
+    "g": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "pattern": [
+    "gcg",
+    "ccc",
+    "gcg"
+  ],
+  "result": {
+    "count": 1,
+    "id": "shields:gold_shield_plating"
+  }
+}

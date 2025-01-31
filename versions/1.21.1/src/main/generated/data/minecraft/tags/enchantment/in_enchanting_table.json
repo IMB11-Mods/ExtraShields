@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "shields:momentum",
+      "required": false
+    },
+    {
+      "id": "shields:bracing",
+      "required": false
+    }
+  ]
+}

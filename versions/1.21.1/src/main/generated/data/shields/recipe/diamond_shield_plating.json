@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "shield_platings",
+  "key": {
+    "c": {
+      "tag": "minecraft:planks"
+    },
+    "d": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "pattern": [
+    "dcd",
+    "ccc",
+    "dcd"
+  ],
+  "result": {
+    "count": 1,
+    "id": "shields:diamond_shield_plating"
+  }
+}

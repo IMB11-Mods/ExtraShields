@@ -50,7 +50,11 @@ public class ShieldsItems {
 
     public static final ResourceKey<CreativeModeTab> CUSTOM_ITEM_GROUP_KEY;
     public static final CreativeModeTab CUSTOM_ITEM_GROUP;
-    // [plating (2nd input)], [1st input, output]
+
+    /**
+     * @apiNote This map is used to determine the output of the anvil when upgrading a shield with plating.
+     * @usage Key: Plating, Value: [Input Shield, Output Shield]
+     */
     @ApiStatus.Experimental
     public static final Map<Item, Item[]> PLATING_UPGRADE_MAP;
 
