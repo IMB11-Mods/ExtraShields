@@ -1,0 +1,34 @@
+{
+  "item.shields.diamond_shield": "Діамантовий щит",
+  "item.shields.plated_diamond_shield": "Укритий діамантом щит",
+  "item.shields.plated_shield": "Укритий щит",
+  "item.shields.gold_shield": "Золотий щит",
+  "item.shields.plated_gold_shield": "Укритий золотом щит",
+  "item.shields.netherite_shield": "Незеритовий щит",
+  "item.shields.plated_netherite_shield": "Укритий незеритом щит",
+  "item.shields.copper_shield": "Мідний щит",
+  "item.shields.plated_copper_shield": "Укритий міддю щит",
+
+  "item.shields.shield_plating": "Укриття щита",
+  "item.shields.gold_shield_plating": "Золоте укриття щита",
+  "item.shields.diamond_shield_plating": "Діамантове укриття щита",
+  "item.shields.netherite_shield_plating": "Незеритове укриття щита",
+  "item.shields.copper_shield_plating": "Мідне укреття щита",
+
+  "item.shields.shield_repair_kit": "Набір лагодження щита",
+
+  "enchantment.shields.launching": "Запускач",
+  "enchantment.shields.launching.desc": "Дає шанс відкинути нападників, коли щит вимкнено",
+  "enchantment.shields.evokering": "Заклинач",
+  "enchantment.shields.evokering.desc": "Під час блокування атаки під нападником з’являються ікла заклинача",
+  "enchantment.shields.bracing": "Антиваряг",
+  "enchantment.shields.bracing.desc": "Зменшує час відновлення, неактивности щита від атаки сокирою",
+  "enchantment.shields.lifebound": "Вапміризм",
+  "enchantment.shields.lifebound.desc": "Дає шанс поглинути здоров'я нападника під час блокування атаки",
+  "enchantment.shields.momentum": "Імпульс",
+  "enchantment.shields.momentum.desc": "Дає короткий приріст швидкости, коли щит неактивовано",
+  "enchantment.shields.momentum.tooltip_speed_for_x_seconds": "%1$s секунд швидкости III",
+
+  "itemGroup.shields.shield_group": "Extra Shields",
+  "item.shields.shield_patch_kit.no_damage": "Ваш щит недостатньо пошкоджений, щоб використовувати комплект!"
+}
