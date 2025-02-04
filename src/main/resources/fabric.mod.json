@@ -14,7 +14,7 @@
   },
   "license": "All-Rights-Reserved",
   "icon": "assets/shields/icon.png",
-  "environment": "client",
+  "environment": "*",
   "entrypoints": {
     "client": [
       "dev.imb11.shields.client.ShieldsClient"
