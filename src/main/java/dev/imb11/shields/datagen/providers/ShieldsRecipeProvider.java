@@ -3,19 +3,15 @@ package dev.imb11.shields.datagen.providers;
 import dev.imb11.shields.items.ShieldsItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
-import net.minecraft.advancements.Criterion;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.ItemLike;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -24,16 +20,14 @@ public class ShieldsRecipeProvider extends FabricRecipeProvider {
         super(output, registriesFuture);
     }
 
-    public static void netheriteSmithing(RecipeOutput recipeOutput, Item ingredientItem, RecipeCategory category, Item resultItem) {
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(new ItemLike[]{Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE}), Ingredient.of(new ItemLike[]{ingredientItem}), Ingredient.of(new ItemLike[]{Items.NETHERITE_INGOT}), category, resultItem).unlocks("has_netherite_ingot", has(Items.NETHERITE_INGOT)).save(recipeOutput, getItemName(resultItem) + "_smithing");
-    }
-
     @Override
     public void buildRecipes(RecipeOutput recipeOutput) {
         netheriteSmithing(recipeOutput, ShieldsItems.DIAMOND_SHIELD_PLATING, RecipeCategory.COMBAT, ShieldsItems.NETHERITE_SHIELD_PLATING);
 
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(new ItemLike[]{Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE}), Ingredient.of(new ItemLike[]{ShieldsItems.DIAMOND_SHIELD}), Ingredient.of(new ItemLike[]{Items.NETHERITE_INGOT}), RecipeCategory.COMBAT, ShieldsItems.NETHERITE_SHIELD).unlocks("has_netherite_ingot", has(Items.NETHERITE_INGOT))
-                .save(withConditions(recipeOutput, ResourceConditions.not(ResourceConditions.anyModsLoaded("shields-mxsv", "lolmsv"))), getItemName(ShieldsItems.NETHERITE_SHIELD) + "_smithing");
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(ShieldsItems.DIAMOND_SHIELD), Ingredient.of(Items.NETHERITE_INGOT), RecipeCategory.COMBAT, ShieldsItems.NETHERITE_SHIELD).unlocks("has_netherite_ingot", has(Items.NETHERITE_INGOT))
+                .save(recipeOutput, getItemName(ShieldsItems.NETHERITE_SHIELD) + "_smithing");
+
+        var conditionedRecipeOutput = withConditions(recipeOutput, ResourceConditions.not(ResourceConditions.anyModsLoaded("shields-mxsv", "lolmsv")));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ShieldsItems.SHIELD_PLATING, 1)
                 .define('c', ItemTags.PLANKS)
@@ -82,7 +76,7 @@ public class ShieldsRecipeProvider extends FabricRecipeProvider {
                 .pattern("www")
                 .pattern(" w ")
                 .unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
-                .save(recipeOutput);
+                .save(conditionedRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ShieldsItems.DIAMOND_SHIELD, 1)
                 .define('d', Items.DIAMOND)
@@ -91,7 +85,7 @@ public class ShieldsRecipeProvider extends FabricRecipeProvider {
                 .pattern("www")
                 .pattern(" w ")
                 .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
-                .save(recipeOutput);
+                .save(conditionedRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ShieldsItems.COPPER_SHIELD, 1)
                 .define('c', Items.COPPER_INGOT)
@@ -102,7 +96,7 @@ public class ShieldsRecipeProvider extends FabricRecipeProvider {
                 .pattern(" w ")
                 .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
                 .unlockedBy(getHasName(Items.HONEYCOMB), has(Items.HONEYCOMB))
-                .save(recipeOutput);
+                .save(conditionedRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ShieldsItems.SHIELD_REPAIR_KIT, 1)
                 .define('i', Items.IRON_INGOT)
