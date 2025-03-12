@@ -111,7 +111,7 @@ public class ShieldsEnchantmentEffects {
                 return;
             }
 
-            EvokerFangs evokerFangs = new EvokerFangs(serverLevel, attacker.getX(), attacker.getY(), attacker.getZ(), 0, 0, defender);
+            EvokerFangs evokerFangs = new EvokerFangs(serverLevel, attacker.getX(), attacker.getY(), attacker.getZ(), 0, -6, defender);
             serverLevel.addFreshEntity(evokerFangs);
         }
 
