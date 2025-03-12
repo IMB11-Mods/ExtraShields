@@ -3,7 +3,7 @@ package dev.imb11.shields.mixin;
 import com.github.crimsondawn45.fabricshieldlib.initializers.FabricShieldLibClient;
 import com.github.crimsondawn45.fabricshieldlib.lib.object.FabricShield;
 import com.llamalad7.mixinextras.sugar.Local;
-import dev.imb11.shields.datagen.providers.ShieldsEnchantmentProvider;
+import dev.imb11.shields.enchantments.ShieldsEnchantmentKeys;
 import dev.imb11.shields.items.BannerShieldItemWrapper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -35,7 +35,7 @@ public class FabricShieldsClientEntrypointMixin {
     private static void addMomentumTooltip(ItemStack stack, TooltipFlag type, List<Component> tooltip, int cooldownTicks, CallbackInfoReturnable<List<Component>> cir) {
         if (stack.getItem() instanceof BannerShieldItemWrapper) {
             var lookup = Minecraft.getInstance().level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
-            int momentumLevel = stack.getEnchantments().getLevel(lookup.getOrThrow(ShieldsEnchantmentProvider.MOMENTUM));
+            int momentumLevel = stack.getEnchantments().getLevel(lookup.getOrThrow(ShieldsEnchantmentKeys.MOMENTUM));
             if (momentumLevel > 0) {
                 Component speedForXSeconds = Component.literal(" ").append(Component.translatable("enchantment.shields.momentum.tooltip_speed_for_x_seconds", String.format("%.1f", (60 + (8 * momentumLevel)) / 20.0F)).withStyle(ChatFormatting.DARK_GREEN));
                 tooltip.add(speedForXSeconds);

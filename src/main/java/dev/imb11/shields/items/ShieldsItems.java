@@ -2,7 +2,7 @@ package dev.imb11.shields.items;
 
 import dev.imb11.shields.Shields;
 import dev.imb11.shields.client.ShieldsClient;
-import dev.imb11.shields.datagen.providers.ShieldsEnchantmentProvider;
+import dev.imb11.shields.enchantments.ShieldsEnchantmentKeys;
 import dev.imb11.shields.items.custom.ShieldPatchKitItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
@@ -109,7 +109,7 @@ public class ShieldsItems {
                 .displayItems((itemDisplayParameters, output) -> {
                     var enchantmentStacks = new ArrayList<ItemStack>();
                     itemDisplayParameters.holders().lookup(Registries.ENCHANTMENT).ifPresent(enchantments -> {
-                        for (ResourceKey<Enchantment> registeredEnchantment : ShieldsEnchantmentProvider.REGISTERED_ENCHANTMENTS) {
+                        for (ResourceKey<Enchantment> registeredEnchantment : ShieldsEnchantmentKeys.REGISTERED_ENCHANTMENTS) {
                             var reference = enchantments.getOrThrow(registeredEnchantment);
                             IntStream.rangeClosed(
                                     reference.value().getMinLevel(),

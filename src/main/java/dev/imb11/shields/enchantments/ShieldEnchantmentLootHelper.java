@@ -1,12 +1,10 @@
 package dev.imb11.shields.enchantments;
 
-import dev.imb11.shields.datagen.providers.ShieldsEnchantmentProvider;
 import net.fabricmc.fabric.api.loot.v3.LootTableSource;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.*;
@@ -22,31 +20,31 @@ public class ShieldEnchantmentLootHelper {
 
         if (lootTableSource.isBuiltin() && CHESTS_WOODLAND_MANSION.equals(lootTableResourceKey.location())) {
             builder.modifyPools(poolBuilder -> {
-              poolBuilder.with(LootItem.lootTableItem(Items.BOOK)
+              poolBuilder.add(LootItem.lootTableItem(Items.BOOK)
                       .setWeight(6)
                       .apply(new EnchantRandomlyFunction.Builder().withEnchantment(
-                              enchantmentRegistryLookup.getOrThrow(ShieldsEnchantmentProvider.EVOKERING)
-                      )).build());
+                              enchantmentRegistryLookup.getOrThrow(ShieldsEnchantmentKeys.EVOKERING)
+                      )));
             });
         }
 
         if (lootTableSource.isBuiltin() && CHESTS_NETHER_BRIDGE.equals(lootTableResourceKey.location())) {
             builder.modifyPools(poolBuilder -> {
-              poolBuilder.with(LootItem.lootTableItem(Items.BOOK)
+              poolBuilder.add(LootItem.lootTableItem(Items.BOOK)
                       .setWeight(5)
                       .apply(new EnchantRandomlyFunction.Builder().withEnchantment(
-                              enchantmentRegistryLookup.getOrThrow(ShieldsEnchantmentProvider.LIFEBOUND)
-                      )).build());
+                              enchantmentRegistryLookup.getOrThrow(ShieldsEnchantmentKeys.LIFEBOUND)
+                      )));
             });
         }
 
         if (lootTableSource.isBuiltin() && CHESTS_OMINOUS_VAULT_RARE.equals(lootTableResourceKey.location())) {
             builder.modifyPools(poolBuilder -> {
-              poolBuilder.with(LootItem.lootTableItem(Items.BOOK)
+              poolBuilder.add(LootItem.lootTableItem(Items.BOOK)
                       .setWeight(3)
                       .apply(new EnchantRandomlyFunction.Builder().withEnchantment(
-                              enchantmentRegistryLookup.getOrThrow(ShieldsEnchantmentProvider.LAUNCHING)
-                      )).build());
+                              enchantmentRegistryLookup.getOrThrow(ShieldsEnchantmentKeys.LAUNCHING)
+                      )));
             });
         }
     }

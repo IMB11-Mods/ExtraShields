@@ -1,5 +1,6 @@
 package dev.imb11.shields.datagen.providers;
 
+import dev.imb11.shields.enchantments.ShieldsEnchantmentKeys;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.core.HolderLookup;
@@ -25,40 +26,40 @@ public class ShieldsEnchantmentTagProvider extends FabricTagProvider<Enchantment
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         this.tag(EVOKERING_EXCLUSIVE_SET)
-                .addOptional(ShieldsEnchantmentProvider.LAUNCHING.location())
-                .addOptional(ShieldsEnchantmentProvider.LIFEBOUND.location())
-                .addOptional(ShieldsEnchantmentProvider.MOMENTUM.location());
+                .addOptional(ShieldsEnchantmentKeys.LAUNCHING.location())
+                .addOptional(ShieldsEnchantmentKeys.LIFEBOUND.location())
+                .addOptional(ShieldsEnchantmentKeys.MOMENTUM.location());
 
         this.tag(LAUNCHING_EXCLUSIVE_SET)
-                .addOptional(ShieldsEnchantmentProvider.EVOKERING.location())
-                .addOptional(ShieldsEnchantmentProvider.MOMENTUM.location())
-                .addOptional(ShieldsEnchantmentProvider.LIFEBOUND.location());
+                .addOptional(ShieldsEnchantmentKeys.EVOKERING.location())
+                .addOptional(ShieldsEnchantmentKeys.MOMENTUM.location())
+                .addOptional(ShieldsEnchantmentKeys.LIFEBOUND.location());
 
         this.tag(LIFEBOUND_EXCLUSIVE_SET)
-                .addOptional(ShieldsEnchantmentProvider.EVOKERING.location())
-                .addOptional(ShieldsEnchantmentProvider.LAUNCHING.location())
-                .addOptional(ShieldsEnchantmentProvider.MOMENTUM.location());
+                .addOptional(ShieldsEnchantmentKeys.EVOKERING.location())
+                .addOptional(ShieldsEnchantmentKeys.LAUNCHING.location())
+                .addOptional(ShieldsEnchantmentKeys.MOMENTUM.location());
 
         this.tag(MOMENTUM_EXCLUSIVE_SET)
-                .addOptional(ShieldsEnchantmentProvider.LIFEBOUND.location())
-                .addOptional(ShieldsEnchantmentProvider.LAUNCHING.location())
-                .addOptional(ShieldsEnchantmentProvider.EVOKERING.location())
-                .addOptional(ShieldsEnchantmentProvider.BRACING.location());
+                .addOptional(ShieldsEnchantmentKeys.LIFEBOUND.location())
+                .addOptional(ShieldsEnchantmentKeys.LAUNCHING.location())
+                .addOptional(ShieldsEnchantmentKeys.EVOKERING.location())
+                .addOptional(ShieldsEnchantmentKeys.BRACING.location());
 
         this.tag(BRACING_EXCLUSIVE_SET)
-                .addOptional(ShieldsEnchantmentProvider.MOMENTUM.location());
+                .addOptional(ShieldsEnchantmentKeys.MOMENTUM.location());
 
         this.tag(EnchantmentTags.IN_ENCHANTING_TABLE)
-                .addOptional(ShieldsEnchantmentProvider.MOMENTUM.location())
-                .addOptional(ShieldsEnchantmentProvider.BRACING.location());
+                .addOptional(ShieldsEnchantmentKeys.MOMENTUM.location())
+                .addOptional(ShieldsEnchantmentKeys.BRACING.location());
 
         this.tag(EnchantmentTags.TREASURE)
-                .addOptional(ShieldsEnchantmentProvider.EVOKERING.location())
-                .addOptional(ShieldsEnchantmentProvider.LAUNCHING.location())
-                .addOptional(ShieldsEnchantmentProvider.LIFEBOUND.location());
+                .addOptional(ShieldsEnchantmentKeys.EVOKERING.location())
+                .addOptional(ShieldsEnchantmentKeys.LAUNCHING.location())
+                .addOptional(ShieldsEnchantmentKeys.LIFEBOUND.location());
 
         this.tag(EnchantmentTags.NON_TREASURE)
-                .addOptional(ShieldsEnchantmentProvider.MOMENTUM.location())
-                .addOptional(ShieldsEnchantmentProvider.BRACING.location());
+                .addOptional(ShieldsEnchantmentKeys.MOMENTUM.location())
+                .addOptional(ShieldsEnchantmentKeys.BRACING.location());
     }
 }

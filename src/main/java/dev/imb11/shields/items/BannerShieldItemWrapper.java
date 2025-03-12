@@ -1,7 +1,7 @@
 package dev.imb11.shields.items;
 
 import com.github.crimsondawn45.fabricshieldlib.lib.object.FabricBannerShieldItem;
-import dev.imb11.shields.datagen.providers.ShieldsEnchantmentProvider;
+import dev.imb11.shields.enchantments.ShieldsEnchantmentKeys;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -25,7 +25,7 @@ public class BannerShieldItemWrapper extends FabricBannerShieldItem {
     public int getCoolDownTicks() {
         // Check for bracing enchantment, each level decreases cooldown ticks by 10%.
         if (MIXIN$ITEM_STACK_VALUE != null && ENCHANTMENT_LOOKUP != null) {
-            var enchantment = ENCHANTMENT_LOOKUP.getOrThrow(ShieldsEnchantmentProvider.BRACING);
+            var enchantment = ENCHANTMENT_LOOKUP.getOrThrow(ShieldsEnchantmentKeys.BRACING);
             int enchantmentLevel = MIXIN$ITEM_STACK_VALUE.getEnchantments().getLevel(enchantment);
 
             if (enchantmentLevel > 0) {

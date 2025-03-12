@@ -1,5 +1,6 @@
 package dev.imb11.shields.datagen.providers;
 
+import dev.imb11.shields.enchantments.ShieldsEnchantmentKeys;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
@@ -7,40 +8,22 @@ import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.enchantment.Enchantment;
-import org.jetbrains.annotations.ApiStatus;
 
-import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 
 public class ShieldsEnchantmentProvider extends FabricDynamicRegistryProvider {
-    @ApiStatus.Internal
-    public static final ArrayList<ResourceKey<Enchantment>> REGISTERED_ENCHANTMENTS = new ArrayList<>();
-
-    public static final ResourceKey<Enchantment> EVOKERING = of("evokering");
-    public static final ResourceKey<Enchantment> LAUNCHING = of("launching");
-    public static final ResourceKey<Enchantment> LIFEBOUND = of("lifebound");
-    public static final ResourceKey<Enchantment> MOMENTUM = of("momentum");
-    public static final ResourceKey<Enchantment> BRACING = of("bracing");
 
     public ShieldsEnchantmentProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
-    }
-
-    private static ResourceKey<Enchantment> of(String path) {
-        ResourceLocation id = ResourceLocation.tryBuild("shields", path);
-        var key = ResourceKey.create(Registries.ENCHANTMENT, id);
-        REGISTERED_ENCHANTMENTS.add(key);
-        return key;
     }
 
     @Override
     protected void configure(HolderLookup.Provider provider, Entries entries) {
         var enchantmentsLookup = entries.getLookup(Registries.ENCHANTMENT);
 
-        register(entries, EVOKERING, new Enchantment.Builder(
+        register(entries, ShieldsEnchantmentKeys.EVOKERING, new Enchantment.Builder(
                 Enchantment.definition(
                         provider.lookupOrThrow(Registries.ITEM).getOrThrow(ConventionalItemTags.SHIELD_TOOLS),
                         // Weight (lowest rarity)
@@ -56,7 +39,7 @@ public class ShieldsEnchantmentProvider extends FabricDynamicRegistryProvider {
                 )).exclusiveWith(enchantmentsLookup.getOrThrow(ShieldsEnchantmentTagProvider.EVOKERING_EXCLUSIVE_SET))
         );
 
-        register(entries, LAUNCHING, new Enchantment.Builder(
+        register(entries, ShieldsEnchantmentKeys.LAUNCHING, new Enchantment.Builder(
                 Enchantment.definition(
                         provider.lookupOrThrow(Registries.ITEM).getOrThrow(ConventionalItemTags.SHIELD_TOOLS),
                         // Weight (less common)
@@ -72,7 +55,7 @@ public class ShieldsEnchantmentProvider extends FabricDynamicRegistryProvider {
                 )).exclusiveWith(enchantmentsLookup.getOrThrow(ShieldsEnchantmentTagProvider.LAUNCHING_EXCLUSIVE_SET))
         );
 
-        register(entries, LIFEBOUND, new Enchantment.Builder(
+        register(entries, ShieldsEnchantmentKeys.LIFEBOUND, new Enchantment.Builder(
                 Enchantment.definition(
                         provider.lookupOrThrow(Registries.ITEM).getOrThrow(ConventionalItemTags.SHIELD_TOOLS),
                         // Weight
@@ -88,7 +71,7 @@ public class ShieldsEnchantmentProvider extends FabricDynamicRegistryProvider {
                 )).exclusiveWith(enchantmentsLookup.getOrThrow(ShieldsEnchantmentTagProvider.LIFEBOUND_EXCLUSIVE_SET))
         );
 
-        register(entries, MOMENTUM, new Enchantment.Builder(
+        register(entries, ShieldsEnchantmentKeys.MOMENTUM, new Enchantment.Builder(
                 Enchantment.definition(
                         provider.lookupOrThrow(Registries.ITEM).getOrThrow(ConventionalItemTags.SHIELD_TOOLS),
                         // Weight (common)
@@ -104,7 +87,7 @@ public class ShieldsEnchantmentProvider extends FabricDynamicRegistryProvider {
                 )).exclusiveWith(enchantmentsLookup.getOrThrow(ShieldsEnchantmentTagProvider.MOMENTUM_EXCLUSIVE_SET))
         );
 
-        register(entries, BRACING, new Enchantment.Builder(
+        register(entries, ShieldsEnchantmentKeys.BRACING, new Enchantment.Builder(
                 Enchantment.definition(
                         provider.lookupOrThrow(Registries.ITEM).getOrThrow(ConventionalItemTags.SHIELD_TOOLS),
                         // Weight
