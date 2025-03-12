@@ -62,6 +62,8 @@ fabricApi {
     configureDataGeneration() {
         client = true
         modId = "shields"
+        createSourceSet = true
+        outputDirectory = project.getRootDir().toPath().resolve("src/main/generated").toFile()
     }
 }
 
