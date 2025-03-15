@@ -57,6 +57,9 @@ dependencies {
     modImplementation include("maven.modrinth:midnightlib:${property("deps.midnightlib")}")
     modImplementation include("com.github.Chocohead:Fabric-ASM:v2.3")
 
+    modCompileOnly modRuntimeOnly("maven.modrinth:emi:${property("runtime.emi")}")
+    modCompileOnly modRuntimeOnly("maven.modrinth:modmenu:${property("runtime.modmenu")}")
+
     // https://mvnrepository.com/artifact/org.apache.commons/commons-text
     implementation include("org.apache.commons:commons-text:1.13.0")
 }
@@ -92,5 +95,15 @@ java {
 jar {
     from("LICENSE") {
         rename { "${it}_${project.base.archivesName.get()}"}
+    }
+}
+
+tasks.named('processResources') {
+    from("$rootDir/docs") {
+        into "assets/oracle_index/books/shields"
+        exclude '.assets/item/**'   // items are rendered ingame as actual item components, no need to include them here
+    }
+    doLast {
+        println "processResources executed: wiki folder copied into assets/oracle_index"
     }
 }

@@ -30,5 +30,6 @@
   "enchantment.shields.momentum.tooltip_speed_for_x_seconds": "%1$ss of Speed III",
 
   "itemGroup.shields.shield_group": "Extra Shields",
+  "emi.shields.anvil": "Combine With Anvil",
   "item.shields.shield_patch_kit.no_damage": "Your shield isn't damaged enough to use the repair kit!"
 }
