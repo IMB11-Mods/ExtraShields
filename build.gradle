@@ -56,6 +56,9 @@ dependencies {
     modImplementation include("maven.modrinth:fabricshieldlib:${property("deps.fabric_shield_lib")}")
     modImplementation include("maven.modrinth:midnightlib:${property("deps.midnightlib")}")
     modImplementation include("com.github.Chocohead:Fabric-ASM:v2.3")
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-text
+    implementation include("org.apache.commons:commons-text:1.13.0")
 }
 
 fabricApi {

@@ -1,0 +1,20 @@
+{
+  "values": [
+    {
+      "id": "shields:lifebound",
+      "required": false
+    },
+    {
+      "id": "shields:launching",
+      "required": false
+    },
+    {
+      "id": "shields:evokering",
+      "required": false
+    },
+    {
+      "id": "shields:bracing",
+      "required": false
+    }
+  ]
+}

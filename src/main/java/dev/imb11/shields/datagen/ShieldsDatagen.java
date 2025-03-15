@@ -15,6 +15,7 @@ public class ShieldsDatagen implements DataGeneratorEntrypoint {
         pack.addProvider(ShieldsEnchantmentTagProvider::new);
         pack.addProvider(ShieldsEnchantmentProvider::new);
         pack.addProvider(ShieldsRecipeProvider::new);
+        pack.addProvider(ShieldsLangProvider::new);
     }
 
     @Override
