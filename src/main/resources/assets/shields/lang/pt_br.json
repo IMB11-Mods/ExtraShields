@@ -1,0 +1,35 @@
+{
+  "item.shields.diamond_shield": "Escudo de Diamante",
+  "item.shields.plated_diamond_shield": "Escudo Revestido de Diamante ",
+  "item.shields.plated_shield": "Escudo Revestido",
+  "item.shields.gold_shield": "Escudo de Ouro",
+  "item.shields.plated_gold_shield": "Escudo Revestido de Ouro",
+  "item.shields.netherite_shield": "Escudo de Netherita",
+  "item.shields.plated_netherite_shield": "Escudo Revestido de Netherita",
+  "item.shields.copper_shield": "Escudo de Cobre",
+  "item.shields.plated_copper_shield": "Escudo Revestido de Cobre",
+
+  "item.shields.shield_plating": "Revestimento de Escudo",
+  "item.shields.gold_shield_plating": "Revestimento de Escudo de Ouro",
+  "item.shields.diamond_shield_plating": "Revestimento de Escudo de Diamante",
+  "item.shields.netherite_shield_plating": "Revestimento de Escudo de Netherita",
+  "item.shields.copper_shield_plating": "Revestimento de Escudo de Cobre",
+
+  "item.shields.shield_repair_kit": "Kit de Reparo de Escudo",
+
+  "enchantment.shields.launching": "Lançamento",
+  "enchantment.shields.launching.desc": "Dá uma chance de lançar o atacante para longe quando o escudo está desativado.",
+  "enchantment.shields.evokering": "Evocação",
+  "enchantment.shields.evokering.desc": "Dá a chance de presas do Invocador surgirem abaixo do atacante ao bloquear um ataque.",
+  "enchantment.shields.bracing": "Reforço",
+  "enchantment.shields.bracing.desc": "Reduz o tempo de recarga quando o escudo é desativado por um ataque de machado.",
+  "enchantment.shields.lifebound": "Vínculo Vital",
+  "enchantment.shields.lifebound.desc": "Concede uma chance de absorver saúde do atacante ao bloquear um ataque.",
+  "enchantment.shields.momentum": "Impulso",
+  "enchantment.shields.momentum.desc": "Concede um breve aumento de velocidade quando o escudo é desativado.",
+  "enchantment.shields.momentum.tooltip_speed_for_x_seconds": "%1$ss of Speed III",
+
+  "itemGroup.shields.shield_group": "Extra Shields",
+  "emi.shields.anvil": "Utilize a Bigorna",
+  "item.shields.shield_patch_kit.no_damage": "Seu escudo não está danificado o suficiente para usar o kit de reparo!"
+}
