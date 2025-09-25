@@ -3,12 +3,8 @@
   "category": "equipment",
   "group": "shield_platings",
   "key": {
-    "c": {
-      "tag": "minecraft:planks"
-    },
-    "d": {
-      "item": "minecraft:diamond"
-    }
+    "c": "#minecraft:planks",
+    "d": "minecraft:diamond"
   },
   "pattern": [
     "dcd",

@@ -5,7 +5,7 @@ import dev.imb11.shields.items.custom.ShieldPatchKitItem;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -23,7 +23,7 @@ public abstract class ItemStackMixin {
     @Shadow public abstract boolean is(TagKey<Item> tag);
 
     @Inject(method = "use", at = @At("HEAD"), cancellable = true)
-    public void prioritizeShieldRepairKit(Level level, Player player, InteractionHand usedHand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
+    public void prioritizeShieldRepairKit(Level level, Player player, InteractionHand usedHand, CallbackInfoReturnable<InteractionResult> cir) {
         if (this.is(ConventionalItemTags.SHIELD_TOOLS)) {
             // Check if alternate hand has a Shield Repair Kit
             InteractionHand opposite = usedHand == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND;

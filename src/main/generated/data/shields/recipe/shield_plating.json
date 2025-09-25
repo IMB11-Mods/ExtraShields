@@ -3,12 +3,8 @@
   "category": "equipment",
   "group": "shield_platings",
   "key": {
-    "c": {
-      "tag": "minecraft:planks"
-    },
-    "i": {
-      "item": "minecraft:iron_ingot"
-    }
+    "c": "#minecraft:planks",
+    "i": "minecraft:iron_ingot"
   },
   "pattern": [
     "ici",

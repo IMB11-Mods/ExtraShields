@@ -1,5 +1,5 @@
 {
-  "parent": "fabricshieldlib:item/fabric_banner_shield",
+  "parent": "shieldlib:item/tower_shield",
   "overrides": [
     {
       "model": "shields:item/plated_shield_blocking",

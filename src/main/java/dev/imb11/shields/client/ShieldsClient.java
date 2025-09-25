@@ -1,10 +1,8 @@
 package dev.imb11.shields.client;
 
-import com.github.crimsondawn45.fabricshieldlib.initializers.FabricShieldLibClient;
-import com.github.crimsondawn45.fabricshieldlib.lib.event.ShieldSetModelCallback;
-import com.github.crimsondawn45.fabricshieldlib.lib.object.FabricBannerShieldItem;
+import com.github.stellarwind22.shieldlib.init.ShieldLibClient;
+import com.github.stellarwind22.shieldlib.lib.object.ShieldLibItem;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.minecraft.client.model.ShieldModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -22,7 +20,7 @@ public class ShieldsClient implements ClientModInitializer {
     @ApiStatus.Internal
     public static ArrayList<Material> REGISTERED_MATERIALS = new ArrayList<>();
 
-    public static void registerDynamicShield(String id, FabricBannerShieldItem shieldItem) {
+    public static void registerDynamicShield(String id, ShieldLibItem shieldItem) {
         ModelLayerLocation modelLayer = new ModelLayerLocation(ResourceLocation.tryBuild("shields", id), "main");
 
         AtomicReference<ShieldModel> modelShield = new AtomicReference<>();
@@ -33,16 +31,6 @@ public class ShieldsClient implements ClientModInitializer {
         REGISTERED_MATERIALS.addAll(List.of(shieldBase, shieldBaseNoPattern));
 
         EntityModelLayerRegistry.registerModelLayer(modelLayer, ShieldModel::createLayer);
-
-        ShieldSetModelCallback.EVENT.register((loader) -> {
-            modelShield.set(new ShieldModel(loader.bakeLayer(modelLayer)));
-            return InteractionResult.PASS;
-        });
-
-        BuiltinItemRendererRegistry.INSTANCE.register(shieldItem, (stack, mode, matrices, vertexConsumers, light, overlay) -> {
-            if (modelShield.get() == null) return;
-            FabricShieldLibClient.renderBanner(stack, matrices, vertexConsumers, light, overlay, modelShield.get(), shieldBase, shieldBaseNoPattern);
-        });
     }
 
     @Override

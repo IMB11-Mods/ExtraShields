@@ -17,6 +17,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import org.jetbrains.annotations.ApiStatus;
 
@@ -115,7 +116,7 @@ public class ShieldsItems {
                                     reference.value().getMinLevel(),
                                     reference.value().getMaxLevel()
                             ).mapToObj(level ->
-                                    EnchantedBookItem.createForEnchantment(new EnchantmentInstance(reference, level))
+                                    EnchantmentHelper.createBook(new EnchantmentInstance(reference, level))
                             ).forEach(enchantmentStacks::add);
                         }
                     });
@@ -160,7 +161,7 @@ public class ShieldsItems {
     }
 
     private static BannerShieldItemWrapper create(String id, int durability, int blockingDelay, Item... repairItems) {
-        var item = register(id, (settings) -> new BannerShieldItemWrapper(settings.durability(durability), blockingDelay, 9, repairItems));
+        var item = register(id, (settings) -> new BannerShieldItemWrapper(settings.durability(durability).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("shields", id))), blockingDelay, 9, repairItems));
 
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
             ShieldsClient.registerDynamicShield(id, item);
@@ -170,7 +171,7 @@ public class ShieldsItems {
     }
 
     private static BannerShieldItemWrapper create(String id, int durability, int blockingDelay, TagKey<Item> repairItems) {
-        var item = register(id, (settings) -> new BannerShieldItemWrapper(settings.durability(durability), blockingDelay, 9, repairItems));
+        var item = register(id, (settings) -> new BannerShieldItemWrapper(settings.durability(durability).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("shields", id))), blockingDelay, 9, repairItems));
 
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
             ShieldsClient.registerDynamicShield(id, item);
@@ -182,6 +183,6 @@ public class ShieldsItems {
     private static <T extends Item> T register(String id, Function<Item.Properties, T> builder) {
         ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, ResourceLocation.tryBuild("shields", id));
 
-        return Registry.register(BuiltInRegistries.ITEM, key, builder.apply(new Item.Properties()));
+        return Registry.register(BuiltInRegistries.ITEM, key, builder.apply(new Item.Properties().setId(key)));
     }
 }

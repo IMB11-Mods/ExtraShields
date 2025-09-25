@@ -1,5 +1,5 @@
 {
-  "parent": "fabricshieldlib:item/fabric_banner_shield",
+  "parent": "shieldlib:item/tower_shield",
   "overrides": [
     {
       "model": "shields:item/plated_gold_shield_blocking",
@@ -9,6 +9,7 @@
     }
   ],
   "textures": {
-    "shield": "shields:item/plated_gold_shield"
+    "shield": "shields:item/plated_gold_shield",
+    "particle": "shields:item/plated_gold_shield"
   }
 }

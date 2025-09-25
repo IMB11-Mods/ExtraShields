@@ -1,22 +1,15 @@
 package dev.imb11.shields.items.custom;
 
-import dev.imb11.shields.items.BannerShieldItemWrapper;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.NotNull;
 
 public class ShieldPatchKitItem extends Item {
     public boolean mixin$did_flip_priorities = false;
@@ -36,10 +29,10 @@ public class ShieldPatchKitItem extends Item {
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+    public InteractionResult use(Level level, Player player, InteractionHand usedHand) {
         ItemStack repairKitStack = player.getItemInHand(usedHand);
         if (!(level instanceof ServerLevel)) {
-            return InteractionResultHolder.pass(getResultHolderStack(player, usedHand));
+            return InteractionResult.PASS;
         }
 
         ItemStack shieldStack = canUse(player, usedHand);
@@ -47,11 +40,11 @@ public class ShieldPatchKitItem extends Item {
         if (shieldStack != null) {
             // If the shield is already at max damage, don't use the item.
             if (shieldStack.getMaxDamage() == shieldStack.getDamageValue()) {
-                return InteractionResultHolder.pass(repairKitStack);
+                return InteractionResult.PASS;
             }
 
             // 1 minute between uses.
-            player.getCooldowns().addCooldown(this, 20 * 60);
+            player.getCooldowns().addCooldown(repairKitStack, 20 * 60);
             shieldStack.set(DataComponents.MAX_DAMAGE, (int) Math.floor(shieldStack.getMaxDamage() - 0.25 * shieldStack.getMaxDamage()));
 
             // Repair to max durability.
@@ -62,10 +55,10 @@ public class ShieldPatchKitItem extends Item {
 
             player.playSound(SoundEvents.UI_LOOM_TAKE_RESULT, 1.0F, 1.0F);
 
-            return InteractionResultHolder.success(getResultHolderStack(player, usedHand));
+            return InteractionResult.SUCCESS.heldItemTransformedTo(getResultHolderStack(player, usedHand));
         }
 
-        return InteractionResultHolder.pass(getResultHolderStack(player, usedHand));
+        return InteractionResult.PASS;
     }
 
     private static ItemStack canUse(Player player, InteractionHand usedHand) {

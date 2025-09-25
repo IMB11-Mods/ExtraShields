@@ -38,7 +38,7 @@
     "fabric-api": ">=${target_fabric_api}"
   },
   "recommends": {
-    "emi": "*",
+    "eiv": "*",
     "oracle-index": "*"
   },
   "conflicts": {

@@ -25,41 +25,41 @@ public class ShieldsEnchantmentTagProvider extends FabricTagProvider<Enchantment
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        this.tag(EVOKERING_EXCLUSIVE_SET)
-                .addOptional(ShieldsEnchantmentKeys.LAUNCHING.location())
-                .addOptional(ShieldsEnchantmentKeys.LIFEBOUND.location())
-                .addOptional(ShieldsEnchantmentKeys.MOMENTUM.location());
+        this.getOrCreateRawBuilder(EVOKERING_EXCLUSIVE_SET)
+                .addOptionalElement(ShieldsEnchantmentKeys.LAUNCHING.location())
+                .addOptionalElement(ShieldsEnchantmentKeys.LIFEBOUND.location())
+                .addOptionalElement(ShieldsEnchantmentKeys.MOMENTUM.location());
 
-        this.tag(LAUNCHING_EXCLUSIVE_SET)
-                .addOptional(ShieldsEnchantmentKeys.EVOKERING.location())
-                .addOptional(ShieldsEnchantmentKeys.MOMENTUM.location())
-                .addOptional(ShieldsEnchantmentKeys.LIFEBOUND.location());
+        this.getOrCreateRawBuilder(LAUNCHING_EXCLUSIVE_SET)
+                .addOptionalElement(ShieldsEnchantmentKeys.EVOKERING.location())
+                .addOptionalElement(ShieldsEnchantmentKeys.MOMENTUM.location())
+                .addOptionalElement(ShieldsEnchantmentKeys.LIFEBOUND.location());
 
-        this.tag(LIFEBOUND_EXCLUSIVE_SET)
-                .addOptional(ShieldsEnchantmentKeys.EVOKERING.location())
-                .addOptional(ShieldsEnchantmentKeys.LAUNCHING.location())
-                .addOptional(ShieldsEnchantmentKeys.MOMENTUM.location());
+        this.getOrCreateRawBuilder(LIFEBOUND_EXCLUSIVE_SET)
+                .addOptionalElement(ShieldsEnchantmentKeys.EVOKERING.location())
+                .addOptionalElement(ShieldsEnchantmentKeys.LAUNCHING.location())
+                .addOptionalElement(ShieldsEnchantmentKeys.MOMENTUM.location());
 
-        this.tag(MOMENTUM_EXCLUSIVE_SET)
-                .addOptional(ShieldsEnchantmentKeys.LIFEBOUND.location())
-                .addOptional(ShieldsEnchantmentKeys.LAUNCHING.location())
-                .addOptional(ShieldsEnchantmentKeys.EVOKERING.location())
-                .addOptional(ShieldsEnchantmentKeys.BRACING.location());
+        this.getOrCreateRawBuilder(MOMENTUM_EXCLUSIVE_SET)
+                .addOptionalElement(ShieldsEnchantmentKeys.LIFEBOUND.location())
+                .addOptionalElement(ShieldsEnchantmentKeys.LAUNCHING.location())
+                .addOptionalElement(ShieldsEnchantmentKeys.EVOKERING.location())
+                .addOptionalElement(ShieldsEnchantmentKeys.BRACING.location());
 
-        this.tag(BRACING_EXCLUSIVE_SET)
-                .addOptional(ShieldsEnchantmentKeys.MOMENTUM.location());
+        this.getOrCreateRawBuilder(BRACING_EXCLUSIVE_SET)
+                .addOptionalElement(ShieldsEnchantmentKeys.MOMENTUM.location());
 
-        this.tag(EnchantmentTags.IN_ENCHANTING_TABLE)
-                .addOptional(ShieldsEnchantmentKeys.MOMENTUM.location())
-                .addOptional(ShieldsEnchantmentKeys.BRACING.location());
+        this.getOrCreateRawBuilder(EnchantmentTags.IN_ENCHANTING_TABLE)
+                .addOptionalElement(ShieldsEnchantmentKeys.MOMENTUM.location())
+                .addOptionalElement(ShieldsEnchantmentKeys.BRACING.location());
 
-        this.tag(EnchantmentTags.TREASURE)
-                .addOptional(ShieldsEnchantmentKeys.EVOKERING.location())
-                .addOptional(ShieldsEnchantmentKeys.LAUNCHING.location())
-                .addOptional(ShieldsEnchantmentKeys.LIFEBOUND.location());
+        this.getOrCreateRawBuilder(EnchantmentTags.TREASURE)
+                .addOptionalElement(ShieldsEnchantmentKeys.EVOKERING.location())
+                .addOptionalElement(ShieldsEnchantmentKeys.LAUNCHING.location())
+                .addOptionalElement(ShieldsEnchantmentKeys.LIFEBOUND.location());
 
-        this.tag(EnchantmentTags.NON_TREASURE)
-                .addOptional(ShieldsEnchantmentKeys.MOMENTUM.location())
-                .addOptional(ShieldsEnchantmentKeys.BRACING.location());
+        this.getOrCreateRawBuilder(EnchantmentTags.NON_TREASURE)
+                .addOptionalElement(ShieldsEnchantmentKeys.MOMENTUM.location())
+                .addOptionalElement(ShieldsEnchantmentKeys.BRACING.location());
     }
 }

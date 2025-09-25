@@ -1,7 +1,7 @@
 package dev.imb11.shields;
 
-import com.github.crimsondawn45.fabricshieldlib.lib.event.ShieldBlockCallback;
-import com.github.crimsondawn45.fabricshieldlib.lib.event.ShieldDisabledCallback;
+
+import com.github.stellarwind22.shieldlib.lib.event.ShieldEvents;
 import dev.imb11.shields.enchantments.ShieldEnchantmentLootHelper;
 import dev.imb11.shields.enchantments.ShieldsEnchantmentEffects;
 import dev.imb11.shields.items.ShieldsItems;
@@ -17,8 +17,8 @@ public class Shields implements ModInitializer {
     public void onInitialize() {
         ShieldsItems.initialize();
 
-        ShieldBlockCallback.EVENT.register(ShieldsEnchantmentEffects::eventShieldBlock);
-        ShieldDisabledCallback.EVENT.register(ShieldsEnchantmentEffects::eventShieldDisabled);
+        ShieldEvents.BLOCK.register(ShieldsEnchantmentEffects::eventShieldBlock);
+        ShieldEvents.DISABLE.register(ShieldsEnchantmentEffects::eventShieldDisabled);
 
         LootTableEvents.MODIFY.register(ShieldEnchantmentLootHelper::modifyLootTables);
     }

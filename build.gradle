@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.9-SNAPSHOT'
+    id 'fabric-loom' version '1.11-SNAPSHOT'
     id 'maven-publish'
     id 'org.moddedmc.wiki.toolkit' version '+'
 }
@@ -11,21 +11,21 @@ base {
     archivesName = property("mod.name")
 }
 
-wiki {
-    docs {
-        "extra-shields" {
-            root = rootProject.file("docs/")
-            exportedAssetNamespaces = ['shields']
-        }
-    }
-
-    // If local.properties exists, load WIKI_ACCESS_TOKEN property into "wikiAccessToken =" field.
-    if (rootProject.file("local.properties").exists()) {
-        def localProperties = new Properties()
-        localProperties.load(rootProject.file("local.properties").newDataInputStream())
-        wikiAccessToken = localProperties.getProperty("WIKI_ACCESS_TOKEN")
-    }
-}
+//wiki {
+//    docs {
+//        "extra-shields" {
+//            root = rootProject.file("docs/")
+//            exportedAssetNamespaces = ['shields']
+//        }
+//    }
+//
+//    // If local.properties exists, load WIKI_ACCESS_TOKEN property into "wikiAccessToken =" field.
+//    if (rootProject.file("local.properties").exists()) {
+//        def localProperties = new Properties()
+//        localProperties.load(rootProject.file("local.properties").newDataInputStream())
+//        wikiAccessToken = localProperties.getProperty("WIKI_ACCESS_TOKEN")
+//    }
+//}
 
 repositories {
     maven {
@@ -40,6 +40,7 @@ repositories {
         url = 'https://maven.parchmentmc.org'
     }
     maven { url = 'https://jitpack.io' }
+    maven { url "https://maven.architectury.dev/" }
 }
 
 dependencies {
@@ -53,12 +54,13 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${property('deps.fabric_loader')}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${property('deps.fabric_api')}"
 
-    modImplementation include("maven.modrinth:fabricshieldlib:${property("deps.fabric_shield_lib")}")
+    modImplementation include("maven.modrinth:shieldlib:${property("deps.fabric_shield_lib")}")
     modImplementation include("maven.modrinth:midnightlib:${property("deps.midnightlib")}")
     modImplementation include("com.github.Chocohead:Fabric-ASM:v2.3")
 
-    modCompileOnly modRuntimeOnly("maven.modrinth:emi:${property("runtime.emi")}")
+    modCompileOnly("maven.modrinth:emi:${property("runtime.emi")}")
     modCompileOnly modRuntimeOnly("maven.modrinth:modmenu:${property("runtime.modmenu")}")
+    modApi "dev.architectury:architectury-fabric:17.0.8"
 
     // https://mvnrepository.com/artifact/org.apache.commons/commons-text
     implementation include("org.apache.commons:commons-text:1.13.0")

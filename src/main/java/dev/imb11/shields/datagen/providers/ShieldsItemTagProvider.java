@@ -1,5 +1,6 @@
 package dev.imb11.shields.datagen.providers;
 
+import dev.imb11.shields.items.BannerShieldItemWrapper;
 import dev.imb11.shields.items.ShieldsItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -12,6 +13,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class ShieldsItemTagProvider extends FabricTagProvider.ItemTagProvider {
@@ -23,14 +26,12 @@ public class ShieldsItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        var shieldKeys = ShieldsItems.SHIELD_ITEMS.stream()
-                .map(item -> ResourceKey.create(Registries.ITEM, BuiltInRegistries.ITEM.getKey(item)))
-                .toList();
+        ArrayList<Item> shieldKeys = new ArrayList<>(ShieldsItems.SHIELD_ITEMS);
 
-        this.tag(ENCHANTABLE_DURABILITY)
+        this.valueLookupBuilder(ENCHANTABLE_DURABILITY)
                 .addAll(shieldKeys);
 
-        this.tag(ConventionalItemTags.SHIELD_TOOLS)
+        this.valueLookupBuilder(ConventionalItemTags.SHIELD_TOOLS)
                 .addAll(shieldKeys);
     }
 }
