@@ -39,9 +39,9 @@ public class AnvilViewType implements IEivRecipeViewType {
 
     @Override
     public void placeSlots(RecipeViewMenu.SlotDefinition slotDefinition) {
-        slotDefinition.addItemSlot(0, 5, 5);
-        slotDefinition.addItemSlot(1, 41, 5);
-        slotDefinition.addItemSlot(2, 78, 5);
+        slotDefinition.addItemSlot(0, 5, 4);
+        slotDefinition.addItemSlot(1, 41, 4);
+        slotDefinition.addItemSlot(2, 78, 4);
     }
 
     @Override
