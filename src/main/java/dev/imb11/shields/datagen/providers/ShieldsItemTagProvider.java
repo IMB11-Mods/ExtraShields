@@ -1,6 +1,7 @@
 package dev.imb11.shields.datagen.providers;
 
 import dev.imb11.shields.items.BannerShieldItemWrapper;
+import dev.imb11.shields.items.ShieldsItemTags;
 import dev.imb11.shields.items.ShieldsItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -10,6 +11,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
@@ -18,7 +20,6 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class ShieldsItemTagProvider extends FabricTagProvider.ItemTagProvider {
-    private final TagKey<Item> ENCHANTABLE_DURABILITY = TagKey.create(Registries.ITEM, ResourceLocation.tryParse("enchantable/durability"));
 
     public ShieldsItemTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
         super(output, completableFuture, null);
@@ -28,10 +29,13 @@ public class ShieldsItemTagProvider extends FabricTagProvider.ItemTagProvider {
     protected void addTags(HolderLookup.Provider provider) {
         ArrayList<Item> shieldKeys = new ArrayList<>(ShieldsItems.SHIELD_ITEMS);
 
-        this.valueLookupBuilder(ENCHANTABLE_DURABILITY)
+        this.valueLookupBuilder(ShieldsItemTags.SHIELDS)
                 .addAll(shieldKeys);
 
+        this.valueLookupBuilder(ItemTags.DURABILITY_ENCHANTABLE)
+                .addOptionalTag(ShieldsItemTags.SHIELDS);
+
         this.valueLookupBuilder(ConventionalItemTags.SHIELD_TOOLS)
-                .addAll(shieldKeys);
+                .addOptionalTag(ShieldsItemTags.SHIELDS);
     }
 }
