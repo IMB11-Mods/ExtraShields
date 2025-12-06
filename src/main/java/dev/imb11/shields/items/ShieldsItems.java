@@ -8,22 +8,29 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.BlocksAttacks;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import org.jetbrains.annotations.ApiStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
@@ -160,21 +167,37 @@ public class ShieldsItems {
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, CUSTOM_ITEM_GROUP_KEY, CUSTOM_ITEM_GROUP);
     }
 
-    private static BannerShieldItemWrapper create(String id, int durability, int blockingDelay, Item... repairItems) {
-        var item = register(id, (settings) -> new BannerShieldItemWrapper(settings.durability(durability).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("shields", id))), blockingDelay, 9, repairItems));
+    private static BannerShieldItemWrapper create(String id, int durability, int blockingDelay, Item repairItems) {
+        var item = register(id, (settings) -> new BannerShieldItemWrapper(settings
+                .component(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY)
+                .enchantable(9)
+                .repairable(repairItems)
+                .equippableUnswappable(EquipmentSlot.OFFHAND)
+                .component(DataComponents.BLOCKS_ATTACKS, new BlocksAttacks(0.25F, 1.0F, List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)), new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F), Optional.of(DamageTypeTags.BYPASSES_SHIELD), Optional.of(SoundEvents.SHIELD_BLOCK), Optional.of(SoundEvents.SHIELD_BREAK)))
+                .component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK).durability(durability)
+                .durability(durability)
+                .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("shields", id))), blockingDelay, 9, repairItems));
 
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-            ShieldsClient.registerDynamicShield(id, item);
+            ShieldsClient.registerDynamicShield(id);
         }
 
         return item;
     }
 
     private static BannerShieldItemWrapper create(String id, int durability, int blockingDelay, TagKey<Item> repairItems) {
-        var item = register(id, (settings) -> new BannerShieldItemWrapper(settings.durability(durability).setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("shields", id))), blockingDelay, 9, repairItems));
+
+        var item = register(id, (settings) -> new BannerShieldItemWrapper(settings
+                .component(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY)
+                .enchantable(9)
+                .repairable(repairItems)
+                .equippableUnswappable(EquipmentSlot.OFFHAND)
+                .component(DataComponents.BLOCKS_ATTACKS, new BlocksAttacks(0.25F, 1.0F, List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)), new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F), Optional.of(DamageTypeTags.BYPASSES_SHIELD), Optional.of(SoundEvents.SHIELD_BLOCK), Optional.of(SoundEvents.SHIELD_BREAK)))
+                .component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK).durability(durability)
+                .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("shields", id))), blockingDelay, 9, repairItems));
 
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-            ShieldsClient.registerDynamicShield(id, item);
+            ShieldsClient.registerDynamicShield(id);
         }
 
         return item;

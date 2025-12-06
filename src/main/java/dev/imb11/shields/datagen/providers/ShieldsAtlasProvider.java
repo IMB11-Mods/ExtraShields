@@ -4,10 +4,12 @@ import dev.imb11.shields.client.ShieldsClient;
 import dev.imb11.shields.datagen.data.ShieldsAtlas;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricCodecDataProvider;
+import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 
+import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 
@@ -18,7 +20,9 @@ public class ShieldsAtlasProvider extends FabricCodecDataProvider<ShieldsAtlas> 
 
     @Override
     protected void configure(BiConsumer<ResourceLocation, ShieldsAtlas> biConsumer, HolderLookup.Provider provider) {
-        var shieldsAtlas = new ShieldsAtlas(ShieldsClient.REGISTERED_MATERIALS.stream().map(material -> new ShieldsAtlas.Source("single", material.texture().toString())).toList());
+        ArrayList<Material> materials = new ArrayList<>();
+        ShieldsClient.REGISTERED_MATERIALS.values().forEach(materials::addAll);
+        var shieldsAtlas = new ShieldsAtlas(materials.stream().map(material -> new ShieldsAtlas.Source("single", material.texture().toString())).toList());
         biConsumer.accept(ResourceLocation.tryParse("blocks"), shieldsAtlas);
     }
 

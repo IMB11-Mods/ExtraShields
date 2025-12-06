@@ -59,6 +59,8 @@ dependencies {
     modImplementation include("com.github.Chocohead:Fabric-ASM:v2.3")
 
     modCompileOnly("maven.modrinth:emi:${property("runtime.emi")}")
+    modImplementation("maven.modrinth:eiv:${property("runtime.eiv")}")
+
     modCompileOnly modRuntimeOnly("maven.modrinth:modmenu:${property("runtime.modmenu")}")
     modApi "dev.architectury:architectury-fabric:17.0.8"
 

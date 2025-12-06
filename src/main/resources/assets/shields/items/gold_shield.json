@@ -3,14 +3,14 @@
     "type": "minecraft:condition",
     "on_false": {
       "type": "minecraft:special",
-      "base": "shields:item/plated_gold_shield",
+      "base": "shields:item/gold_shield",
       "model": {
         "type": "minecraft:shield"
       }
     },
     "on_true": {
       "type": "minecraft:special",
-      "base": "shields:item/plated_gold_shield_blocking",
+      "base": "shields:item/gold_shield_blocking",
       "model": {
         "type": "minecraft:shield"
       }

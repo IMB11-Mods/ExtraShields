@@ -6,11 +6,10 @@
   "mixins": [
     "AnvilMenuMixin",
     "BlocksAttacksMixin",
-    "ItemStackMixin",
-    "ShieldsLibDatagenYeet"
+    "ItemStackMixin"
   ],
   "client": [
-    "FabricShieldsClientEntrypointMixin"
+    "ShieldSpecialRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
