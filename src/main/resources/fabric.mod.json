@@ -27,6 +27,9 @@
     ],
     "emi": [
       "dev.imb11.shields.compat.EmiCompat"
+    ],
+    "eiv": [
+      "dev.imb11.shields.compat.eiv.EivCompat"
     ]
   },
   "mixins": [
