@@ -38,9 +38,24 @@ repositories {
     maven {
         name = 'ParchmentMC'
         url = 'https://maven.parchmentmc.org'
+        content {
+            includeGroup 'org.parchmentmc.data'
+        }
     }
-    maven { url = 'https://jitpack.io' }
-    maven { url "https://maven.architectury.dev/" }
+    maven {
+        name = 'Jitpack'
+        url = 'https://jitpack.io'
+        content {
+            includeGroup 'com.github.Chocohead'
+        }
+    }
+    maven {
+        name = 'Architectury'
+        url = 'https://maven.architectury.dev/'
+        content {
+            includeGroup 'dev.architectury'
+        }
+    }
 }
 
 dependencies {
@@ -57,12 +72,12 @@ dependencies {
     modImplementation include("maven.modrinth:shieldlib:${property("deps.fabric_shield_lib")}")
     modImplementation include("maven.modrinth:midnightlib:${property("deps.midnightlib")}")
     modImplementation include("com.github.Chocohead:Fabric-ASM:v2.3")
+    modImplementation include("dev.architectury:architectury-fabric:${property("deps.architectury")}")
 
     modCompileOnly("maven.modrinth:emi:${property("runtime.emi")}")
     modImplementation("maven.modrinth:eiv:${property("runtime.eiv")}")
 
     modCompileOnly modRuntimeOnly("maven.modrinth:modmenu:${property("runtime.modmenu")}")
-    modApi "dev.architectury:architectury-fabric:17.0.8"
 
     // https://mvnrepository.com/artifact/org.apache.commons/commons-text
     implementation include("org.apache.commons:commons-text:1.13.0")
