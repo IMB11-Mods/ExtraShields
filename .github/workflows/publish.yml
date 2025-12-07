@@ -87,7 +87,7 @@ jobs:
       - name: Determine Version Type
         id: versioning
         run: |
-          if [[ "${{ github.event.release.target_commitish }}" == "lts" ]]; then
+          if [[ "${{ github.event.release.target_commitish }}" == "main" ]]; then
             echo "type=release" >> $GITHUB_OUTPUT
           else
             echo "type=beta" >> $GITHUB_OUTPUT
