@@ -18,7 +18,7 @@ tasks.named<ProcessResources>("processResources") {
 }
 
 version = "${property("mod.version")}+${property("deps.minecraft")}-neoforge"
-base.archivesName = property("mod.id") as String
+base.archivesName = property("mod.name") as String
 
 jsonlang {
     languageDirectories = listOf("assets/${property("mod.id")}/lang")

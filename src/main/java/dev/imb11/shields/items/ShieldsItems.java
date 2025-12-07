@@ -1,6 +1,6 @@
 package dev.imb11.shields.items;
 
-import dev.architectury.platform.Platform;
+import dev.imb11.shields.Platform;
 import dev.imb11.shields.Shields;
 import dev.imb11.shields.client.ShieldsClient;
 import dev.imb11.shields.enchantments.ShieldsEnchantmentKeys;
@@ -186,7 +186,7 @@ public class ShieldsItems {
                 .durability(durability)
                 .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("shields", id))), blockingDelay, 9, repairItems));
 
-        if (Platform.getEnv().isClient()) {
+        if (Platform.isClient()) {
             ShieldsClient.registerDynamicShield(id);
         }
 
@@ -204,7 +204,7 @@ public class ShieldsItems {
                 .component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK).durability(durability)
                 .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Shields.MOD_ID, id))), blockingDelay, 9, repairItems));
 
-        if (Platform.getEnv().isClient()) {
+        if (Platform.isClient()) {
             ShieldsClient.registerDynamicShield(id);
         }
 

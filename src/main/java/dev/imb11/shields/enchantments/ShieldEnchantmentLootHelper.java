@@ -51,9 +51,9 @@ public class ShieldEnchantmentLootHelper {
             });
         }
     }
-    //?}
+    //?} else {
 
-    public static void modifyLootTables(ResourceKey<LootTable> lootTableResourceKey, LootTable lootTable, HolderLookup.Provider provider) {
+    /*public static void modifyLootTables(ResourceKey<LootTable> lootTableResourceKey, LootTable lootTable, HolderLookup.Provider provider) {
         var enchantmentRegistryLookup = provider.lookupOrThrow(Registries.ENCHANTMENT);
 
         if (CHESTS_WOODLAND_MANSION.equals(lootTableResourceKey.location())) {
@@ -83,4 +83,5 @@ public class ShieldEnchantmentLootHelper {
             );
         }
     }
+    *///?}
 }
