@@ -1,7 +1,9 @@
 package dev.imb11.shields.client;
 
-import net.fabricmc.api.ClientModInitializer;
+//? fabric {
+/*import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
+*///?}
 import net.minecraft.client.model.ShieldModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.texture.TextureAtlas;
@@ -13,7 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class ShieldsClient implements ClientModInitializer {
+public class ShieldsClient {
     @ApiStatus.Internal
     public static LinkedHashMap<String, List<Material>> REGISTERED_MATERIALS = new LinkedHashMap<>();
 
@@ -27,10 +29,8 @@ public class ShieldsClient implements ClientModInitializer {
 
         REGISTERED_MATERIALS.put(id, List.of(shieldBase, shieldBaseNoPattern));
 
-        EntityModelLayerRegistry.registerModelLayer(modelLayer, ShieldModel::createLayer);
-    }
-
-    @Override
-    public void onInitializeClient() {
+        //? fabric {
+        /*EntityModelLayerRegistry.registerModelLayer(modelLayer, ShieldModel::createLayer);
+        *///?}
     }
 }

@@ -1,4 +1,5 @@
-package dev.imb11.shields.datagen;
+//? fabric {
+/*package dev.imb11.shields.datagen;
 
 import dev.imb11.shields.datagen.providers.*;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
@@ -23,3 +24,4 @@ public class ShieldsDatagen implements DataGeneratorEntrypoint {
         return "shields";
     }
 }
+*///?}

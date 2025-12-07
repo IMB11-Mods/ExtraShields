@@ -3,6 +3,7 @@ package dev.imb11.shields.compat.eiv;
 import de.crafty.eiv.common.api.recipe.EivRecipeType;
 import de.crafty.eiv.common.api.recipe.IEivServerRecipe;
 import de.crafty.eiv.common.recipe.util.EivTagUtil;
+import dev.imb11.shields.Shields;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.resources.ResourceLocation;
@@ -11,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 public class AnvilServerRecipe implements IEivServerRecipe {
 
     public static final EivRecipeType<AnvilServerRecipe> TYPE = EivRecipeType.register(
-            ResourceLocation.fromNamespaceAndPath("shields","anvil_combining"),
+            ResourceLocation.fromNamespaceAndPath(Shields.MOD_ID,"anvil_combining"),
             () -> new AnvilServerRecipe(null, null, null)
     );
     private ItemStack left;

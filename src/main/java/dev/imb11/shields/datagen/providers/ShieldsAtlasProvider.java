@@ -1,4 +1,5 @@
-package dev.imb11.shields.datagen.providers;
+//? fabric {
+/*package dev.imb11.shields.datagen.providers;
 
 import dev.imb11.shields.client.ShieldsClient;
 import dev.imb11.shields.datagen.data.ShieldsAtlas;
@@ -31,3 +32,4 @@ public class ShieldsAtlasProvider extends FabricCodecDataProvider<ShieldsAtlas> 
         return "Extra Shields Atlas";
     }
 }
+*///?}

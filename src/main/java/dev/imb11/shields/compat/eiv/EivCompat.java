@@ -12,6 +12,10 @@ import java.util.Map;
 public class EivCompat implements IExtendedItemViewIntegration {
     @Override
     public void onIntegrationInitialize() {
+      init();
+    }
+
+    public static void init() {
         ItemView.addRecipeProvider(recipeList-> {
             for (Map.Entry<Item, Item[]> itemEntry : ShieldsItems.PLATING_UPGRADE_MAP.entrySet()) {
                 Item shield = itemEntry.getValue()[0];

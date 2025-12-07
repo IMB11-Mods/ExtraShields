@@ -1,4 +1,5 @@
-package dev.imb11.shields.enchantments;
+//? fabric {
+/*package dev.imb11.shields.enchantments;
 
 import net.fabricmc.fabric.api.loot.v3.LootTableSource;
 import net.minecraft.core.HolderLookup;
@@ -49,3 +50,4 @@ public class ShieldEnchantmentLootHelper {
         }
     }
 }
+*///?}

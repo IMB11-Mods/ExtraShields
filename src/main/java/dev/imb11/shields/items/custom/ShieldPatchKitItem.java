@@ -1,6 +1,6 @@
 package dev.imb11.shields.items.custom;
 
-import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import dev.imb11.shields.items.ShieldsItemTags;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -65,7 +65,7 @@ public class ShieldPatchKitItem extends Item {
         if (usedHand == InteractionHand.MAIN_HAND) {
             // Check if shield is in off-hand, and whether shield is more than 25% damaged.
             ItemStack offhandStack = player.getOffhandItem();
-            if (offhandStack.is(ConventionalItemTags.SHIELD_TOOLS)) {
+            if (offhandStack.is(ShieldsItemTags.CONVENTIONAL_SHIELDS)) {
                 if (offhandStack.getDamageValue() > 0.25 * offhandStack.getMaxDamage()) {
                     return offhandStack;
                 }
@@ -73,7 +73,7 @@ public class ShieldPatchKitItem extends Item {
         } else {
             // Check if shield is in main-hand, and whether shield is more than 25% damaged.
             ItemStack mainhandStack = player.getMainHandItem();
-            if (mainhandStack.is(ConventionalItemTags.SHIELD_TOOLS)) {
+            if (mainhandStack.is(ShieldsItemTags.CONVENTIONAL_SHIELDS)) {
                 if (mainhandStack.getDamageValue() > 0.25 * mainhandStack.getMaxDamage()) {
                     return mainhandStack;
                 }

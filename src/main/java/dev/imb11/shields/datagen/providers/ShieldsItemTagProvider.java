@@ -1,4 +1,5 @@
-package dev.imb11.shields.datagen.providers;
+//? fabric {
+/*package dev.imb11.shields.datagen.providers;
 
 import dev.imb11.shields.items.BannerShieldItemWrapper;
 import dev.imb11.shields.items.ShieldsItemTags;
@@ -39,3 +40,4 @@ public class ShieldsItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .addOptionalTag(ShieldsItemTags.SHIELDS);
     }
 }
+*///?}
