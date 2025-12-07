@@ -12,8 +12,8 @@ tasks.named<ProcessResources>("processResources") {
     val props = HashMap<String, String>().apply {
         this["mod_version"] = prop("mod.version")
         this["target_minecraft"] = prop("mod.target")
-        this["mod_id"] = "sounds"
-        this["mod_name"] = "Sounds"
+        this["mod_id"] = "shields"
+        this["mod_name"] = "Extra Shields"
         this["mod_description"] = "A highly configurable sound overhaul mod that adds new sound effects while improving vanilla sounds too."
         this["mod_license"] = "ARR"
         this["target_yacl"] = "*"
