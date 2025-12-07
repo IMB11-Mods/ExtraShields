@@ -79,6 +79,11 @@ dependencies {
     modImplementation("com.github.Chocohead:Fabric-ASM:v2.3")
     modImplementation("dev.architectury:architectury-fabric:${property("deps.architectury")}")
 
+    include("maven.modrinth:shieldlib:${property("deps.fabric_shield_lib")}")
+    include("maven.modrinth:midnightlib:${property("deps.midnightlib")}")
+    include("com.github.Chocohead:Fabric-ASM:v2.3")
+    include("dev.architectury:architectury-fabric:${property("deps.architectury")}")
+
     modCompileOnly("maven.modrinth:emi:${property("runtime.emi")}")
     modImplementation("maven.modrinth:eiv:${property("runtime.eiv")}")
 

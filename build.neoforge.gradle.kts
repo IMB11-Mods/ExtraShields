@@ -93,6 +93,10 @@ dependencies {
     implementation("maven.modrinth:midnightlib:${property("deps.midnightlib")}")
     implementation("dev.architectury:architectury-neoforge:${property("deps.architectury")}")
 
+    jarJar("maven.modrinth:shieldlib:${property("deps.fabric_shield_lib")}")
+    jarJar("maven.modrinth:midnightlib:${property("deps.midnightlib")}")
+    jarJar("dev.architectury:architectury-neoforge:${property("deps.architectury")}")
+
     compileOnly("maven.modrinth:emi:${property("runtime.emi")}")
     implementation("maven.modrinth:eiv:${property("runtime.eiv")}")
 
