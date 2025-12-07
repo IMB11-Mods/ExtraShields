@@ -3,6 +3,7 @@
 
 import dev.imb11.shields.Shields;
 import dev.imb11.shields.compat.eiv.EivCompat;
+import dev.imb11.shields.enchantments.ShieldEnchantmentLootHelper;
 import dev.imb11.shields.items.ShieldsItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
@@ -14,6 +15,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.event.AnvilUpdateEvent;
+import net.neoforged.neoforge.event.LootTableLoadEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
 import java.util.Map;
@@ -59,6 +61,11 @@ public class ShieldsNeoForge {
                 return;
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void loadLootModifiers(LootTableLoadEvent event) {
+        ShieldEnchantmentLootHelper.modifyLootTables(event.getKey(), event.getTable(), event.getRegistries());
     }
 }
 *///?}
