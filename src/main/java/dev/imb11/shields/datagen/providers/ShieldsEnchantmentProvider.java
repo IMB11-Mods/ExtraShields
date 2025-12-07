@@ -1,5 +1,5 @@
 //? fabric {
-/*package dev.imb11.shields.datagen.providers;
+package dev.imb11.shields.datagen.providers;
 
 import dev.imb11.shields.enchantments.ShieldsEnchantmentKeys;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -114,4 +114,4 @@ public class ShieldsEnchantmentProvider extends FabricDynamicRegistryProvider {
         return "ExtraShields Enchantment Provider";
     }
 }
-*///?}
+//?}

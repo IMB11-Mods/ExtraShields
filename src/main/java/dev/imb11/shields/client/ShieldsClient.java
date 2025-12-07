@@ -1,9 +1,9 @@
 package dev.imb11.shields.client;
 
 //? fabric {
-/*import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
-*///?}
+//?}
 import net.minecraft.client.model.ShieldModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.texture.TextureAtlas;
@@ -30,7 +30,7 @@ public class ShieldsClient {
         REGISTERED_MATERIALS.put(id, List.of(shieldBase, shieldBaseNoPattern));
 
         //? fabric {
-        /*EntityModelLayerRegistry.registerModelLayer(modelLayer, ShieldModel::createLayer);
-        *///?}
+        EntityModelLayerRegistry.registerModelLayer(modelLayer, ShieldModel::createLayer);
+        //?}
     }
 }

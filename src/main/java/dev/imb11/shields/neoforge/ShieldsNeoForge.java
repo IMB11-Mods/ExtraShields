@@ -1,5 +1,5 @@
 //? neoforge {
-package dev.imb11.shields.neoforge;
+/*package dev.imb11.shields.neoforge;
 
 import dev.imb11.shields.Shields;
 import dev.imb11.shields.compat.eiv.EivCompat;
@@ -61,4 +61,4 @@ public class ShieldsNeoForge {
         }
     }
 }
-//?}
+*///?}

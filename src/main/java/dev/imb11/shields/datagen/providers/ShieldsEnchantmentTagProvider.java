@@ -1,5 +1,5 @@
 //? fabric {
-/*package dev.imb11.shields.datagen.providers;
+package dev.imb11.shields.datagen.providers;
 
 import dev.imb11.shields.enchantments.ShieldsEnchantmentKeys;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -64,4 +64,4 @@ public class ShieldsEnchantmentTagProvider extends FabricTagProvider<Enchantment
                 .addOptionalElement(ShieldsEnchantmentKeys.BRACING.location());
     }
 }
-*///?}
+//?}

@@ -1,7 +1,7 @@
 package dev.imb11.shields.fabric;
 //? fabric {
 
-/*import com.github.stellarwind22.shieldlib.init.ShieldLib;
+import com.github.stellarwind22.shieldlib.init.ShieldLib;
 import com.github.stellarwind22.shieldlib.lib.event.ShieldEvents;
 import dev.imb11.shields.Shields;
 import dev.imb11.shields.enchantments.ShieldEnchantmentLootHelper;
@@ -23,4 +23,4 @@ public class ShieldsFabric implements ModInitializer {
         LootTableEvents.MODIFY.register(ShieldEnchantmentLootHelper::modifyLootTables);
     }
 }
-*///?}
+//?}

@@ -2,8 +2,8 @@ package dev.imb11.shields.mixin;
 
 import dev.imb11.shields.items.ShieldsItems;
 //? fabric {
-/*import net.fabricmc.loader.api.FabricLoader;
-*///?}
+import net.fabricmc.loader.api.FabricLoader;
+//?}
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -33,12 +33,12 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
         super(menuType, containerId, inventory, access, slotDefinition);
     }
     //? fabric {
-    /*
+    
 
-    /^*
+    /**
      * Credits to <a href="https://github.com/hiisuuii/infinicore/blob/master/src%2Fmain%2Fjava%2Fhisui%2Finfinicore%2Fmixin%2FInfinicoreMixin.java#L27">Infinicore's Implementation of Anvil Recipes</a>
      * for the correct mixin target.
-     ^/
+     */
     @Inject(method = "createResult", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;isDamageableItem()Z", ordinal = 0), cancellable = true)
     private void inject(CallbackInfo info) {
         // [plating (input2)], [input1, output]
@@ -62,5 +62,5 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
             }
         }
     }
-    *///?}
+    //?}
 }

@@ -6,10 +6,10 @@ import dev.imb11.shields.client.ShieldsClient;
 import dev.imb11.shields.enchantments.ShieldsEnchantmentKeys;
 import dev.imb11.shields.items.custom.ShieldPatchKitItem;
 //? fabric {
-/*import net.fabricmc.api.EnvType;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.loader.api.FabricLoader;
-*///?}
+//?}
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -116,10 +116,10 @@ public class ShieldsItems {
 
         CUSTOM_ITEM_GROUP =
                 //? fabric {
-                /*FabricItemGroup.builder()
-                *///?} else {
-                CreativeModeTab.builder()
-                //?}
+                FabricItemGroup.builder()
+                //?} else {
+                /*CreativeModeTab.builder()
+                *///?}
                 .icon(() -> new ItemStack(GOLD_SHIELD))
                 .title(Component.translatable("itemGroup.shields.shield_group"))
                 .displayItems((itemDisplayParameters, output) -> {
