@@ -17,11 +17,8 @@
   "icon": "assets/shields/icon.png",
   "environment": "*",
   "entrypoints": {
-    "client": [
-      "dev.imb11.shields.client.ShieldsClient"
-    ],
     "main": [
-      "dev.imb11.shields.Shields"
+      "dev.imb11.shields.fabric.ShieldsFabric"
     ],
     "fabric-datagen": [
       "dev.imb11.shields.datagen.ShieldsDatagen"
