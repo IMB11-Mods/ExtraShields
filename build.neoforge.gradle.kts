@@ -54,6 +54,17 @@ repositories {
             includeGroup("dev.architectury")
         }
     }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Cassian's Maven"
+                url = uri("https://maven.cassian.cc")
+            }
+        }
+        filter {
+            includeGroupAndSubgroups("cc.cassian")
+        }
+    }
 }
 
 neoForge {
@@ -98,13 +109,16 @@ dependencies {
     jarJar("dev.architectury:architectury-neoforge:${property("deps.architectury")}")
 
     compileOnly("maven.modrinth:emi:${property("runtime.emi")}")
-    implementation("maven.modrinth:eiv:${property("runtime.eiv")}")
+    implementation("cc.cassian.rrv:reliable-recipe-viewer-neoforge:${property("runtime.rrv")}+${property("deps.minecraft")}")
 
     // https://mvnrepository.com/artifact/org.apache.commons/commons-text
     implementation("org.apache.commons:commons-text:1.13.0")
     jarJar("org.apache.commons:commons-text:1.13.0")
 }
 
+tasks.named("processResources") {
+    dependsOn(":${stonecutter.current.project}:stonecutterGenerate")
+}
 
 tasks {
     processResources {

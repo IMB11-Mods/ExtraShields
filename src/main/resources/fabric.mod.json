@@ -26,8 +26,8 @@
     "emi": [
       "dev.imb11.shields.compat.EmiCompat"
     ],
-    "eiv": [
-      "dev.imb11.shields.compat.eiv.EivCompat"
+    "rrv": [
+      "dev.imb11.shields.compat.rrv.RrvCompat"
     ]
   },
   "mixins": [
@@ -39,7 +39,7 @@
     "fabric-api": "*"
   },
   "recommends": {
-    "eiv": "*"
+    "rrv": "*"
   },
   "conflicts": {
     "rei": "*"

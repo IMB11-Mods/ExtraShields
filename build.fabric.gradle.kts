@@ -62,6 +62,18 @@ repositories {
             includeGroup("dev.architectury")
         }
     }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Cassian's Maven"
+                url = uri("https://maven.cassian.cc")
+            }
+        }
+        filter {
+            includeGroupAndSubgroups("cc.cassian")
+        }
+    }
+
 }
 
 dependencies {
@@ -85,7 +97,7 @@ dependencies {
     include("dev.architectury:architectury-fabric:${property("deps.architectury")}")
 
     modCompileOnly("maven.modrinth:emi:${property("runtime.emi")}")
-    modImplementation("maven.modrinth:eiv:${property("runtime.eiv")}")
+    modImplementation("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("runtime.rrv")}+${property("deps.minecraft")}")
 
     modCompileOnly("maven.modrinth:modmenu:${property("runtime.modmenu")}")
 
@@ -100,6 +112,10 @@ fabricApi {
         outputDirectory = file("$rootDir/src/main/generated")
         client = true
     }
+}
+
+tasks.named("processResources") {
+    dependsOn(":${stonecutter.current.project}:stonecutterGenerate")
 }
 
 tasks {

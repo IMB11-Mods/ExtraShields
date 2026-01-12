@@ -1,17 +1,13 @@
-package dev.imb11.shields.compat.eiv;
+package dev.imb11.shields.compat.rrv;
 
-import de.crafty.eiv.common.api.recipe.IEivRecipeViewType;
-import de.crafty.eiv.common.api.recipe.IEivViewRecipe;
-import de.crafty.eiv.common.recipe.inventory.RecipeViewMenu;
-import de.crafty.eiv.common.recipe.inventory.SlotContent;
-import dev.imb11.shields.compat.eiv.AnvilServerRecipe;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Items;
+import cc.cassian.rrv.api.recipe.ReliableClientRecipe;
+import cc.cassian.rrv.api.recipe.ReliableClientRecipeType;
+import cc.cassian.rrv.common.recipe.inventory.RecipeViewMenu;
+import cc.cassian.rrv.common.recipe.inventory.SlotContent;
 
 import java.util.List;
 
-public class AnvilViewRecipe implements IEivViewRecipe {
+public class AnvilViewRecipe implements ReliableClientRecipe {
     private final SlotContent left;
     private final SlotContent right;
     private final SlotContent result;
@@ -23,7 +19,7 @@ public class AnvilViewRecipe implements IEivViewRecipe {
     }
 
     @Override
-    public IEivRecipeViewType getViewType() {
+    public ReliableClientRecipeType getViewType() {
         return AnvilViewType.INSTANCE;
     }
 

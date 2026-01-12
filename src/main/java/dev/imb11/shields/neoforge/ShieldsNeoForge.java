@@ -2,7 +2,7 @@
 /*package dev.imb11.shields.neoforge;
 
 import dev.imb11.shields.Shields;
-import dev.imb11.shields.compat.eiv.EivCompat;
+import dev.imb11.shields.compat.rrv.RrvCompat;
 import dev.imb11.shields.enchantments.ShieldEnchantmentLootHelper;
 import dev.imb11.shields.items.ShieldsItems;
 import net.minecraft.core.registries.Registries;
@@ -36,8 +36,8 @@ public class ShieldsNeoForge {
 
     @SubscribeEvent
     public static void registerItems(FMLCommonSetupEvent registerEvent) {
-        if (ModList.get().isLoaded("eiv")) {
-            EivCompat.init();
+        if (ModList.get().isLoaded("rrv")) {
+            RrvCompat.init();
         }
     }
 

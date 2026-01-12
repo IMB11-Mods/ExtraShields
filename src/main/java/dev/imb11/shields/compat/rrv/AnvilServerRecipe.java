@@ -1,17 +1,16 @@
-package dev.imb11.shields.compat.eiv;
+package dev.imb11.shields.compat.rrv;
 
-import de.crafty.eiv.common.api.recipe.EivRecipeType;
-import de.crafty.eiv.common.api.recipe.IEivServerRecipe;
-import de.crafty.eiv.common.recipe.util.EivTagUtil;
+import cc.cassian.rrv.api.TagUtil;
+import cc.cassian.rrv.api.recipe.ReliableServerRecipe;
+import cc.cassian.rrv.api.recipe.ReliableServerRecipeType;
 import dev.imb11.shields.Shields;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtOps;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
-public class AnvilServerRecipe implements IEivServerRecipe {
+public class AnvilServerRecipe implements ReliableServerRecipe {
 
-    public static final EivRecipeType<AnvilServerRecipe> TYPE = EivRecipeType.register(
+    public static final ReliableServerRecipeType<AnvilServerRecipe> TYPE = ReliableServerRecipeType.register(
             ResourceLocation.fromNamespaceAndPath(Shields.MOD_ID,"anvil_combining"),
             () -> new AnvilServerRecipe(null, null, null)
     );
@@ -28,20 +27,20 @@ public class AnvilServerRecipe implements IEivServerRecipe {
 
     @Override
     public void writeToTag(CompoundTag tag) {
-        tag.put("left", EivTagUtil.encodeItemStackOnServer(left));
-        tag.put("right", EivTagUtil.encodeItemStackOnServer(right));
-        tag.put("result",  EivTagUtil.encodeItemStackOnServer(result));
+        tag.put("left", TagUtil.encodeItemStackOnServer(left));
+        tag.put("right", TagUtil.encodeItemStackOnServer(right));
+        tag.put("result", TagUtil.encodeItemStackOnServer(result));
     }
 
     @Override
     public void loadFromTag(CompoundTag tag) {
-        left = EivTagUtil.decodeItemStackOnClient(tag.getCompoundOrEmpty("left"));
-        right = EivTagUtil.decodeItemStackOnClient(tag.getCompoundOrEmpty("right"));
-        result =  EivTagUtil.decodeItemStackOnClient(tag.getCompoundOrEmpty("result"));
+        left = TagUtil.decodeItemStackOnClient(tag.getCompoundOrEmpty("left"));
+        right = TagUtil.decodeItemStackOnClient(tag.getCompoundOrEmpty("right"));
+        result = TagUtil.decodeItemStackOnClient(tag.getCompoundOrEmpty("result"));
     }
 
     @Override
-    public EivRecipeType<? extends IEivServerRecipe> getRecipeType() {
+    public ReliableServerRecipeType<? extends ReliableServerRecipe> getRecipeType() {
         return TYPE;
     }
 
