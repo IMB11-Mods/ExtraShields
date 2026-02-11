@@ -100,16 +100,7 @@ neoForge {
 }
 
 dependencies {
-    implementation("maven.modrinth:shieldlib:${property("deps.fabric_shield_lib")}")
-    implementation("maven.modrinth:midnightlib:${property("deps.midnightlib")}")
-    implementation("dev.architectury:architectury-neoforge:${property("deps.architectury")}")
-
-    jarJar("maven.modrinth:shieldlib:${property("deps.fabric_shield_lib")}")
-    jarJar("maven.modrinth:midnightlib:${property("deps.midnightlib")}")
-    jarJar("dev.architectury:architectury-neoforge:${property("deps.architectury")}")
-
-    compileOnly("maven.modrinth:emi:${property("runtime.emi")}")
-    implementation("cc.cassian.rrv:reliable-recipe-viewer-neoforge:${property("runtime.rrv")}+${property("deps.minecraft")}")
+    implementation("cc.cassian.rrv:reliable-recipe-viewer-neoforge:${property("runtime.rrv")}+26.1-snapshot-4")
 
     // https://mvnrepository.com/artifact/org.apache.commons/commons-text
     implementation("org.apache.commons:commons-text:1.13.0")
@@ -139,10 +130,10 @@ tasks {
 
 java {
     withSourcesJar()
-    val javaCompat = if (stonecutter.eval(stonecutter.current.version, ">=1.20.5")) {
-        JavaVersion.VERSION_21
+    val javaCompat = if (stonecutter.eval(stonecutter.current.version, ">26")) {
+        JavaVersion.VERSION_25
     } else {
-        JavaVersion.VERSION_17
+        JavaVersion.VERSION_21
     }
     sourceCompatibility = javaCompat
     targetCompatibility = javaCompat

@@ -1,12 +1,6 @@
 package dev.imb11.shields.mixin;
 
 import dev.imb11.shields.items.ShieldsItems;
-//? fabric {
-import net.fabricmc.loader.api.FabricLoader;
-//?}
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.Item;

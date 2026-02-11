@@ -2,7 +2,6 @@ package dev.imb11.shields.enchantments;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -17,9 +16,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class ShieldsEnchantmentEffects {
-    public static void eventShieldBlock(ServerLevel serverLevel, LivingEntity livingEntity, DamageSource damageSource, float v, InteractionHand interactionHand, ItemStack shield) {
+    public static void eventShieldBlock(ServerLevel serverLevel, LivingEntity livingEntity, DamageSource damageSource, ItemStack shield) {
         if (shield.isEnchanted()) {
-            var enchantmentRegistry = livingEntity.level().registryAccess().getOrThrow(Registries.ENCHANTMENT).value();
+            var enchantmentRegistry = serverLevel.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
 
             // Check for our enchantments.
             int evokeringLevel = EnchantmentHelper.getItemEnchantmentLevel(enchantmentRegistry.getOrThrow(ShieldsEnchantmentKeys.EVOKERING), shield);
@@ -34,9 +33,9 @@ public class ShieldsEnchantmentEffects {
         }
     }
 
-    public static void eventShieldDisabled(ServerLevel serverLevel, LivingEntity attacker, LivingEntity defender, boolean defenderIsPlayer, InteractionHand interactionHand, ItemStack shield, float v) {
+    public static void eventShieldDisabled(ServerLevel serverLevel, LivingEntity attacker, LivingEntity defender, ItemStack shield) {
         if (shield.isEnchanted()) {
-            var enchantmentRegistry = defender.level().registryAccess().getOrThrow(Registries.ENCHANTMENT).value();
+            var enchantmentRegistry = serverLevel.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
 
             int launchingLevel = EnchantmentHelper.getItemEnchantmentLevel(enchantmentRegistry.getOrThrow(ShieldsEnchantmentKeys.LAUNCHING), shield);
             if (launchingLevel > 0) {
@@ -50,11 +49,31 @@ public class ShieldsEnchantmentEffects {
         }
     }
 
+    public static float getModifiedCooldown(ServerLevel level, LivingEntity player, ItemStack stack, float original) {
+        {
+            if (player != null) {
+                var enchantmentLookup = level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
+                // Check for bracing enchantment, each level decreases cooldown ticks by 10%.
+                if (stack != null) {
+                    var enchantment = enchantmentLookup.getOrThrow(ShieldsEnchantmentKeys.BRACING);
+                    int enchantmentLevel = stack.getEnchantments().getLevel(enchantment);
+
+                    if (enchantmentLevel > 0) {
+                        return (int) (original * (1 - (0.1 * enchantmentLevel)));
+                    }
+                }
+            }
+
+
+            return original;
+        }
+    }
+
     public static class Handlers {
         public static void handleLifebound(int enchantmentLevel, Player player, LivingEntity attacker) {
             // 1/4 chance, chance increases by 5% with each level
             int chance = 25 + (5 * enchantmentLevel);
-            if (player.level().random.nextInt(100) >= chance) {
+            if (player.level().getRandom().nextInt(100) >= chance) {
                 return;
             }
 
@@ -71,7 +90,7 @@ public class ShieldsEnchantmentEffects {
 
         public static void handleLaunching(int enchantmentLevel, LivingEntity player, ItemStack shield) {
             // 20% chance of launching to actually happen, regardless of level
-            if (player.level().random.nextInt(100) >= 20) {
+            if (player.level().getRandom().nextInt(100) >= 20) {
                 return;
             }
 
@@ -101,7 +120,7 @@ public class ShieldsEnchantmentEffects {
         public static void handleEvokering(ServerLevel serverLevel, int enchantmentLevel, LivingEntity attacker, LivingEntity defender) {
             // 1/4 chance, chance increases by 5% with each level
             int chance = 25 + (5 * enchantmentLevel);
-            if (serverLevel.random.nextInt(100) >= chance) {
+            if (serverLevel.getRandom().nextInt(100) >= chance) {
                 return;
             }
 

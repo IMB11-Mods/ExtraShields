@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.loot.v3.LootTableSource;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -13,15 +13,15 @@ import net.minecraft.world.level.storage.loot.entries.*;
 import net.minecraft.world.level.storage.loot.functions.EnchantRandomlyFunction;
 
 public class ShieldEnchantmentLootHelper {
-    private static final ResourceLocation CHESTS_NETHER_BRIDGE = ResourceLocation.parse("chests/nether_bridge");
-    private static final ResourceLocation CHESTS_WOODLAND_MANSION = ResourceLocation.parse("chests/woodland_mansion");
-    private static final ResourceLocation CHESTS_OMINOUS_VAULT_RARE = ResourceLocation.parse("chests/trial_chambers/reward_ominous_rare");
+    private static final Identifier CHESTS_NETHER_BRIDGE = Identifier.parse("chests/nether_bridge");
+    private static final Identifier CHESTS_WOODLAND_MANSION = Identifier.parse("chests/woodland_mansion");
+    private static final Identifier CHESTS_OMINOUS_VAULT_RARE = Identifier.parse("chests/trial_chambers/reward_ominous_rare");
 
     //? if fabric {
     public static void modifyLootTables(ResourceKey<LootTable> lootTableResourceKey, LootTable.Builder builder, LootTableSource lootTableSource, HolderLookup.Provider provider) {
         var enchantmentRegistryLookup = provider.lookupOrThrow(Registries.ENCHANTMENT);
 
-        if (lootTableSource.isBuiltin() && CHESTS_WOODLAND_MANSION.equals(lootTableResourceKey.location())) {
+        if (lootTableSource.isBuiltin() && CHESTS_WOODLAND_MANSION.equals(lootTableResourceKey.identifier())) {
             builder.modifyPools(poolBuilder -> {
               poolBuilder.add(LootItem.lootTableItem(Items.BOOK)
                       .setWeight(6)
@@ -31,7 +31,7 @@ public class ShieldEnchantmentLootHelper {
             });
         }
 
-        if (lootTableSource.isBuiltin() && CHESTS_NETHER_BRIDGE.equals(lootTableResourceKey.location())) {
+        if (lootTableSource.isBuiltin() && CHESTS_NETHER_BRIDGE.equals(lootTableResourceKey.identifier())) {
             builder.modifyPools(poolBuilder -> {
               poolBuilder.add(LootItem.lootTableItem(Items.BOOK)
                       .setWeight(5)
@@ -41,7 +41,7 @@ public class ShieldEnchantmentLootHelper {
             });
         }
 
-        if (lootTableSource.isBuiltin() && CHESTS_OMINOUS_VAULT_RARE.equals(lootTableResourceKey.location())) {
+        if (lootTableSource.isBuiltin() && CHESTS_OMINOUS_VAULT_RARE.equals(lootTableResourceKey.identifier())) {
             builder.modifyPools(poolBuilder -> {
               poolBuilder.add(LootItem.lootTableItem(Items.BOOK)
                       .setWeight(3)
@@ -56,7 +56,7 @@ public class ShieldEnchantmentLootHelper {
     /*public static void modifyLootTables(ResourceKey<LootTable> lootTableResourceKey, LootTable lootTable, HolderLookup.Provider provider) {
         var enchantmentRegistryLookup = provider.lookupOrThrow(Registries.ENCHANTMENT);
 
-        if (CHESTS_WOODLAND_MANSION.equals(lootTableResourceKey.location())) {
+        if (CHESTS_WOODLAND_MANSION.equals(lootTableResourceKey.identifier())) {
             lootTable.addPool(LootPool.lootPool().add(LootItem.lootTableItem(Items.BOOK)
                         .setWeight(6)
                         .apply(new EnchantRandomlyFunction.Builder().withEnchantment(
@@ -65,7 +65,7 @@ public class ShieldEnchantmentLootHelper {
             );
         }
 
-        if (CHESTS_NETHER_BRIDGE.equals(lootTableResourceKey.location())) {
+        if (CHESTS_NETHER_BRIDGE.equals(lootTableResourceKey.identifier())) {
             lootTable.addPool(LootPool.lootPool().add(LootItem.lootTableItem(Items.BOOK)
                     .setWeight(5)
                     .apply(new EnchantRandomlyFunction.Builder().withEnchantment(
@@ -74,7 +74,7 @@ public class ShieldEnchantmentLootHelper {
             );
         }
 
-        if (CHESTS_OMINOUS_VAULT_RARE.equals(lootTableResourceKey.location())) {
+        if (CHESTS_OMINOUS_VAULT_RARE.equals(lootTableResourceKey.identifier())) {
             lootTable.addPool(LootPool.lootPool().add(LootItem.lootTableItem(Items.BOOK)
                     .setWeight(3)
                     .apply(new EnchantRandomlyFunction.Builder().withEnchantment(

@@ -2,7 +2,7 @@
 package dev.imb11.shields.datagen.providers;
 
 import dev.imb11.shields.enchantments.ShieldsEnchantmentKeys;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
@@ -16,7 +16,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class ShieldsEnchantmentProvider extends FabricDynamicRegistryProvider {
 
-    public ShieldsEnchantmentProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+    public ShieldsEnchantmentProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 
@@ -106,7 +106,7 @@ public class ShieldsEnchantmentProvider extends FabricDynamicRegistryProvider {
     }
 
     private void register(Entries entries, ResourceKey<Enchantment> key, Enchantment.Builder builder, ResourceCondition... resourceConditions) {
-        entries.add(key, builder.build(key.location()), resourceConditions);
+        entries.add(key, builder.build(key.identifier()), resourceConditions);
     }
 
     @Override

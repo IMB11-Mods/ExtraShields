@@ -22,7 +22,7 @@ public abstract class ShieldDecorationRecipeMixin extends CustomRecipe {
 
 
     public ShieldDecorationRecipeMixin(CraftingBookCategory category) {
-        super(category);
+        super();
     }
 
     /**
@@ -59,8 +59,8 @@ public abstract class ShieldDecorationRecipeMixin extends CustomRecipe {
         cir.setReturnValue(!itemStack.isEmpty() && !itemStack2.isEmpty());
     }
 
-    @Inject(method = "assemble(Lnet/minecraft/world/item/crafting/CraftingInput;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/world/item/ItemStack;", at = @At("HEAD"), cancellable = true)
-    private void injectedAssemble(CraftingInput craftingInput, HolderLookup.Provider provider, CallbackInfoReturnable<ItemStack> cir) {
+    @Inject(method = "assemble(Lnet/minecraft/world/item/crafting/CraftingInput;)Lnet/minecraft/world/item/ItemStack;", at = @At("HEAD"), cancellable = true)
+    private void injectedAssemble(CraftingInput craftingInput, CallbackInfoReturnable<ItemStack> cir) {
         ItemStack itemStack = ItemStack.EMPTY;
         ItemStack itemStack2 = ItemStack.EMPTY;
         for (int i = 0; i < craftingInput.size(); ++i) {

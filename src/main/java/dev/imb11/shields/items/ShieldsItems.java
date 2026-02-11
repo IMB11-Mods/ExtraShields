@@ -7,7 +7,7 @@ import dev.imb11.shields.enchantments.ShieldsEnchantmentKeys;
 import dev.imb11.shields.items.custom.ShieldPatchKitItem;
 //? fabric {
 import net.fabricmc.api.EnvType;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.fabricmc.loader.api.FabricLoader;
 //?}
 import net.minecraft.core.Registry;
@@ -16,7 +16,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.ItemTags;
@@ -112,11 +112,11 @@ public class ShieldsItems {
                 )
         );
 
-        CUSTOM_ITEM_GROUP_KEY = ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), ResourceLocation.fromNamespaceAndPath(Shields.MOD_ID, "item_group"));
+        CUSTOM_ITEM_GROUP_KEY = ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), Identifier.fromNamespaceAndPath(Shields.MOD_ID, "item_group"));
 
         CUSTOM_ITEM_GROUP =
                 //? fabric {
-                FabricItemGroup.builder()
+                FabricCreativeModeTab.builder()
                 //?} else {
                 /*CreativeModeTab.builder()
                 *///?}
@@ -184,7 +184,7 @@ public class ShieldsItems {
                 .component(DataComponents.BLOCKS_ATTACKS, new BlocksAttacks(0.25F, 1.0F, List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)), new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F), Optional.of(DamageTypeTags.BYPASSES_SHIELD), Optional.of(SoundEvents.SHIELD_BLOCK), Optional.of(SoundEvents.SHIELD_BREAK)))
                 .component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK).durability(durability)
                 .durability(durability)
-                .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("shields", id))), blockingDelay, 9, repairItems));
+                .setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("shields", id))), blockingDelay, 9, repairItems));
 
         if (Platform.isClient()) {
             ShieldsClient.registerDynamicShield(id);
@@ -202,7 +202,7 @@ public class ShieldsItems {
                 .equippableUnswappable(EquipmentSlot.OFFHAND)
                 .component(DataComponents.BLOCKS_ATTACKS, new BlocksAttacks(0.25F, 1.0F, List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)), new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F), Optional.of(DamageTypeTags.BYPASSES_SHIELD), Optional.of(SoundEvents.SHIELD_BLOCK), Optional.of(SoundEvents.SHIELD_BREAK)))
                 .component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK).durability(durability)
-                .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Shields.MOD_ID, id))), blockingDelay, 9, repairItems));
+                .setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Shields.MOD_ID, id))), blockingDelay, 9, repairItems));
 
         if (Platform.isClient()) {
             ShieldsClient.registerDynamicShield(id);
@@ -212,7 +212,7 @@ public class ShieldsItems {
     }
 
     private static <T extends Item> T register(String id, Function<Item.Properties, T> builder) {
-        ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Shields.MOD_ID, id));
+        ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Shields.MOD_ID, id));
 
         return Registry.register(BuiltInRegistries.ITEM, key, builder.apply(new Item.Properties().setId(key)));
     }

@@ -10,7 +10,7 @@ import net.fabricmc.loader.api.FabricLoader;
 public interface Platform {
     static boolean isClient() {
         //? if neoforge
-        /*return FMLEnvironment.dist.isClient();*/
+        //return FMLEnvironment.getDist().isClient();
         //? if fabric
         return FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT;
     }

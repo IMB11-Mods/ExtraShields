@@ -1,7 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
 plugins {
-    id("fabric-loom")
+    id("net.fabricmc.fabric-loom")
     id("dev.kikugie.postprocess.jsonlang")
     id("me.modmuss50.mod-publish-plugin")
 }
@@ -78,28 +78,15 @@ repositories {
 
 dependencies {
     minecraft("com.mojang:minecraft:${property("deps.minecraft")}")
-    mappings(loom.layered {
-        officialMojangMappings()
-        if (hasProperty("deps.parchment"))
-            parchment("org.parchmentmc.data:parchment-${property("deps.minecraft")}:${property("deps.parchment")}@zip")
-    })
-    modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}")
 
-    modImplementation("maven.modrinth:shieldlib:${property("deps.fabric_shield_lib")}")
-    modImplementation("maven.modrinth:midnightlib:${property("deps.midnightlib")}")
-    modImplementation("com.github.Chocohead:Fabric-ASM:v2.3")
-    modImplementation("dev.architectury:architectury-fabric:${property("deps.architectury")}")
+    implementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
+    implementation("net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}")
 
-    include("maven.modrinth:shieldlib:${property("deps.fabric_shield_lib")}")
-    include("maven.modrinth:midnightlib:${property("deps.midnightlib")}")
-    include("com.github.Chocohead:Fabric-ASM:v2.3")
-    include("dev.architectury:architectury-fabric:${property("deps.architectury")}")
+    compileOnly("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("runtime.rrv")}+26.1-snapshot-5")
+    localRuntime("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("runtime.rrv")}+26.1-snapshot-5")
 
-    modCompileOnly("maven.modrinth:emi:${property("runtime.emi")}")
-    modImplementation("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("runtime.rrv")}+${property("deps.minecraft")}")
-
-    modCompileOnly("maven.modrinth:modmenu:${property("runtime.modmenu")}")
+    compileOnly("maven.modrinth:modmenu:${property("runtime.modmenu")}")
+    localRuntime("maven.modrinth:modmenu:${property("runtime.modmenu")}")
 
     // https://mvnrepository.com/artifact/org.apache.commons/commons-text
     implementation("org.apache.commons:commons-text:1.13.0")
@@ -125,7 +112,7 @@ tasks {
 
     register<Copy>("buildAndCollect") {
         group = "build"
-        from(remapJar.map { it.archiveFile })
+        from(jar.map { it.archiveFile })
         into(rootProject.layout.buildDirectory.file("libs/${project.property("mod.version")}"))
         dependsOn("build")
     }
@@ -133,10 +120,10 @@ tasks {
 
 java {
     withSourcesJar()
-    val javaCompat = if (stonecutter.eval(stonecutter.current.version, ">=1.21")) {
-        JavaVersion.VERSION_21
+    val javaCompat = if (stonecutter.eval(stonecutter.current.version, ">=26")) {
+        JavaVersion.VERSION_25
     } else {
-        JavaVersion.VERSION_17
+        JavaVersion.VERSION_21
     }
     sourceCompatibility = javaCompat
     targetCompatibility = javaCompat

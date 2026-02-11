@@ -5,13 +5,13 @@ import cc.cassian.rrv.api.recipe.ReliableServerRecipe;
 import cc.cassian.rrv.api.recipe.ReliableServerRecipeType;
 import dev.imb11.shields.Shields;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 
 public class AnvilServerRecipe implements ReliableServerRecipe {
 
     public static final ReliableServerRecipeType<AnvilServerRecipe> TYPE = ReliableServerRecipeType.register(
-            ResourceLocation.fromNamespaceAndPath(Shields.MOD_ID,"anvil_combining"),
+            Identifier.fromNamespaceAndPath(Shields.MOD_ID,"anvil_combining"),
             () -> new AnvilServerRecipe(null, null, null)
     );
     private ItemStack left;
