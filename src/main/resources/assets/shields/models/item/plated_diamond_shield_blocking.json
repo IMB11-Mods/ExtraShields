@@ -1,0 +1,6 @@
+{
+  "parent": "shieldlib:item/tower_shield_blocking",
+  "textures": {
+    "shield": "shields:item/plated_diamond_shield"
+  }
+}

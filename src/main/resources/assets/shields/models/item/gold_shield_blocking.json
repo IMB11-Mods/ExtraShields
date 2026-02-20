@@ -1,0 +1,7 @@
+{
+  "parent": "shieldlib:item/tower_shield_blocking",
+  "textures": {
+    "shield": "shields:item/gold_shield",
+    "particle": "shields:item/gold_shield_plating"
+  }
+}

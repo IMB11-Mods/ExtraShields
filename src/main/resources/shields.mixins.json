@@ -6,11 +6,11 @@
   "mixins": [
     "AnvilMenuMixin",
     "ItemStackMixin",
-    "PlayerMixin",
-    "ShieldsLibDatagenYeet"
+    "LivingEntityMixin",
+    "ShieldDecorationRecipeMixin"
   ],
   "client": [
-    "FabricShieldsClientEntrypointMixin"
+    "ShieldSpecialRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

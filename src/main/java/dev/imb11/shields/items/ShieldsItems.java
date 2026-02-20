@@ -1,28 +1,39 @@
 package dev.imb11.shields.items;
 
+import dev.imb11.shields.Platform;
 import dev.imb11.shields.Shields;
 import dev.imb11.shields.client.ShieldsClient;
 import dev.imb11.shields.enchantments.ShieldsEnchantmentKeys;
 import dev.imb11.shields.items.custom.ShieldPatchKitItem;
+//? fabric {
 import net.fabricmc.api.EnvType;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.fabricmc.loader.api.FabricLoader;
+//?}
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.BlocksAttacks;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import org.jetbrains.annotations.ApiStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
@@ -101,9 +112,14 @@ public class ShieldsItems {
                 )
         );
 
-        CUSTOM_ITEM_GROUP_KEY = ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), ResourceLocation.tryParse("shields:item_group"));
+        CUSTOM_ITEM_GROUP_KEY = ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), Identifier.fromNamespaceAndPath(Shields.MOD_ID, "item_group"));
 
-        CUSTOM_ITEM_GROUP = FabricItemGroup.builder()
+        CUSTOM_ITEM_GROUP =
+                //? fabric {
+                FabricCreativeModeTab.builder()
+                //?} else {
+                /*CreativeModeTab.builder()
+                *///?}
                 .icon(() -> new ItemStack(GOLD_SHIELD))
                 .title(Component.translatable("itemGroup.shields.shield_group"))
                 .displayItems((itemDisplayParameters, output) -> {
@@ -115,7 +131,7 @@ public class ShieldsItems {
                                     reference.value().getMinLevel(),
                                     reference.value().getMaxLevel()
                             ).mapToObj(level ->
-                                    EnchantedBookItem.createForEnchantment(new EnchantmentInstance(reference, level))
+                                    EnchantmentHelper.createBook(new EnchantmentInstance(reference, level))
                             ).forEach(enchantmentStacks::add);
                         }
                     });
@@ -159,29 +175,45 @@ public class ShieldsItems {
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, CUSTOM_ITEM_GROUP_KEY, CUSTOM_ITEM_GROUP);
     }
 
-    private static BannerShieldItemWrapper create(String id, int durability, int blockingDelay, Item... repairItems) {
-        var item = register(id, (settings) -> new BannerShieldItemWrapper(settings.durability(durability), blockingDelay, 9, repairItems));
+    private static BannerShieldItemWrapper create(String id, int durability, int blockingDelay, Item repairItems) {
+        var item = register(id, (settings) -> new BannerShieldItemWrapper(settings
+                .component(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY)
+                .enchantable(9)
+                .repairable(repairItems)
+                .equippableUnswappable(EquipmentSlot.OFFHAND)
+                .component(DataComponents.BLOCKS_ATTACKS, new BlocksAttacks(0.25F, 1.0F, List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)), new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F), Optional.of(DamageTypeTags.BYPASSES_SHIELD), Optional.of(SoundEvents.SHIELD_BLOCK), Optional.of(SoundEvents.SHIELD_BREAK)))
+                .component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK).durability(durability)
+                .durability(durability)
+                .setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("shields", id))), blockingDelay, 9, repairItems));
 
-        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-            ShieldsClient.registerDynamicShield(id, item);
+        if (Platform.isClient()) {
+            ShieldsClient.registerDynamicShield(id);
         }
 
         return item;
     }
 
     private static BannerShieldItemWrapper create(String id, int durability, int blockingDelay, TagKey<Item> repairItems) {
-        var item = register(id, (settings) -> new BannerShieldItemWrapper(settings.durability(durability), blockingDelay, 9, repairItems));
 
-        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-            ShieldsClient.registerDynamicShield(id, item);
+        var item = register(id, (settings) -> new BannerShieldItemWrapper(settings
+                .component(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY)
+                .enchantable(9)
+                .repairable(repairItems)
+                .equippableUnswappable(EquipmentSlot.OFFHAND)
+                .component(DataComponents.BLOCKS_ATTACKS, new BlocksAttacks(0.25F, 1.0F, List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)), new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F), Optional.of(DamageTypeTags.BYPASSES_SHIELD), Optional.of(SoundEvents.SHIELD_BLOCK), Optional.of(SoundEvents.SHIELD_BREAK)))
+                .component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK).durability(durability)
+                .setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Shields.MOD_ID, id))), blockingDelay, 9, repairItems));
+
+        if (Platform.isClient()) {
+            ShieldsClient.registerDynamicShield(id);
         }
 
         return item;
     }
 
     private static <T extends Item> T register(String id, Function<Item.Properties, T> builder) {
-        ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, ResourceLocation.tryBuild("shields", id));
+        ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Shields.MOD_ID, id));
 
-        return Registry.register(BuiltInRegistries.ITEM, key, builder.apply(new Item.Properties()));
+        return Registry.register(BuiltInRegistries.ITEM, key, builder.apply(new Item.Properties().setId(key)));
     }
 }

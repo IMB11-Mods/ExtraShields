@@ -3,12 +3,8 @@
   "category": "equipment",
   "group": "shield_platings",
   "key": {
-    "c": {
-      "tag": "minecraft:planks"
-    },
-    "p": {
-      "item": "minecraft:copper_ingot"
-    }
+    "c": "#minecraft:planks",
+    "p": "minecraft:copper_ingot"
   },
   "pattern": [
     "pcp",

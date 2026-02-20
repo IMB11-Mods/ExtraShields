@@ -1,0 +1,15 @@
+{
+  "parent": "shieldlib:item/tower_shield",
+  "overrides": [
+    {
+      "model": "shields:item/netherite_shield_blocking",
+      "predicate": {
+        "blocking": 1
+      }
+    }
+  ],
+  "textures": {
+    "shield": "shields:item/netherite_shield",
+    "particle": "shields:item/netherite_shield"
+  }
+}

@@ -1,10 +1,6 @@
 package dev.imb11.shields.mixin;
 
 import dev.imb11.shields.items.ShieldsItems;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.Item;
@@ -27,9 +23,11 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
 
     @Shadow @Nullable private String itemName;
 
-    protected AnvilMenuMixin(@Nullable MenuType<?> type, int containerId, Inventory playerInventory, ContainerLevelAccess access) {
-        super(type, containerId, playerInventory, access);
+    public AnvilMenuMixin(@Nullable MenuType<?> menuType, int containerId, Inventory inventory, ContainerLevelAccess access, ItemCombinerMenuSlotDefinition slotDefinition) {
+        super(menuType, containerId, inventory, access, slotDefinition);
     }
+    //? fabric {
+    
 
     /**
      * Credits to <a href="https://github.com/hiisuuii/infinicore/blob/master/src%2Fmain%2Fjava%2Fhisui%2Finfinicore%2Fmixin%2FInfinicoreMixin.java#L27">Infinicore's Implementation of Anvil Recipes</a>
@@ -58,4 +56,5 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
             }
         }
     }
+    //?}
 }

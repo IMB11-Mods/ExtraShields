@@ -1,0 +1,7 @@
+{
+  "parent": "shieldlib:item/tower_shield_blocking",
+  "textures": {
+    "shield": "shields:item/diamond_shield",
+    "particle": "shields:item/diamond_shield"
+  }
+}

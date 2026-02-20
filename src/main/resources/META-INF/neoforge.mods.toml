@@ -1,0 +1,34 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+license = "All-Rights-Reserved"
+
+[[mods]]
+modId = "shields"
+displayName = "Extra Shields"
+version = "${version}"
+displayURL = "https://modrinth.com/mod/shields"
+logoFile = "assets/shields/icon.png"
+authors = "IMB11, cassiancc"
+description = '''A vanilla+ expansion to shields. Adds various new shields inline with the vanilla armor system and shield plating upgrades. Includes new and improved enchantment support.'''
+
+[[mixins]]
+config = "shields.mixins.json"
+
+[[dependencies.shields]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1.181,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.shields]]
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft}"
+
+[[dependencies.shields]]
+modId = "architectury"
+type = "required"
+versionRange = "[13.0.2,)"
+ordering = "AFTER"
+side = "BOTH"

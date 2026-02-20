@@ -5,28 +5,29 @@
   "name": "Extra Shields",
   "description": "A vanilla+ expansion to shields. Adds various new shields inline with the vanilla armor system and shield plating upgrades. Includes new and improved enchantment support.",
   "authors": [
-    "IMB11"
+    "IMB11",
+    "cassiancc"
   ],
   "contact": {
     "homepage": "https://moddedmc.wiki/en/project/extra-shields",
-    "sources": "https://github.com/IMB11/ExtraShields",
-    "issues": "https://github.com/IMB11/ExtraShields/issues"
+    "sources": "https://github.com/IMB11-Mods/ExtraShields",
+    "issues": "https://github.com/IMB11-Mods/ExtraShields/issues"
   },
   "license": "All-Rights-Reserved",
   "icon": "assets/shields/icon.png",
   "environment": "*",
   "entrypoints": {
-    "client": [
-      "dev.imb11.shields.client.ShieldsClient"
-    ],
     "main": [
-      "dev.imb11.shields.Shields"
+      "dev.imb11.shields.fabric.ShieldsFabric"
     ],
     "fabric-datagen": [
       "dev.imb11.shields.datagen.ShieldsDatagen"
     ],
     "emi": [
       "dev.imb11.shields.compat.EmiCompat"
+    ],
+    "rrv": [
+      "dev.imb11.shields.compat.rrv.RrvCompat"
     ]
   },
   "mixins": [
@@ -35,11 +36,10 @@
   "depends": {
     "fabricloader": ">=0.15.0",
     "minecraft": "${target_minecraft}",
-    "fabric-api": ">=${target_fabric_api}"
+    "fabric-api": "*"
   },
   "recommends": {
-    "emi": "*",
-    "oracle-index": "*"
+    "rrv": "*"
   },
   "conflicts": {
     "rei": "*"

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "shields:item/gold_shield_plating",
+    "particle": "shields:item/gold_shield_plating"
+  }
+}

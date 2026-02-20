@@ -1,0 +1,15 @@
+{
+  "parent": "shieldlib:item/tower_shield",
+  "overrides": [
+    {
+      "model": "shields:item/copper_shield_blocking",
+      "predicate": {
+        "blocking": 1
+      }
+    }
+  ],
+  "textures": {
+    "shield": "shields:item/copper_shield",
+    "particle": "shields:item/copper_shield"
+  }
+}

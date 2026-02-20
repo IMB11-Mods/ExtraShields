@@ -1,0 +1,15 @@
+{
+  "parent": "shieldlib:item/tower_shield",
+  "overrides": [
+    {
+      "model": "shields:item/plated_gold_shield_blocking",
+      "predicate": {
+        "blocking": 1
+      }
+    }
+  ],
+  "textures": {
+    "shield": "shields:item/plated_gold_shield",
+    "particle": "shields:item/plated_gold_shield"
+  }
+}
