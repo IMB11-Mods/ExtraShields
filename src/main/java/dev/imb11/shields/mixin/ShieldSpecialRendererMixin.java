@@ -5,19 +5,14 @@ import java.util.Objects;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import dev.imb11.shields.client.ShieldsClient;
 import net.minecraft.client.model.object.equipment.ShieldModel;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BannerRenderer;
-import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.special.ShieldSpecialRenderer;
-import net.minecraft.client.renderer.texture.TextureAtlas;
-import net.minecraft.client.resources.model.Material;
-import net.minecraft.client.resources.model.MaterialSet;
+import net.minecraft.client.resources.model.SpriteGetter;
+import net.minecraft.client.resources.model.SpriteId;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -29,14 +24,11 @@ import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 
 @Mixin(ShieldSpecialRenderer.class)
 public abstract class ShieldSpecialRendererMixin implements ResourceManagerReloadListener {
-    @Shadow @Final private MaterialSet materials;
+    @Shadow @Final private SpriteGetter sprites;
 
     @Shadow
     @Final
@@ -60,30 +52,27 @@ public abstract class ShieldSpecialRendererMixin implements ResourceManagerReloa
                 poseStack.scale(1.0f, -1.0f, -1.0f);
 
                 var materials = ShieldsClient.REGISTERED_MATERIALS.get(material);
-                Material shieldBaseTextureLocation = materials.get(0);
-                Material noPatternShieldBaseTextureLocation = materials.get(1);
-                Material spriteIdentifier = hasBanner ? shieldBaseTextureLocation : noPatternShieldBaseTextureLocation;
-                submitNodeCollector.submitModelPart(this.model.handle(), poseStack, this.model.renderType(spriteIdentifier.atlasLocation()), lightCoords, overlayCoords, this.materials.get(spriteIdentifier), false, false, -1,(ModelFeatureRenderer.CrumblingOverlay) null, outlineColor);
+                SpriteId shieldBaseTextureLocation = materials.get(0);
+                SpriteId noPatternShieldBaseTextureLocation = materials.get(1);
+                SpriteId spriteIdentifier = hasBanner ? shieldBaseTextureLocation : noPatternShieldBaseTextureLocation;
+                submitNodeCollector.submitModelPart(this.model.handle(), poseStack, this.model.renderType(spriteIdentifier.atlasLocation()), lightCoords, overlayCoords, this.sprites.get(spriteIdentifier), false, false, -1,(ModelFeatureRenderer.CrumblingOverlay) null, outlineColor);
                 if (hasBanner) {
                     BannerRenderer.submitPatterns(
-                            this.materials,
+                            this.sprites,
                             poseStack,
                             submitNodeCollector,
                             lightCoords,
                             overlayCoords,
                             this.model,
                             Unit.INSTANCE,
-                            shieldBaseTextureLocation,
                             false,
 							Objects.requireNonNullElse(shieldBannerDyeColor, DyeColor.WHITE),
                             bannerPatternsComponent,
-                            hasFoil,
-                            null,
-                            outlineColor
+                            null
                     );
                 }
                 else {
-                    submitNodeCollector.submitModelPart(this.model.plate(), poseStack, this.model.renderType(spriteIdentifier.atlasLocation()), lightCoords, overlayCoords, this.materials.get(spriteIdentifier), false, hasFoil, -1,(ModelFeatureRenderer.CrumblingOverlay) null, outlineColor);
+                    submitNodeCollector.submitModelPart(this.model.plate(), poseStack, this.model.renderType(spriteIdentifier.atlasLocation()), lightCoords, overlayCoords, this.sprites.get(spriteIdentifier), false, hasFoil, -1,(ModelFeatureRenderer.CrumblingOverlay) null, outlineColor);
                 }
                 poseStack.popPose();
             } else {
