@@ -1,0 +1,6 @@
+{
+  "type": "rrv:anvil_combining",
+  "left": "shields:netherite_shield",
+  "right": "shields:netherite_shield_plating",
+  "result": "shields:plated_netherite_shield"
+}
