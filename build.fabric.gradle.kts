@@ -73,6 +73,11 @@ repositories {
             includeGroupAndSubgroups("cc.cassian")
         }
     }
+    maven {
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = uri("https://maven.blamejared.com/")
+    }
 
 }
 
@@ -82,8 +87,10 @@ dependencies {
     implementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
     implementation("net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}")
 
-    compileOnly("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("runtime.rrv")}+26.1-snapshot-5")
-    localRuntime("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("runtime.rrv")}+26.1-snapshot-5")
+    compileOnly("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("runtime.rrv")}+26.1-snapshot-10")
+    localRuntime("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("runtime.rrv")}+26.1-snapshot-10")
+
+    compileOnly("mezz.jei:jei-${property("runtime.jei_mc")}-fabric:${property("runtime.jei")}")
 
     compileOnly("maven.modrinth:modmenu:${property("runtime.modmenu")}")
     localRuntime("maven.modrinth:modmenu:${property("runtime.modmenu")}")

@@ -65,6 +65,11 @@ repositories {
             includeGroupAndSubgroups("cc.cassian")
         }
     }
+    maven {
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = uri("https://maven.blamejared.com/")
+    }
 }
 
 neoForge {
@@ -100,7 +105,8 @@ neoForge {
 }
 
 dependencies {
-    implementation("cc.cassian.rrv:reliable-recipe-viewer-neoforge:${property("runtime.rrv")}+26.1-snapshot-4")
+    compileOnly("cc.cassian.rrv:reliable-recipe-viewer-neoforge:${property("runtime.rrv")}+26.1-snapshot-7")
+    compileOnly("mezz.jei:jei-${property("runtime.jei_mc")}-neoforge:${property("runtime.jei")}")
 
     // https://mvnrepository.com/artifact/org.apache.commons/commons-text
     implementation("org.apache.commons:commons-text:1.13.0")

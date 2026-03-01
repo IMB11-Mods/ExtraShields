@@ -17,7 +17,7 @@ config = "shields.mixins.json"
 [[dependencies.shields]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.1.181,)"
+versionRange = "[26,)"
 ordering = "NONE"
 side = "BOTH"
 
@@ -25,13 +25,6 @@ side = "BOTH"
 modId = "minecraft"
 type = "required"
 versionRange = "${minecraft}"
-
-[[dependencies.shields]]
-modId = "architectury"
-type = "required"
-versionRange = "[13.0.2,)"
-ordering = "AFTER"
-side = "BOTH"
 
 [[dependencies.shields]]
 modId = "rrv"

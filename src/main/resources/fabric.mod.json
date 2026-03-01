@@ -22,6 +22,9 @@
     ],
     "fabric-datagen": [
       "dev.imb11.shields.datagen.ShieldsDatagen"
+    ],
+    "jei_mod_plugin": [
+      "dev.imb11.shields.compat.JeiCompat"
     ]
   },
   "mixins": [
