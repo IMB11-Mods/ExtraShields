@@ -40,14 +40,6 @@ public class ShieldsLangProvider extends FabricLanguageProvider {
             throw new RuntimeException(e);
         }
 
-        List<Item> dyeItems = BuiltInRegistries.ITEM.stream().filter(item -> item instanceof DyeItem).toList();
-        Map<DyeColor, String> dyeNameMap = dyeItems.stream()
-                .map(item -> (DyeItem) item)
-                .collect(Collectors.toMap(
-                        dyeItem -> dyeItem.getDefaultInstance().get(DataComponents.DYE),
-                        dyeItem -> WordUtils.capitalize(dyeItem.getDefaultInstance().get(DataComponents.DYE).getName().replace("_", " ")),
-                        (existing, replacement) -> existing
-                ));
         Map<BannerShieldItemWrapper, String> shieldNameMap = ShieldsItems.SHIELD_ITEMS.stream()
                 .collect(Collectors.toMap(
                         shield -> shield,
@@ -56,9 +48,9 @@ public class ShieldsLangProvider extends FabricLanguageProvider {
 
         for (Map.Entry<BannerShieldItemWrapper, String> bannerShieldItemWrapperStringEntry : shieldNameMap.entrySet()) {
             String shieldID = bannerShieldItemWrapperStringEntry.getKey().builtInRegistryHolder().key().identifier().getPath();
-            for (Map.Entry<DyeColor, String> dyeColorStringEntry : dyeNameMap.entrySet()) {
-                String dyeID = dyeColorStringEntry.getKey().getName();
-                translationBuilder.add("item.shields." + shieldID + "." + dyeID, dyeColorStringEntry.getValue() + " " + bannerShieldItemWrapperStringEntry.getValue());
+            for (DyeColor dyeColorStringEntry : DyeColor.values()) {
+                String dyeID = dyeColorStringEntry.getName();
+                translationBuilder.add("item.shields.%s.%s".formatted(shieldID, dyeID), WordUtils.capitalize(dyeID.replace("_", " ")) + " " + bannerShieldItemWrapperStringEntry.getValue());
             }
         }
     }
