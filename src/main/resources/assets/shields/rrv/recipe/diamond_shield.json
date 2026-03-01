@@ -1,0 +1,6 @@
+{
+  "type": "rrv:anvil_combining",
+  "left": "shields:diamond_shield",
+  "right": "shields:diamond_shield_plating",
+  "result": "shields:plated_diamond_shield"
+}

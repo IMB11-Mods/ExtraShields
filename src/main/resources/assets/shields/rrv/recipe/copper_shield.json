@@ -1,0 +1,6 @@
+{
+  "type": "rrv:anvil_combining",
+  "left": "shields:copper_shield",
+  "right": "shields:copper_shield_plating",
+  "result": "shields:plated_copper_shield"
+}

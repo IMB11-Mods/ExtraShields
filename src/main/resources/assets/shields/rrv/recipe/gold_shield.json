@@ -1,0 +1,6 @@
+{
+  "type": "rrv:anvil_combining",
+  "left": "shields:gold_shield",
+  "right": "shields:gold_shield_plating",
+  "result": "shields:plated_gold_shield"
+}

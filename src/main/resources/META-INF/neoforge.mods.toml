@@ -32,3 +32,10 @@ type = "required"
 versionRange = "[13.0.2,)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies.shields]]
+modId = "rrv"
+type = "optional"
+versionRange = "[6.5.0,)"
+ordering = "NONE"
+side = "BOTH"

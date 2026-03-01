@@ -22,12 +22,6 @@
     ],
     "fabric-datagen": [
       "dev.imb11.shields.datagen.ShieldsDatagen"
-    ],
-    "emi": [
-      "dev.imb11.shields.compat.EmiCompat"
-    ],
-    "rrv": [
-      "dev.imb11.shields.compat.rrv.RrvCompat"
     ]
   },
   "mixins": [
@@ -39,7 +33,7 @@
     "fabric-api": "*"
   },
   "recommends": {
-    "rrv": "*"
+    "rrv": ">=6.5.0"
   },
   "conflicts": {
     "rei": "*"

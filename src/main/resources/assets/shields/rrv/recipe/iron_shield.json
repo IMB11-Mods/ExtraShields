@@ -1,0 +1,6 @@
+{
+  "type": "rrv:anvil_combining",
+  "left": "minecraft:shield",
+  "right": "shields:shield_plating",
+  "result": "shields:plated_shield"
+}

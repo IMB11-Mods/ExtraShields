@@ -15,12 +15,11 @@
   "category": "equipment",
   "key": {
     "c": "minecraft:copper_ingot",
-    "h": "minecraft:honeycomb",
     "w": "#minecraft:planks"
   },
   "pattern": [
     "wcw",
-    "whw",
+    "www",
     " w "
   ],
   "result": {
