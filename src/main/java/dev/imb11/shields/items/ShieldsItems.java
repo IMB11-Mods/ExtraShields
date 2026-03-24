@@ -181,8 +181,7 @@ public class ShieldsItems {
                 .enchantable(9)
                 .repairable(repairItems)
                 .equippableUnswappable(EquipmentSlot.OFFHAND)
-                .component(DataComponents.BLOCKS_ATTACKS, new BlocksAttacks(0.25F, 1.0F, List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)), new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F), Optional.of(DamageTypeTags.BYPASSES_SHIELD), Optional.of(SoundEvents.SHIELD_BLOCK), Optional.of(SoundEvents.SHIELD_BREAK)))
-                .component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK).durability(durability)
+                .delayedComponent(DataComponents.BLOCKS_ATTACKS, (context) -> new BlocksAttacks(0.25F, 1.0F, List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)), new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F), Optional.of(context.getOrThrow(DamageTypeTags.BYPASSES_SHIELD)), Optional.of(SoundEvents.SHIELD_BLOCK), Optional.of(SoundEvents.SHIELD_BREAK)))                .component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK).durability(durability)
                 .durability(durability)
                 .setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("shields", id))), blockingDelay, 9, repairItems));
 
@@ -200,8 +199,7 @@ public class ShieldsItems {
                 .enchantable(9)
                 .repairable(repairItems)
                 .equippableUnswappable(EquipmentSlot.OFFHAND)
-                .component(DataComponents.BLOCKS_ATTACKS, new BlocksAttacks(0.25F, 1.0F, List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)), new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F), Optional.of(DamageTypeTags.BYPASSES_SHIELD), Optional.of(SoundEvents.SHIELD_BLOCK), Optional.of(SoundEvents.SHIELD_BREAK)))
-                .component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK).durability(durability)
+                .delayedComponent(DataComponents.BLOCKS_ATTACKS, (context) -> new BlocksAttacks(0.25F, 1.0F, List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)), new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F), Optional.of(context.getOrThrow(DamageTypeTags.BYPASSES_SHIELD)), Optional.of(SoundEvents.SHIELD_BLOCK), Optional.of(SoundEvents.SHIELD_BREAK)))                .component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK).durability(durability)
                 .setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Shields.MOD_ID, id))), blockingDelay, 9, repairItems));
 
         if (Platform.isClient()) {

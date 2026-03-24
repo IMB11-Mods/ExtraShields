@@ -87,8 +87,8 @@ dependencies {
     implementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
     implementation("net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}")
 
-    compileOnly("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("runtime.rrv")}+26.1-snapshot-10")
-    localRuntime("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("runtime.rrv")}+26.1-snapshot-10")
+    compileOnly("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("runtime.rrv")}+26.1")
+    localRuntime("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("runtime.rrv")}+26.1")
 
     compileOnly("mezz.jei:jei-${property("runtime.jei_mc")}-fabric:${property("runtime.jei")}")
 

@@ -105,7 +105,7 @@ neoForge {
 }
 
 dependencies {
-    compileOnly("cc.cassian.rrv:reliable-recipe-viewer-neoforge:${property("runtime.rrv")}+26.1-snapshot-7")
+    compileOnly("cc.cassian.rrv:reliable-recipe-viewer-neoforge:${property("runtime.rrv")}+26.1")
     compileOnly("mezz.jei:jei-${property("runtime.jei_mc")}-neoforge:${property("runtime.jei")}")
 
     // https://mvnrepository.com/artifact/org.apache.commons/commons-text
