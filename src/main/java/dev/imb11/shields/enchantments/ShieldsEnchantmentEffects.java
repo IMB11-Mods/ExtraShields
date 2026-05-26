@@ -83,7 +83,7 @@ public class ShieldsEnchantmentEffects {
             player.heal(damage);
 
             var registryLookup = player.level().registryAccess();
-            var magicDamageSouce = new DamageSource(registryLookup.getOrThrow(Registries.DAMAGE_TYPE).value().getOrThrow(DamageTypes.MAGIC));
+            var magicDamageSouce = new DamageSource(registryLookup.lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(DamageTypes.MAGIC));
             attacker.setLastHurtByPlayer(player, 100);
             attacker.hurt(magicDamageSouce, damage);
         }

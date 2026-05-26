@@ -22,7 +22,7 @@ public abstract class ItemStackMixin implements ItemInstance {
 
     @Inject(method = "use", at = @At("HEAD"), cancellable = true)
     public void prioritizeShieldRepairKit(Level level, Player player, InteractionHand usedHand, CallbackInfoReturnable<InteractionResult> cir) {
-        if (this.is(ShieldsItemTags.SHIELDS)) {
+        if (this.is(ShieldsItemTags.CONVENTIONAL_SHIELDS)) {
             // Check if alternate hand has a Shield Repair Kit
             InteractionHand opposite = usedHand == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND;
             ItemStack oppositeStack = player.getItemInHand(opposite);

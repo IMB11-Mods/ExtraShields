@@ -66,7 +66,11 @@ repositories {
 }
 
 neoForge {
-    version = property("deps.neoforge") as String
+    enable {
+        version = property("deps.neoforge") as String
+        // Disable recompilation for performance benefits, as this mod is primarily developed on Fabric.
+        isDisableRecompilation = true
+    }
     validateAccessTransformers = true
 
     runs {

@@ -1,7 +1,6 @@
 //? fabric {
 package dev.imb11.shields.datagen.providers;
 
-import dev.imb11.shields.items.BannerShieldItemWrapper;
 import dev.imb11.shields.items.ShieldsItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
@@ -11,6 +10,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ShieldItem;
 import org.apache.commons.text.WordUtils;
 
 import java.io.IOException;
@@ -40,13 +40,13 @@ public class ShieldsLangProvider extends FabricLanguageProvider {
             throw new RuntimeException(e);
         }
 
-        Map<BannerShieldItemWrapper, String> shieldNameMap = ShieldsItems.SHIELD_ITEMS.stream()
+        Map<ShieldItem, String> shieldNameMap = ShieldsItems.SHIELD_ITEMS.stream()
                 .collect(Collectors.toMap(
                         shield -> shield,
                         shield -> WordUtils.capitalize(shield.builtInRegistryHolder().key().identifier().getPath().replace("_", " "))
                 ));
 
-        for (Map.Entry<BannerShieldItemWrapper, String> bannerShieldItemWrapperStringEntry : shieldNameMap.entrySet()) {
+        for (Map.Entry<ShieldItem, String> bannerShieldItemWrapperStringEntry : shieldNameMap.entrySet()) {
             String shieldID = bannerShieldItemWrapperStringEntry.getKey().builtInRegistryHolder().key().identifier().getPath();
             for (DyeColor dyeColorStringEntry : DyeColor.values()) {
                 String dyeID = dyeColorStringEntry.getName();
