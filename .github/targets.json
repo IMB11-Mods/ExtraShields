@@ -1,4 +1,4 @@
 {
-  "lts": ["26.1-fabric", "26.1-neoforge"],
+  "main": ["26.1-fabric", "26.1-neoforge"],
   "edge": ["1.21.8-fabric", "1.21.8-neoforge"]
 }
