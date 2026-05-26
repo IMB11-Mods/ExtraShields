@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_special_shielddecoration",
+  "banner": "#minecraft:banners",
+  "result": {
+    "id": "shields:gold_shield"
+  },
+  "target": "shields:gold_shield"
+}

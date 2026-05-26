@@ -20,7 +20,7 @@ tasks.named<ProcessResources>("processResources") {
         this["target_fabricloader"] = "0.17.2"
     }
 
-    filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml")) {
+    filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml")) {
         expand(props)
     }
 }
@@ -39,13 +39,6 @@ repositories {
         url = uri("https://api.modrinth.com/maven")
         content {
             includeGroupAndSubgroups("maven.modrinth")
-        }
-    }
-    maven {
-        name = "ParchmentMC"
-        url = uri("https://maven.parchmentmc.org")
-        content {
-            includeGroup("org.parchmentmc.data")
         }
     }
     maven {
@@ -87,8 +80,8 @@ dependencies {
     implementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
     implementation("net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}")
 
-    compileOnly("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("runtime.rrv")}+26.1")
-    localRuntime("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("runtime.rrv")}+26.1")
+    compileOnly("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("runtime.rrv")}")
+    localRuntime("cc.cassian.rrv:reliable-recipe-viewer-fabric:${property("runtime.rrv")}")
 
     compileOnly("mezz.jei:jei-${property("runtime.jei_mc")}-fabric:${property("runtime.jei")}")
 
@@ -114,7 +107,7 @@ tasks.named("processResources") {
 
 tasks {
     processResources {
-        exclude("**/neoforge.mods.toml", "**/mods.toml")
+        exclude("**/neoforge.mods.toml")
     }
 
     register<Copy>("buildAndCollect") {

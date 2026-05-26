@@ -12,7 +12,7 @@ tasks.named<ProcessResources>("processResources") {
         this["minecraft"] = prop("mod.target")
     }
 
-    filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml")) {
+    filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml")) {
         expand(props)
     }
 }
@@ -31,13 +31,6 @@ repositories {
         url = uri("https://api.modrinth.com/maven")
         content {
             includeGroupAndSubgroups("maven.modrinth")
-        }
-    }
-    maven {
-        name = "ParchmentMC"
-        url = uri("https://maven.parchmentmc.org")
-        content {
-            includeGroup("org.parchmentmc.data")
         }
     }
     maven {
@@ -76,12 +69,6 @@ neoForge {
     version = property("deps.neoforge") as String
     validateAccessTransformers = true
 
-    if (hasProperty("deps.parchment")) parchment {
-        val (mc, ver) = (property("deps.parchment") as String).split(':')
-        mappingsVersion = ver
-        minecraftVersion = mc
-    }
-
     runs {
         configureEach {
             systemProperty("neoforge.warnings.onlyin.hide", "true")
@@ -105,8 +92,8 @@ neoForge {
 }
 
 dependencies {
-    compileOnly("cc.cassian.rrv:reliable-recipe-viewer-neoforge:${property("runtime.rrv")}+26.1")
-    compileOnly("mezz.jei:jei-${property("runtime.jei_mc")}-neoforge:${property("runtime.jei")}")
+    compileOnly("cc.cassian.rrv:reliable-recipe-viewer-neoforge:${property("runtime.rrv")}")
+    implementation("mezz.jei:jei-${property("runtime.jei_mc")}-neoforge:${property("runtime.jei")}")
 
     // https://mvnrepository.com/artifact/org.apache.commons/commons-text
     implementation("org.apache.commons:commons-text:1.13.0")
@@ -119,7 +106,7 @@ tasks.named("processResources") {
 
 tasks {
     processResources {
-        exclude("**/fabric.mod.json", "**/*.accesswidener", "**/mods.toml")
+        exclude("**/fabric.mod.json", "**/*.classtweaker")
     }
 
     named("createMinecraftArtifacts") {

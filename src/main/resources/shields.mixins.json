@@ -6,8 +6,7 @@
   "mixins": [
     "AnvilMenuMixin",
     "ItemStackMixin",
-    "LivingEntityMixin",
-    "ShieldDecorationRecipeMixin"
+    "LivingEntityMixin"
   ],
   "client": [
     "ShieldSpecialRendererMixin"

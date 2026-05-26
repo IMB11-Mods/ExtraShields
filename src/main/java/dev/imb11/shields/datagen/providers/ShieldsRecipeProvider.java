@@ -1,6 +1,7 @@
 //? fabric {
 package dev.imb11.shields.datagen.providers;
 
+import dev.imb11.shields.items.BannerShieldItemWrapper;
 import dev.imb11.shields.items.ShieldsItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -8,8 +9,10 @@ import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.ShieldDecorationRecipe;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -107,6 +110,13 @@ public class ShieldsRecipeProvider extends FabricRecipeProvider {
                         .pattern(" i ")
                         .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
                         .save(recipeOutput);
+
+                for (BannerShieldItemWrapper shieldItem : ShieldsItems.SHIELD_ITEMS) {
+                    SpecialRecipeBuilder.special(
+                                    () -> new ShieldDecorationRecipe(this.tag(ItemTags.BANNERS), Ingredient.of(shieldItem), new ItemStackTemplate(shieldItem))
+                            )
+                            .save(this.output, shieldItem.builtInRegistryHolder().key().identifier().getPath()+"_decoration");
+                }
             }
         };
     }

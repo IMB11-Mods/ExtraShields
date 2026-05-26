@@ -7,13 +7,12 @@ pluginManagement {
         maven("https://maven.neoforged.net/releases/") { name = "NeoForged" }
         maven("https://maven.kikugie.dev/snapshots") { name = "KikuGie" }
         maven("https://maven.kikugie.dev/releases") { name = "KikuGie Releases" }
-        maven("https://maven.parchmentmc.org") { name = "ParchmentMC" }
     }
 }
 
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
-    id("dev.kikugie.stonecutter") version "0.8.3"
+    id("dev.kikugie.stonecutter") version "0.8.4"
 }
 
 stonecutter {

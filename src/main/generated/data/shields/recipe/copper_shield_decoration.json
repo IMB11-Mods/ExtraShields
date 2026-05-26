@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_special_shielddecoration",
+  "banner": "#minecraft:banners",
+  "result": {
+    "id": "shields:copper_shield"
+  },
+  "target": "shields:copper_shield"
+}
