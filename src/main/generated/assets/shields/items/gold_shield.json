@@ -1,0 +1,50 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "on_false": {
+      "type": "minecraft:special",
+      "base": "shields:item/gold_shield",
+      "model": {
+        "type": "shields:shields",
+        "model_layer": "shields:gold_shield",
+        "no_pattern_texture": "shields:gold_shield_base_nopattern",
+        "texture": "shields:gold_shield_base"
+      }
+    },
+    "on_true": {
+      "type": "minecraft:special",
+      "base": "shields:item/gold_shield_blocking",
+      "model": {
+        "type": "shields:shields",
+        "model_layer": "shields:gold_shield",
+        "no_pattern_texture": "shields:gold_shield_base_nopattern",
+        "texture": "shields:gold_shield_base"
+      }
+    },
+    "property": "minecraft:using_item",
+    "transformation": {
+      "left_rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "right_rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        -1.0,
+        -1.0
+      ],
+      "translation": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  }
+}

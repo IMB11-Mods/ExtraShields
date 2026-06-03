@@ -8,9 +8,6 @@
     "ItemStackMixin",
     "LivingEntityMixin"
   ],
-  "client": [
-    "ShieldSpecialRendererMixin"
-  ],
   "injectors": {
     "defaultRequire": 1
   }

@@ -1,8 +1,0 @@
-{
-  "parent": "shieldlib:item/tower_shield_blocking",
-  "textures": {
-    "shield": "shields:item/netherite_shield",
-    "particle": "shields:item/netherite_shield"
-
-  }
-}

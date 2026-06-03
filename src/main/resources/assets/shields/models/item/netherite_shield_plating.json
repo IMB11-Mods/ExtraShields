@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "shields:item/netherite_shield_plating",
-    "particle": "shields:item/netherite_shield"
-  }
-}

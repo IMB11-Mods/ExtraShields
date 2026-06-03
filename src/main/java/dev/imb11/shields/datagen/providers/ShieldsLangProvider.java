@@ -1,6 +1,7 @@
 //? fabric {
 package dev.imb11.shields.datagen.providers;
 
+import dev.imb11.shields.items.ShieldsItemTags;
 import dev.imb11.shields.items.ShieldsItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
@@ -53,6 +54,7 @@ public class ShieldsLangProvider extends FabricLanguageProvider {
                 translationBuilder.add("item.shields.%s.%s".formatted(shieldID, dyeID), WordUtils.capitalize(dyeID.replace("_", " ")) + " " + bannerShieldItemWrapperStringEntry.getValue());
             }
         }
+        translationBuilder.add(ShieldsItemTags.SHIELDS, "Shields");
     }
 }
 //?}

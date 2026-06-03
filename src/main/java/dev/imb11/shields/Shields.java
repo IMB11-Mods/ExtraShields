@@ -8,6 +8,7 @@ import dev.imb11.shields.enchantments.ShieldsEnchantmentEffects;
 import dev.imb11.shields.enchantments.ShieldsEnchantmentKeys;
 import dev.imb11.shields.items.ShieldsItems;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BlocksAttacks;
@@ -17,6 +18,10 @@ import org.slf4j.LoggerFactory;
 public class Shields {
     public static final Logger LOGGER = LoggerFactory.getLogger("Shields");
     public static final String MOD_ID = "shields";
+
+    public static Identifier of(String name) {
+        return Identifier.fromNamespaceAndPath(MOD_ID, name);
+    }
 
     public static void init() {
         // moved to LivingEntityMixin#triggerDisabledEvent

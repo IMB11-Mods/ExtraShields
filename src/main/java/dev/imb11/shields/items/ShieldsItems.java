@@ -28,16 +28,15 @@ import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import org.jetbrains.annotations.ApiStatus;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
 public class ShieldsItems {
     @ApiStatus.Internal
     public static final ArrayList<ShieldItem> SHIELD_ITEMS = new ArrayList<>();
+    @ApiStatus.Internal
+    public static final HashMap<String, ShieldItem> SHIELD_ITEMS_BY_ID = new HashMap<>();
     @ApiStatus.Internal
     public static final ArrayList<Item> SHIELD_PLATING_ITEMS = new ArrayList<>();
 
@@ -184,6 +183,7 @@ public class ShieldsItems {
         if (Platform.isClient()) {
             ShieldsClient.registerDynamicShield(id);
         }
+        SHIELD_ITEMS_BY_ID.put(id, item);
 
         return item;
     }

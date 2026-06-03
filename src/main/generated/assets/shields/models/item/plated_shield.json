@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/shield",
+  "textures": {
+    "particle": "shields:item/shield_plating"
+  }
+}

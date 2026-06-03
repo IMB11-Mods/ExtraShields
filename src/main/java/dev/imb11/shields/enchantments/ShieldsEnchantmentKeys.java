@@ -1,5 +1,6 @@
 package dev.imb11.shields.enchantments;
 
+import dev.imb11.shields.Shields;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
@@ -18,7 +19,7 @@ public class ShieldsEnchantmentKeys {
     public static final ResourceKey<Enchantment> BRACING = of("bracing");
 
     private static ResourceKey<Enchantment> of(String path) {
-        Identifier id = Identifier.tryBuild("shields", path);
+        Identifier id = Shields.of(path);
         var key = ResourceKey.create(Registries.ENCHANTMENT, id);
         REGISTERED_ENCHANTMENTS.add(key);
         return key;

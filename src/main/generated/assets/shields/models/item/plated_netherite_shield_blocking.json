@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/shield_blocking",
+  "textures": {
+    "particle": "shields:item/netherite_shield_plating"
+  }
+}

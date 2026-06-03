@@ -171,5 +171,6 @@
   "item.shields.shield_patch_kit.no_damage": "Your shield isn't damaged enough to use the repair kit!",
   "item.shields.shield_plating": "Shield Plating",
   "item.shields.shield_repair_kit": "Shield Repair Kit",
-  "itemGroup.shields.shield_group": "Extra Shields"
+  "itemGroup.shields.shield_group": "Extra Shields",
+  "tag.item.shields.shields": "Shields"
 }
