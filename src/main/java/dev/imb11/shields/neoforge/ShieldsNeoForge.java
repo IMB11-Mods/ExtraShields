@@ -31,17 +31,22 @@ public class ShieldsNeoForge {
     }
 
     @SubscribeEvent
-    public static void registerItems(RegisterEvent registerEvent) {
-        if (registerEvent.getRegistryKey().equals(Registries.ITEM)) {
+    public static void registerItems(RegisterEvent event) {
+        if (event.getRegistryKey().equals(Registries.ITEM)) {
             ShieldsItems.initialize();
         }
     }
 
     @SubscribeEvent
-    public static void shieldAnvilRecipes(AnvilUpdateEvent anvilUpdateEvent) {
+	public static void addTooltip(ItemTooltipEvent event) {
+        Shields.addTooltip(event.getItemStack(), event.getContext(), event.getToolTip());
+    }
 
-        ItemStack expectedInput1 = anvilUpdateEvent.getLeft();
-        ItemStack expectedPlating = anvilUpdateEvent.getRight();
+    @SubscribeEvent
+    public static void shieldAnvilRecipes(AnvilUpdateEvent event) {
+
+        ItemStack expectedInput1 = event.getLeft();
+        ItemStack expectedPlating = event.getRight();
 
         for (ShieldCollection itemEntry : ShieldsItems.SHIELD_COLLECTIONS.values()) {
             var plating = itemEntry.plating();
@@ -50,8 +55,8 @@ public class ShieldsNeoForge {
 
             // Check if the input items are the same as the expected items
             if (expectedInput1.getItem() == input1 && expectedPlating.getItem() == plating) {
-                anvilUpdateEvent.setOutput(expectedInput1.transmuteCopy(output));
-                anvilUpdateEvent.setXpCost(1);
+                event.setOutput(expectedInput1.transmuteCopy(output));
+                event.setXpCost(1);
                 return;
             }
         }

@@ -11,6 +11,10 @@ import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+
+import java.util.List;
 
 public class ShieldsFabric implements ModInitializer {
 
@@ -20,12 +24,7 @@ public class ShieldsFabric implements ModInitializer {
         ShieldsItems.initialize();
         LootTableEvents.MODIFY.register(ShieldEnchantmentLootHelper::modifyLootTables);
         ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipFlag, tooltip) -> {
-            if (itemStack.has(DataComponents.BLOCKS_ATTACKS)) {
-                var blocks = itemStack.get(DataComponents.BLOCKS_ATTACKS);
-                tooltip.add(Component.empty());
-                tooltip.add(Component.translatable("shields.attribute.axe").withStyle(ChatFormatting.GRAY));
-                tooltip.add(Component.translatable("shields.attribute.seconds", ShieldsEnchantmentEffects.getModifiedCooldown(tooltipContext.registries(), itemStack, blocks.disableCooldownScale()*5)).withStyle(ChatFormatting.DARK_GREEN));
-            }
+            Shields.addTooltip(itemStack, tooltipContext, tooltip);
         });
     }
 }

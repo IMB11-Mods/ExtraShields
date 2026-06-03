@@ -13,9 +13,9 @@ import net.minecraft.world.level.storage.loot.entries.*;
 import net.minecraft.world.level.storage.loot.functions.EnchantRandomlyFunction;
 
 public class ShieldEnchantmentLootHelper {
-    private static final Identifier CHESTS_NETHER_BRIDGE = Identifier.parse("chests/nether_bridge");
-    private static final Identifier CHESTS_WOODLAND_MANSION = Identifier.parse("chests/woodland_mansion");
-    private static final Identifier CHESTS_OMINOUS_VAULT_RARE = Identifier.parse("chests/trial_chambers/reward_ominous_rare");
+    private static final Identifier CHESTS_NETHER_BRIDGE = Identifier.withDefaultNamespace("chests/nether_bridge");
+    private static final Identifier CHESTS_WOODLAND_MANSION = Identifier.withDefaultNamespace("chests/woodland_mansion");
+    private static final Identifier CHESTS_OMINOUS_VAULT_RARE = Identifier.withDefaultNamespace("chests/trial_chambers/reward_ominous_rare");
 
     //? if fabric {
     public static void modifyLootTables(ResourceKey<LootTable> lootTableResourceKey, LootTable.Builder builder, LootTableSource lootTableSource, HolderLookup.Provider provider) {

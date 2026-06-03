@@ -20,6 +20,9 @@
     "main": [
       "dev.imb11.shields.fabric.ShieldsFabric"
     ],
+    "client": [
+      "dev.imb11.shields.fabric.ShieldsFabricClient"
+    ],
     "fabric-datagen": [
       "dev.imb11.shields.datagen.ShieldsDatagen"
     ],

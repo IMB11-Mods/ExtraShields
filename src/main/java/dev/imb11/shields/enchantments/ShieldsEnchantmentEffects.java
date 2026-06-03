@@ -1,5 +1,6 @@
 package dev.imb11.shields.enchantments;
 
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
@@ -12,9 +13,12 @@ import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.EvokerFangs;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.Optional;
 
 public class ShieldsEnchantmentEffects {
     public static void eventShieldBlock(ServerLevel serverLevel, LivingEntity livingEntity, DamageSource damageSource, ItemStack shield) {
@@ -22,15 +26,19 @@ public class ShieldsEnchantmentEffects {
             var enchantmentRegistry = serverLevel.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
 
             // Check for our enchantments.
-            int evokeringLevel = EnchantmentHelper.getItemEnchantmentLevel(enchantmentRegistry.getOrThrow(ShieldsEnchantmentKeys.EVOKERING), shield);
-            if (evokeringLevel > 0 && damageSource.getEntity() instanceof LivingEntity attackerEntity) {
-                Handlers.handleEvokering((ServerLevel) livingEntity.level(), evokeringLevel, attackerEntity, livingEntity);
-            }
+            enchantmentRegistry.get(ShieldsEnchantmentKeys.EVOKERING).ifPresent(enchantment -> {
+                int evokeringLevel = EnchantmentHelper.getItemEnchantmentLevel(enchantment, shield);
+                if (evokeringLevel > 0 && damageSource.getEntity() instanceof LivingEntity attackerEntity) {
+                    Handlers.handleEvokering((ServerLevel) livingEntity.level(), evokeringLevel, attackerEntity, livingEntity);
+                }
+            });
 
-            int lifeboundLevel = EnchantmentHelper.getItemEnchantmentLevel(enchantmentRegistry.getOrThrow(ShieldsEnchantmentKeys.LIFEBOUND), shield);
-            if (lifeboundLevel > 0 && damageSource.getEntity() instanceof LivingEntity attackerEntity) {
-                Handlers.handleLifebound(lifeboundLevel, (Player) livingEntity, attackerEntity);
-            }
+            enchantmentRegistry.get(ShieldsEnchantmentKeys.LIFEBOUND).ifPresent(enchantment -> {
+                int lifeboundLevel = EnchantmentHelper.getItemEnchantmentLevel(enchantment, shield);
+                if (lifeboundLevel > 0 && damageSource.getEntity() instanceof LivingEntity attackerEntity) {
+                    Handlers.handleLifebound(lifeboundLevel, (Player) livingEntity, attackerEntity);
+                }
+            });
         }
     }
 
@@ -38,15 +46,21 @@ public class ShieldsEnchantmentEffects {
         if (shield.isEnchanted()) {
             var enchantmentRegistry = serverLevel.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
 
-            int launchingLevel = EnchantmentHelper.getItemEnchantmentLevel(enchantmentRegistry.getOrThrow(ShieldsEnchantmentKeys.LAUNCHING), shield);
-            if (launchingLevel > 0) {
-                Handlers.handleLaunching(launchingLevel, attacker, shield);
-            }
+            Optional<Holder.Reference<Enchantment>> launching = enchantmentRegistry.get(ShieldsEnchantmentKeys.LAUNCHING);
+            launching.ifPresent(enchantment -> {
+                int launchingLevel = EnchantmentHelper.getItemEnchantmentLevel(enchantment, shield);
+                if (launchingLevel > 0) {
+                    Handlers.handleLaunching(launchingLevel, attacker, shield);
+                }
+            });
 
-            int momentumLevel = EnchantmentHelper.getItemEnchantmentLevel(enchantmentRegistry.getOrThrow(ShieldsEnchantmentKeys.MOMENTUM), shield);
-            if (momentumLevel > 0) {
-                Handlers.handleMomentum(momentumLevel, attacker, shield);
-            }
+            Optional<Holder.Reference<Enchantment>> momentum = enchantmentRegistry.get(ShieldsEnchantmentKeys.MOMENTUM);
+            momentum.ifPresent(enchantment -> {
+                int momentumLevel = EnchantmentHelper.getItemEnchantmentLevel(enchantment, shield);
+                if (momentumLevel > 0) {
+                    Handlers.handleMomentum(momentumLevel, attacker, shield);
+                }
+            });
         }
     }
 
