@@ -3,8 +3,11 @@
 
 import dev.imb11.shields.Shields;
 import dev.imb11.shields.enchantments.ShieldEnchantmentLootHelper;
+import dev.imb11.shields.items.ShieldCollection;
 import dev.imb11.shields.items.ShieldsItems;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
@@ -15,6 +18,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.event.AnvilUpdateEvent;
 import net.neoforged.neoforge.event.LootTableLoadEvent;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
 import java.util.Map;
@@ -35,16 +39,14 @@ public class ShieldsNeoForge {
 
     @SubscribeEvent
     public static void shieldAnvilRecipes(AnvilUpdateEvent anvilUpdateEvent) {
-        // [plating (input2)], [input1, output]
-        var recipeMap = ShieldsItems.PLATING_UPGRADE_MAP;
 
         ItemStack expectedInput1 = anvilUpdateEvent.getLeft();
         ItemStack expectedPlating = anvilUpdateEvent.getRight();
 
-        for (Map.Entry<Item, Item[]> itemEntry : recipeMap.entrySet()) {
-            var plating = itemEntry.getKey();
-            var input1 = itemEntry.getValue()[0];
-            var output = itemEntry.getValue()[1];
+        for (ShieldCollection itemEntry : ShieldsItems.SHIELD_COLLECTIONS.values()) {
+            var plating = itemEntry.plating();
+            var input1 = itemEntry.shieldItem();
+            var output = itemEntry.platedShieldItem();
 
             // Check if the input items are the same as the expected items
             if (expectedInput1.getItem() == input1 && expectedPlating.getItem() == plating) {

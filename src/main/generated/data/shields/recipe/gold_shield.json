@@ -14,11 +14,11 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "g": "minecraft:gold_ingot",
+    "d": "#minecraft:gold_tool_materials",
     "w": "#minecraft:planks"
   },
   "pattern": [
-    "wgw",
+    "wdw",
     "www",
     " w "
   ],

@@ -29,18 +29,12 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
 
-// #region renderer
 public class ExtraShieldSpecialRenderer implements SpecialModelRenderer<DataComponentMap> {
-	// The offset applied to the model by default
 	public static final Transformation DEFAULT_TRANSFORMATION = new Transformation(null, null, new Vector3f(1.0F, -1.0F, -1.0F), null);
 
-	// Maps Identifiers to their Sprites
 	private final SpriteGetter sprites;
-	// What model should be used.
 	private final ShieldModel model;
-	// The base white texture (provided in the client item)
 	private final SpriteId baseSprite;
-	// The texture used when no dye or banner patterns are present (based on the path provided in the client item).
 	private final SpriteId baseSpriteNoPattern;
 
 	public ExtraShieldSpecialRenderer(final SpriteGetter sprites, final ShieldModel model, SpriteId baseSprite, SpriteId baseSpriteNoPattern) {
@@ -49,17 +43,13 @@ public class ExtraShieldSpecialRenderer implements SpecialModelRenderer<DataComp
 		this.baseSprite = baseSprite;
 		this.baseSpriteNoPattern = baseSpriteNoPattern;
 	}
-	// #endregion renderer
 
 	@Override
-	// #region extract_argument
 	public @Nullable DataComponentMap extractArgument(final ItemStack stack) {
 		return stack.immutableComponents();
 	}
-	// #endregion extract_argument
 
 	@Override
-	// #region submit
 	public void submit(final @Nullable DataComponentMap components, final PoseStack poseStack, final SubmitNodeCollector submitNodeCollector, final int lightCoords, final int overlayCoords, final boolean hasFoil, final int outlineColor) {
 		BannerPatternLayers patterns = components != null ? components.getOrDefault(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY) : BannerPatternLayers.EMPTY;
 		DyeColor baseColor = components != null ? components.get(DataComponents.BASE_COLOR) : null;
@@ -75,17 +65,13 @@ public class ExtraShieldSpecialRenderer implements SpecialModelRenderer<DataComp
 			submitNodeCollector.submitModel(this.model, Unit.INSTANCE, poseStack, RenderTypes.entityGlint(), lightCoords, overlayCoords, -1, this.sprites.get(base), 0, null);
 		}
 	}
-	// #endregion submit
 
 	@Override
-	// #region extents
 	public void getExtents(final Consumer<Vector3fc> output) {
 		PoseStack poseStack = new PoseStack();
 		this.model.root().getExtentsForGui(poseStack, output);
 	}
-	// #endregion extents
 
-	// #region unbaked
 	public record Unbaked(Identifier modelLayer, Identifier base, Identifier noPattern) implements SpecialModelRenderer.Unbaked<DataComponentMap> {
 		public static final MapCodec<Unbaked> MAP_CODEC = RecordCodecBuilder.mapCodec((i) -> i.group(
 				Identifier.CODEC.fieldOf("model_layer").forGetter(Unbaked::modelLayer),
@@ -103,7 +89,4 @@ public class ExtraShieldSpecialRenderer implements SpecialModelRenderer<DataComp
 					.bakeLayer(new ModelLayerLocation(modelLayer, "main"))), Sheets.SHIELD_MAPPER.apply(this.base), Sheets.SHIELD_MAPPER.apply(this.noPattern));
 		}
 	}
-	// #endregion unbaked
-	// #region renderer
 }
-// #endregion renderer

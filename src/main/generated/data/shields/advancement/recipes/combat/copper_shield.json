@@ -23,16 +23,6 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_honeycomb": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:honeycomb"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "shields:copper_shield"
@@ -43,8 +33,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_copper_ingot",
-      "has_honeycomb"
+      "has_copper_ingot"
     ]
   ],
   "rewards": {

@@ -21,7 +21,7 @@ public class ShieldsItemTagProvider extends FabricTagsProvider.ItemTagsProvider 
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        ArrayList<Item> shieldKeys = new ArrayList<>(ShieldsItems.SHIELD_ITEMS);
+        ArrayList<Item> shieldKeys = new ArrayList<>(ShieldsItems.shieldItems(false));
 
         this.valueLookupBuilder(ShieldsItemTags.SHIELDS)
                 .addAll(shieldKeys);

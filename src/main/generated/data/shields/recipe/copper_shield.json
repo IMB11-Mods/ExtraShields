@@ -14,11 +14,11 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "c": "minecraft:copper_ingot",
+    "d": "#minecraft:copper_tool_materials",
     "w": "#minecraft:planks"
   },
   "pattern": [
-    "wcw",
+    "wdw",
     "www",
     " w "
   ],

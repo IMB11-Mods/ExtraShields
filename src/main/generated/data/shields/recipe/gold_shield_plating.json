@@ -3,13 +3,13 @@
   "category": "equipment",
   "group": "shield_platings",
   "key": {
-    "c": "#minecraft:planks",
-    "g": "minecraft:gold_ingot"
+    "m": "#minecraft:gold_tool_materials",
+    "p": "#minecraft:planks"
   },
   "pattern": [
-    "gcg",
-    "ccc",
-    "gcg"
+    "mpm",
+    "ppp",
+    "mpm"
   ],
   "result": {
     "id": "shields:gold_shield_plating"

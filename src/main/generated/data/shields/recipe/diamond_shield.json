@@ -14,7 +14,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "d": "minecraft:diamond",
+    "d": "#minecraft:diamond_tool_materials",
     "w": "#minecraft:planks"
   },
   "pattern": [

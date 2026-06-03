@@ -31,5 +31,7 @@
 
   "itemGroup.shields.shield_group": "Extra Shields",
   "emi.shields.anvil": "Combine With Anvil",
-  "item.shields.shield_patch_kit.no_damage": "Your shield isn't damaged enough to use the repair kit!"
+  "item.shields.shield_patch_kit.no_damage": "Your shield isn't damaged enough to use the repair kit!",
+  "shields.attribute.seconds": " %ss Cooldown",
+  "shields.attribute.axe": "When hit by Axe:"
 }

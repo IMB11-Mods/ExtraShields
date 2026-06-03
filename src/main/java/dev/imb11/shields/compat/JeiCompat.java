@@ -1,6 +1,7 @@
 package dev.imb11.shields.compat;
 
 import dev.imb11.shields.Shields;
+import dev.imb11.shields.items.ShieldCollection;
 import dev.imb11.shields.items.ShieldsItems;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -28,10 +29,10 @@ public class JeiCompat implements IModPlugin {
 	@Override
 	public void registerRecipes(IRecipeRegistration registry) {
 		ArrayList<IJeiAnvilRecipe> recipes = new ArrayList<>();
-		for (Map.Entry<Item, Item[]> itemEntry : ShieldsItems.PLATING_UPGRADE_MAP.entrySet()) {
-			Item shield = itemEntry.getValue()[0];
-			Item plating = itemEntry.getKey();
-			Item platedShield = itemEntry.getValue()[1];
+		for (ShieldCollection itemEntry : ShieldsItems.SHIELD_COLLECTIONS.values()) {
+			Item shield = itemEntry.shieldItem();
+			Item plating = itemEntry.plating();
+			Item platedShield = itemEntry.platedShieldItem();
 			recipes.add(new AnvilRecipe(
 					Collections.singletonList(shield.getDefaultInstance()),
 					Collections.singletonList(plating.getDefaultInstance()),

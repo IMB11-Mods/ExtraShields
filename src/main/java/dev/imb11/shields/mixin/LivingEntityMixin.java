@@ -45,7 +45,7 @@ public class LivingEntityMixin {
 		LivingEntity self = (LivingEntity) (Object) this;
 		boolean isPlayer = self instanceof Player;
 
-		if(isPlayer) {
+		if (isPlayer) {
 
 			ItemStack shield = self.getItemBlockingWith();
 			BlocksAttacks blocksAttacks = shield != null ? shield.get(DataComponents.BLOCKS_ATTACKS) : null;
@@ -57,7 +57,7 @@ public class LivingEntityMixin {
 				ShieldsEnchantmentEffects.eventShieldDisabled(level, attacker, self, shield);
 
 				HolderSet.Named<Item> holders = BuiltInRegistries.ITEM.get(ShieldsItemTags.CONVENTIONAL_SHIELDS).get();
-				secondsToDisable = ShieldsEnchantmentEffects.getModifiedCooldown(level, attacker, shield, secondsToDisable);
+				secondsToDisable = ShieldsEnchantmentEffects.getModifiedCooldown(level.registryAccess(), shield, secondsToDisable);
 
 				for(Holder<Item> holder : holders) {
 					blocksAttacks.disable(level, self, secondsToDisable, new ItemStack(holder.value()));

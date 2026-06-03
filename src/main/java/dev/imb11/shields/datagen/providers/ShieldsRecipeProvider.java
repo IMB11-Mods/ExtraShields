@@ -1,13 +1,18 @@
 //? fabric {
 package dev.imb11.shields.datagen.providers;
 
+import dev.imb11.shields.Shields;
+import dev.imb11.shields.items.ShieldCollection;
 import dev.imb11.shields.items.ShieldsItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ShieldItem;
@@ -26,80 +31,26 @@ public class ShieldsRecipeProvider extends FabricRecipeProvider {
         return new RecipeProvider(registryLookup, recipeOutput) {
             @Override
             public void buildRecipes() {
-                netheriteSmithing(ShieldsItems.DIAMOND_SHIELD_PLATING, RecipeCategory.COMBAT, ShieldsItems.NETHERITE_SHIELD_PLATING);
+                netheriteSmithing(ShieldsItems.DIAMOND.plating(), RecipeCategory.COMBAT, ShieldsItems.NETHERITE.plating());
 
-                SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(ShieldsItems.DIAMOND_SHIELD), Ingredient.of(Items.NETHERITE_INGOT), RecipeCategory.COMBAT, ShieldsItems.NETHERITE_SHIELD).unlocks("has_netherite_ingot", has(Items.NETHERITE_INGOT))
-                        .save(recipeOutput, getItemName(ShieldsItems.NETHERITE_SHIELD) + "_smithing");
+                SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(ShieldsItems.DIAMOND.shieldItem()), Ingredient.of(Items.NETHERITE_INGOT), RecipeCategory.COMBAT, ShieldsItems.NETHERITE.shieldItem()).unlocks("has_netherite_ingot", has(Items.NETHERITE_INGOT))
+                        .save(recipeOutput, ShieldsItems.NETHERITE.shieldItemKey().identifier().withSuffix("_smithing").toString());
 
                 var conditionedRecipeOutput = withConditions(recipeOutput, ResourceConditions.not(ResourceConditions.anyModsLoaded("shields-mxsv", "lolmsv")));
 
-                shaped(RecipeCategory.COMBAT, ShieldsItems.SHIELD_PLATING, 1)
-                        .define('c', ItemTags.PLANKS)
-                        .define('i', Items.IRON_INGOT)
-                        .pattern("ici")
-                        .pattern("ccc")
-                        .pattern("ici")
-                        .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
-                        .group("shield_platings")
-                        .save(recipeOutput);
+                shieldPlating(Items.IRON_INGOT, ItemTags.IRON_TOOL_MATERIALS, ShieldsItems.IRON.plating());
 
-                shaped(RecipeCategory.COMBAT, ShieldsItems.DIAMOND_SHIELD_PLATING, 1)
-                        .define('c', ItemTags.PLANKS)
-                        .define('d', Items.DIAMOND)
-                        .pattern("dcd")
-                        .pattern("ccc")
-                        .pattern("dcd")
-                        .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
-                        .group("shield_platings")
-                        .save(recipeOutput);
+                shieldPlating(Items.GOLD_INGOT, ItemTags.GOLD_TOOL_MATERIALS, ShieldsItems.GOLD.plating());
 
-                shaped(RecipeCategory.COMBAT, ShieldsItems.COPPER_SHIELD_PLATING, 1)
-                        .define('c', ItemTags.PLANKS)
-                        .define('p', Items.COPPER_INGOT)
-                        .pattern("pcp")
-                        .pattern("ccc")
-                        .pattern("pcp")
-                        .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
-                        .group("shield_platings")
-                        .save(recipeOutput);
+                shieldPlating(Items.DIAMOND, ItemTags.DIAMOND_TOOL_MATERIALS, ShieldsItems.DIAMOND.plating());
 
-                shaped(RecipeCategory.COMBAT, ShieldsItems.GOLD_SHIELD_PLATING, 1)
-                        .define('c', ItemTags.PLANKS)
-                        .define('g', Items.GOLD_INGOT)
-                        .pattern("gcg")
-                        .pattern("ccc")
-                        .pattern("gcg")
-                        .unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
-                        .group("shield_platings")
-                        .save(recipeOutput);
+                shieldPlating(Items.COPPER_INGOT, ItemTags.COPPER_TOOL_MATERIALS, ShieldsItems.COPPER.plating());
 
-                shaped(RecipeCategory.COMBAT, ShieldsItems.GOLD_SHIELD, 1)
-                        .define('g', Items.GOLD_INGOT)
-                        .define('w', ItemTags.PLANKS)
-                        .pattern("wgw")
-                        .pattern("www")
-                        .pattern(" w ")
-                        .unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
-                        .save(conditionedRecipeOutput);
+                shield(Items.GOLD_INGOT, ItemTags.GOLD_TOOL_MATERIALS, ShieldsItems.GOLD.shieldItem(), conditionedRecipeOutput);
 
-                shaped(RecipeCategory.COMBAT, ShieldsItems.DIAMOND_SHIELD, 1)
-                        .define('d', Items.DIAMOND)
-                        .define('w', ItemTags.PLANKS)
-                        .pattern("wdw")
-                        .pattern("www")
-                        .pattern(" w ")
-                        .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
-                        .save(conditionedRecipeOutput);
+                shield(Items.DIAMOND, ItemTags.DIAMOND_TOOL_MATERIALS, ShieldsItems.DIAMOND.shieldItem(), conditionedRecipeOutput);
 
-                shaped(RecipeCategory.COMBAT, ShieldsItems.COPPER_SHIELD, 1)
-                        .define('c', Items.COPPER_INGOT)
-                        .define('w', ItemTags.PLANKS)
-                        .pattern("wcw")
-                        .pattern("www")
-                        .pattern(" w ")
-                        .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
-                        .unlockedBy(getHasName(Items.HONEYCOMB), has(Items.HONEYCOMB))
-                        .save(conditionedRecipeOutput);
+                shield(Items.COPPER_INGOT, ItemTags.COPPER_TOOL_MATERIALS, ShieldsItems.COPPER.shieldItem(), conditionedRecipeOutput);
 
                 shaped(RecipeCategory.COMBAT, ShieldsItems.SHIELD_REPAIR_KIT, 1)
                         .define('i', Items.IRON_INGOT)
@@ -110,12 +61,53 @@ public class ShieldsRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
                         .save(recipeOutput);
 
-                for (ShieldItem shieldItem : ShieldsItems.SHIELD_ITEMS) {
+                for (ShieldCollection shieldCollection : ShieldsItems.SHIELD_COLLECTIONS.values()) {
+                    decoration(shieldCollection.shieldItem(), shieldCollection.shieldItemKey());
+                    decoration(shieldCollection.platedShieldItem(), shieldCollection.platedShieldItemKey());
+                }
+            }
+
+			private void shieldPlating(Item goldIngot, TagKey<Item> material, Item shieldItem) {
+                shaped(RecipeCategory.COMBAT, shieldItem, 1)
+                        .define('p', ItemTags.PLANKS)
+                        .define('m', material)
+                        .pattern("mpm")
+                        .pattern("ppp")
+                        .pattern("mpm")
+                        .unlockedBy(getHasName(goldIngot), has(goldIngot))
+                        .group("shield_platings")
+                        .save(recipeOutput);
+			}
+
+            private void decoration(Item shieldItem, ResourceKey<Item> id) {
+                if (id.identifier().getNamespace().equals(Shields.MOD_ID)) {
                     SpecialRecipeBuilder.special(
                                     () -> new ShieldDecorationRecipe(this.tag(ItemTags.BANNERS), Ingredient.of(shieldItem), new ItemStackTemplate(shieldItem))
                             )
-                            .save(this.output, shieldItem.builtInRegistryHolder().key().identifier().getPath()+"_decoration");
+                            .save(this.output, id.identifier().getPath()+"_decoration");
                 }
+            }
+
+            private void shield(Item material, ShieldItem shieldItem, RecipeOutput conditionedRecipeOutput) {
+                shaped(RecipeCategory.COMBAT, shieldItem, 1)
+                        .define('d', material)
+                        .define('w', ItemTags.PLANKS)
+                        .pattern("wdw")
+                        .pattern("www")
+                        .pattern(" w ")
+                        .unlockedBy(getHasName(material), has(material))
+                        .save(conditionedRecipeOutput);
+            }
+
+            private void shield(Item material, TagKey<Item> ingredient, ShieldItem shieldItem, RecipeOutput conditionedRecipeOutput) {
+                shaped(RecipeCategory.COMBAT, shieldItem, 1)
+                        .define('d', ingredient)
+                        .define('w', ItemTags.PLANKS)
+                        .pattern("wdw")
+                        .pattern("www")
+                        .pattern(" w ")
+                        .unlockedBy(getHasName(material), has(material))
+                        .save(conditionedRecipeOutput);
             }
         };
     }

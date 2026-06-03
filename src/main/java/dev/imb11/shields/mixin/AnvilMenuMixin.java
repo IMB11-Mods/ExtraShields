@@ -1,5 +1,6 @@
 package dev.imb11.shields.mixin;
 
+import dev.imb11.shields.items.ShieldCollection;
 import dev.imb11.shields.items.ShieldsItems;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.*;
@@ -35,16 +36,13 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
      */
     @Inject(method = "createResult", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;isDamageableItem()Z", ordinal = 0), cancellable = true)
     private void inject(CallbackInfo info) {
-        // [plating (input2)], [input1, output]
-        var recipeMap = ShieldsItems.PLATING_UPGRADE_MAP;
-
         ItemStack expectedInput1 = this.inputSlots.getItem(0);
         ItemStack expectedPlating = this.inputSlots.getItem(1);
 
-        for (Map.Entry<Item, Item[]> itemEntry : recipeMap.entrySet()) {
-            var plating = itemEntry.getKey();
-            var input1 = itemEntry.getValue()[0];
-            var output = itemEntry.getValue()[1];
+        for (ShieldCollection itemEntry : ShieldsItems.SHIELD_COLLECTIONS.values()) {
+            var plating = itemEntry.plating();
+            var input1 = itemEntry.shieldItem();
+            var output = itemEntry.platedShieldItem();
 
             // Check if the input items are the same as the expected items
             if (expectedInput1.getItem() == input1 && expectedPlating.getItem() == plating) {

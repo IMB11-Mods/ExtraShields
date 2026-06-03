@@ -1,5 +1,6 @@
 package dev.imb11.shields.enchantments;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
@@ -49,25 +50,21 @@ public class ShieldsEnchantmentEffects {
         }
     }
 
-    public static float getModifiedCooldown(ServerLevel level, LivingEntity player, ItemStack stack, float original) {
-        {
-            if (player != null) {
-                var enchantmentLookup = level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
-                // Check for bracing enchantment, each level decreases cooldown ticks by 10%.
-                if (stack != null) {
-                    var enchantment = enchantmentLookup.getOrThrow(ShieldsEnchantmentKeys.BRACING);
-                    int enchantmentLevel = stack.getEnchantments().getLevel(enchantment);
+    public static float getModifiedCooldown(HolderLookup.Provider level, ItemStack stack, float original) {
+		var enchantmentLookup = level.lookupOrThrow(Registries.ENCHANTMENT);
+		// Check for bracing enchantment, each level decreases cooldown ticks by 10%.
+		if (stack != null) {
+			var enchantment = enchantmentLookup.get(ShieldsEnchantmentKeys.BRACING);
+            if (enchantment.isEmpty()) return original;
+			int enchantmentLevel = stack.getEnchantments().getLevel(enchantment.get());
 
-                    if (enchantmentLevel > 0) {
-                        return (int) (original * (1 - (0.1 * enchantmentLevel)));
-                    }
-                }
-            }
+			if (enchantmentLevel > 0) {
+				return (int) (original * (1 - (0.1 * enchantmentLevel)));
+			}
+		}
 
-
-            return original;
-        }
-    }
+		return original;
+	}
 
     public static class Handlers {
         public static void handleLifebound(int enchantmentLevel, Player player, LivingEntity attacker) {

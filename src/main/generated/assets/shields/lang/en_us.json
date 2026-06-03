@@ -172,5 +172,7 @@
   "item.shields.shield_plating": "Shield Plating",
   "item.shields.shield_repair_kit": "Shield Repair Kit",
   "itemGroup.shields.shield_group": "Extra Shields",
+  "shields.attribute.axe": "When hit by Axe:",
+  "shields.attribute.seconds": " %ss Cooldown",
   "tag.item.shields.shields": "Shields"
 }

@@ -30,86 +30,24 @@ import org.jetbrains.annotations.ApiStatus;
 
 import java.util.*;
 import java.util.function.Function;
-import java.util.stream.IntStream;
+import java.util.stream.Collectors;
 
 public class ShieldsItems {
     @ApiStatus.Internal
-    public static final ArrayList<ShieldItem> SHIELD_ITEMS = new ArrayList<>();
-    @ApiStatus.Internal
-    public static final HashMap<String, ShieldItem> SHIELD_ITEMS_BY_ID = new HashMap<>();
-    @ApiStatus.Internal
-    public static final ArrayList<Item> SHIELD_PLATING_ITEMS = new ArrayList<>();
+    public static final LinkedHashMap<String, ShieldCollection> SHIELD_COLLECTIONS = new LinkedHashMap<>();
 
-    public static final ShieldItem PLATED_SHIELD;
-    public static final ShieldItem DIAMOND_SHIELD;
-    public static final ShieldItem PLATED_DIAMOND_SHIELD;
-    public static final ShieldItem COPPER_SHIELD;
-    public static final ShieldItem PLATED_COPPER_SHIELD;
-    public static final ShieldItem GOLD_SHIELD;
-    public static final ShieldItem PLATED_GOLD_SHIELD;
-    public static final ShieldItem NETHERITE_SHIELD;
-    public static final ShieldItem PLATED_NETHERITE_SHIELD;
-    public static final Item SHIELD_PLATING;
-    public static final Item GOLD_SHIELD_PLATING;
-    public static final Item DIAMOND_SHIELD_PLATING;
-    public static final Item NETHERITE_SHIELD_PLATING;
-    public static final Item COPPER_SHIELD_PLATING;
-    public static final ShieldPatchKitItem SHIELD_REPAIR_KIT;
+    public static final ShieldPatchKitItem SHIELD_REPAIR_KIT = register("shield_repair_kit", (properties) -> new ShieldPatchKitItem(properties.durability(4)));
 
-    public static final ResourceKey<CreativeModeTab> CUSTOM_ITEM_GROUP_KEY;
+    public static final ShieldCollection IRON = createCollection("iron", (ShieldItem) Items.SHIELD, Items.SHIELD.builtInRegistryHolder().key(), 300, ItemTags.IRON_TOOL_MATERIALS, 1.0f);
+    public static final ShieldCollection COPPER = createCollection("copper", 240, 300, ItemTags.COPPER_TOOL_MATERIALS, 1.1f);
+    public static final ShieldCollection DIAMOND = createCollection("diamond", 867, 1083, ItemTags.DIAMOND_TOOL_MATERIALS, 0.75f);
+    public static final ShieldCollection GOLD = createCollection("gold", 451, 563, ItemTags.GOLD_TOOL_MATERIALS, 0.5f);
+    public static final ShieldCollection NETHERITE = createCollection("netherite", 910, 1137, ItemTags.NETHERITE_TOOL_MATERIALS, 1.1f);
+
+    public static final ResourceKey<CreativeModeTab> CUSTOM_ITEM_GROUP_KEY = ResourceKey.create(Registries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath(Shields.MOD_ID, "item_group"));
     public static final CreativeModeTab CUSTOM_ITEM_GROUP;
 
-    /**
-     * @apiNote This map is used to determine the output of the anvil when upgrading a shield with plating.
-     * @usage Key: Plating, Value: [Input Shield, Output Shield]
-     */
-    @ApiStatus.Experimental
-    public static final Map<Item, Item[]> PLATING_UPGRADE_MAP;
-
     static {
-        PLATED_SHIELD = create("plated_shield", 420, ItemTags.PLANKS);
-        DIAMOND_SHIELD = create("diamond_shield", 867, ItemTags.DIAMOND_TOOL_MATERIALS);
-        PLATED_DIAMOND_SHIELD = create("plated_diamond_shield", 1083, ItemTags.DIAMOND_TOOL_MATERIALS);
-        GOLD_SHIELD = create("gold_shield", 451, ItemTags.GOLD_TOOL_MATERIALS);
-        PLATED_GOLD_SHIELD = create("plated_gold_shield", 563, ItemTags.GOLD_TOOL_MATERIALS);
-        NETHERITE_SHIELD = create("netherite_shield", 910, ItemTags.NETHERITE_TOOL_MATERIALS);
-        PLATED_NETHERITE_SHIELD = create("plated_netherite_shield", 1137, ItemTags.NETHERITE_TOOL_MATERIALS);
-        COPPER_SHIELD = create("copper_shield", 240, ItemTags.COPPER_TOOL_MATERIALS);
-        PLATED_COPPER_SHIELD = create("plated_copper_shield", 300, ItemTags.COPPER_TOOL_MATERIALS);
-
-        SHIELD_PLATING = register("shield_plating", Item::new);
-        GOLD_SHIELD_PLATING = register("gold_shield_plating", Item::new);
-        DIAMOND_SHIELD_PLATING = register("diamond_shield_plating", Item::new);
-        NETHERITE_SHIELD_PLATING = register("netherite_shield_plating", Item::new);
-        COPPER_SHIELD_PLATING = register("copper_shield_plating", Item::new);
-
-        SHIELD_REPAIR_KIT = register("shield_repair_kit", (properties) -> new ShieldPatchKitItem(properties.durability(4)));
-
-        SHIELD_PLATING_ITEMS.addAll(
-                List.of(
-                        SHIELD_PLATING,
-                        GOLD_SHIELD_PLATING,
-                        DIAMOND_SHIELD_PLATING,
-                        NETHERITE_SHIELD_PLATING,
-                        COPPER_SHIELD_PLATING
-                )
-        );
-
-        SHIELD_ITEMS.addAll(
-                List.of(
-                        PLATED_SHIELD,
-                        DIAMOND_SHIELD,
-                        PLATED_DIAMOND_SHIELD,
-                        GOLD_SHIELD,
-                        PLATED_GOLD_SHIELD,
-                        NETHERITE_SHIELD,
-                        PLATED_NETHERITE_SHIELD,
-                        COPPER_SHIELD,
-                        PLATED_COPPER_SHIELD
-                )
-        );
-
-        CUSTOM_ITEM_GROUP_KEY = ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), Identifier.fromNamespaceAndPath(Shields.MOD_ID, "item_group"));
 
         CUSTOM_ITEM_GROUP =
                 //? fabric {
@@ -117,49 +55,30 @@ public class ShieldsItems {
                 //?} else {
                 /*CreativeModeTab.builder()
                 *///?}
-                .icon(() -> new ItemStack(GOLD_SHIELD))
+                .icon(() -> new ItemStack(GOLD.shieldItem()))
                 .title(Component.translatable("itemGroup.shields.shield_group"))
                 .displayItems((itemDisplayParameters, output) -> {
-                    var enchantmentStacks = new ArrayList<ItemStack>();
-                    itemDisplayParameters.holders().lookup(Registries.ENCHANTMENT).ifPresent(enchantments -> {
-                        for (ResourceKey<Enchantment> registeredEnchantment : ShieldsEnchantmentKeys.REGISTERED_ENCHANTMENTS) {
-                            var reference = enchantments.getOrThrow(registeredEnchantment);
-                            var book = EnchantmentHelper.createBook(new EnchantmentInstance(reference, reference.value().getMaxLevel()));
-                            enchantmentStacks.add(book);
-                        }
-                    });
 
                     // Output in rows of material.
                     // Fill gap with enchantments.
-                    output.accept(Items.SHIELD);
-                    output.accept(SHIELD_PLATING);
-                    output.accept(PLATED_SHIELD);
-                    output.accept(COPPER_SHIELD);
-                    output.accept(COPPER_SHIELD_PLATING);
-                    output.accept(PLATED_COPPER_SHIELD);
-                    output.accept(GOLD_SHIELD);
-                    output.accept(GOLD_SHIELD_PLATING);
-                    output.accept(PLATED_GOLD_SHIELD);
-
-                    output.accept(DIAMOND_SHIELD);
-                    output.accept(DIAMOND_SHIELD_PLATING);
-                    output.accept(PLATED_DIAMOND_SHIELD);
-                    output.accept(NETHERITE_SHIELD);
-                    output.accept(NETHERITE_SHIELD_PLATING);
-                    output.accept(PLATED_NETHERITE_SHIELD);
+                    for (ShieldCollection shieldCollection : SHIELD_COLLECTIONS.values()) {
+                        output.accept(shieldCollection.shieldItem());
+                        output.accept(shieldCollection.plating());
+                        output.accept(shieldCollection.platedShieldItem());
+                    }
                     output.accept(SHIELD_REPAIR_KIT);
 
-                    enchantmentStacks.forEach(output::accept);
+					itemDisplayParameters.holders().lookup(Registries.ENCHANTMENT).ifPresent(enchantments -> {
+                        for (ResourceKey<Enchantment> registeredEnchantment : ShieldsEnchantmentKeys.REGISTERED_ENCHANTMENTS) {
+                            var reference = enchantments.get(registeredEnchantment);
+                            if (reference.isPresent()) {
+                                var book = EnchantmentHelper.createBook(new EnchantmentInstance(reference.get(), reference.get().value().getMaxLevel()));
+                                output.accept(book);
+                            }
+                        }
+                    });
                 })
                 .build();
-
-        PLATING_UPGRADE_MAP = Map.of(
-                SHIELD_PLATING, new Item[]{Items.SHIELD, PLATED_SHIELD},
-                GOLD_SHIELD_PLATING, new Item[]{GOLD_SHIELD, PLATED_GOLD_SHIELD},
-                DIAMOND_SHIELD_PLATING, new Item[]{DIAMOND_SHIELD, PLATED_DIAMOND_SHIELD},
-                NETHERITE_SHIELD_PLATING, new Item[]{NETHERITE_SHIELD, PLATED_NETHERITE_SHIELD},
-                COPPER_SHIELD_PLATING, new Item[]{COPPER_SHIELD, PLATED_COPPER_SHIELD}
-        );
     }
 
     public static void initialize() {
@@ -168,29 +87,83 @@ public class ShieldsItems {
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, CUSTOM_ITEM_GROUP_KEY, CUSTOM_ITEM_GROUP);
     }
 
-    private static ShieldItem create(String id, int durability, TagKey<Item> repairItems) {
+    private static ShieldCollection createCollection(String id, int durability, int platedDurability, TagKey<Item> repairIngredient, float cooldownModifier) {
+        var shieldKey = key(id + "_shield");
+        var shield = create(shieldKey, durability, repairIngredient, cooldownModifier);
+		return createCollection(id, shield, shieldKey, platedDurability, repairIngredient, cooldownModifier);
+    }
+
+    private static ShieldCollection createCollection(String id, ShieldItem shield, ResourceKey<Item> shieldKey, int platedDurability, TagKey<Item> repairIngredient, float cooldownModifier) {
+        var prefix = id;
+        if (id.equals("iron")) {
+            prefix = "";
+        }
+
+        // plated shield
+        var platedShieldKey = key(add("plated", prefix, "shield"));
+        var platedShield = create(platedShieldKey, platedDurability, repairIngredient, cooldownModifier*2);
+        // shield plating
+        var shieldPlatingKey = key(add(prefix, "shield", "plating"));
+        var plating = register(shieldPlatingKey, Item::new);
+        // textures
+        Identifier shieldBaseTexture = (Shields.of(add(id, "shield_base")));
+        Identifier shieldBaseNoPatternTexture = (Shields.of(add(id, "shield_base_nopattern")));
+        Identifier platedShieldBaseTexture = (Shields.of(add("plated", prefix, "shield_base")));
+        Identifier platedShieldBaseNoPatternTexture = (Shields.of(add("plated", prefix, "shield_base_nopattern")));
+        // collection
+        var c = new ShieldCollection(shield, platedShield, plating, shieldKey, platedShieldKey, shieldPlatingKey, shieldBaseTexture, shieldBaseNoPatternTexture, platedShieldBaseTexture, platedShieldBaseNoPatternTexture);
+        SHIELD_COLLECTIONS.put(id, c);
+        return c;
+    }
+
+	private static String add(String... strings) {
+		return String.join("_", Arrays.stream(strings).filter(s->!s.isEmpty()).toArray(String[]::new));
+	}
+
+    private static ResourceKey<Item> key(String id) {
+        return ResourceKey.create(Registries.ITEM, Shields.of(id));
+    }
+
+    private static ResourceKey<Item> key(Identifier id) {
+        return ResourceKey.create(Registries.ITEM, id);
+    }
+
+    private static ShieldItem create(ResourceKey<Item> id, int durability, TagKey<Item> repairItems, float cooldownScale) {
 
         var item = register(id, (settings) -> new ShieldItem(settings
                 .component(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY)
                 .enchantable(9)
                 .equippableUnswappable(EquipmentSlot.OFFHAND)
-                .delayedComponent(DataComponents.BLOCKS_ATTACKS, (context) -> new BlocksAttacks(0.25F, 1.0F, List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)), new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F), Optional.of(context.getOrThrow(DamageTypeTags.BYPASSES_SHIELD)), Optional.of(SoundEvents.SHIELD_BLOCK), Optional.of(SoundEvents.SHIELD_BREAK)))
+                .delayedComponent(DataComponents.BLOCKS_ATTACKS, (context) -> new BlocksAttacks(0.25F, cooldownScale, List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)), new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F), Optional.of(context.getOrThrow(DamageTypeTags.BYPASSES_SHIELD)), Optional.of(SoundEvents.SHIELD_BLOCK), Optional.of(SoundEvents.SHIELD_BREAK)))
                 .component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK).durability(durability)
                 .durability(durability)
                 .repairable(repairItems)
-                .setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Shields.MOD_ID, id)))));
+                .setId(id)));
 
         if (Platform.isClient()) {
-            ShieldsClient.registerDynamicShield(id);
+            ShieldsClient.registerDynamicShield(id.identifier().getPath());
         }
-        SHIELD_ITEMS_BY_ID.put(id, item);
 
         return item;
     }
 
-    private static <T extends Item> T register(String id, Function<Item.Properties, T> builder) {
-        ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Shields.MOD_ID, id));
-
+    private static <T extends Item> T register(ResourceKey<Item> key, Function<Item.Properties, T> builder) {
         return Registry.register(BuiltInRegistries.ITEM, key, builder.apply(new Item.Properties().setId(key)));
     }
+
+    private static <T extends Item> T register(String id, Function<Item.Properties, T> builder) {
+        ResourceKey<Item> key = key(Identifier.fromNamespaceAndPath(Shields.MOD_ID, id));
+
+        return register(key, builder);
+    }
+
+	public static Collection<ShieldItem> shieldItems(boolean includeVanilla) {
+        Collection<ShieldItem> list = new ArrayList<>();
+		SHIELD_COLLECTIONS.values().forEach(c->{
+            if (includeVanilla || !c.shieldItemKey().identifier().getNamespace().equals("minecraft"))
+                list.add(c.shieldItem());
+            list.add(c.platedShieldItem());
+        });
+        return list;
+	}
 }
