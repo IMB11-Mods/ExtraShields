@@ -40,7 +40,7 @@ public class LivingEntityMixin {
 			method = "blockUsingItem",
 			cancellable = true
 	)
-	private void triggerDisabledEvent(ServerLevel level, LivingEntity attacker, DamageSource source, float damage, CallbackInfo ci) {
+	private void triggerDisabledEvent(ServerLevel level, LivingEntity attacker, DamageSource source, float damage, boolean fullyBlocked, CallbackInfo ci) {
 
 		LivingEntity self = (LivingEntity) (Object) this;
 		boolean isPlayer = self instanceof Player;

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "shields:diamond_shield_plating"
+        "recipes": "shields:diamond_shield_plating"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -7,8 +7,10 @@ import dev.imb11.shields.items.ShieldsItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.*;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -17,6 +19,7 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.ShieldDecorationRecipe;
 
 import java.util.concurrent.CompletableFuture;
@@ -27,16 +30,16 @@ public class ShieldsRecipeProvider extends FabricRecipeProvider {
     }
 
     @Override
-    protected RecipeProvider createRecipeProvider(HolderLookup.Provider registryLookup, RecipeOutput recipeOutput) {
-        return new RecipeProvider(registryLookup, recipeOutput) {
+    protected RecipeProvider createRecipeProvider(HolderLookup.Provider registries, BootstrapContext<Recipe<?>> bootstrapContext, BootstrapContext<Advancement> bootstrapContext1) {
+        return new RecipeProvider(bootstrapContext, bootstrapContext1) {
             @Override
             public void buildRecipes() {
                 netheriteSmithing(ShieldsItems.DIAMOND.plating(), RecipeCategory.COMBAT, ShieldsItems.NETHERITE.plating());
 
                 SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(ShieldsItems.DIAMOND.shieldItem()), Ingredient.of(Items.NETHERITE_INGOT), RecipeCategory.COMBAT, ShieldsItems.NETHERITE.shieldItem()).unlocks("has_netherite_ingot", has(Items.NETHERITE_INGOT))
-                        .save(recipeOutput, ShieldsItems.NETHERITE.shieldItemKey().identifier().withSuffix("_smithing").toString());
+                        .save(output, ShieldsItems.NETHERITE.shieldItemKey().identifier().withSuffix("_smithing").toString());
 
-                var conditionedRecipeOutput = withConditions(recipeOutput, ResourceConditions.not(ResourceConditions.anyModsLoaded("shields-mxsv", "lolmsv")));
+                var conditionedRecipeOutput = withConditions(output, ResourceConditions.not(ResourceConditions.anyModsLoaded("shields-mxsv", "lolmsv")));
 
                 shieldPlating(Items.IRON_INGOT, ItemTags.IRON_TOOL_MATERIALS, ShieldsItems.IRON.plating());
 
@@ -59,7 +62,7 @@ public class ShieldsRecipeProvider extends FabricRecipeProvider {
                         .pattern("isi")
                         .pattern(" i ")
                         .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
-                        .save(recipeOutput);
+                        .save(output);
 
                 for (ShieldCollection shieldCollection : ShieldsItems.SHIELD_COLLECTIONS.values()) {
                     decoration(shieldCollection.shieldItem(), shieldCollection.shieldItemKey());
@@ -76,7 +79,7 @@ public class ShieldsRecipeProvider extends FabricRecipeProvider {
                         .pattern("mpm")
                         .unlockedBy(getHasName(goldIngot), has(goldIngot))
                         .group("shield_platings")
-                        .save(recipeOutput);
+                        .save(output);
 			}
 
             private void decoration(Item shieldItem, ResourceKey<Item> id) {

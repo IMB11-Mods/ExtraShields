@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 
@@ -21,15 +22,15 @@ public class ShieldsItemTagProvider extends FabricTagsProvider.ItemTagsProvider 
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        ArrayList<Item> shieldKeys = new ArrayList<>(ShieldsItems.shieldItems(false));
+        ArrayList<ResourceKey<Item>> shieldKeys = new ArrayList<>(ShieldsItems.shieldItems(false).stream().map(p->p.builtInRegistryHolder().key()).toList());
 
-        this.valueLookupBuilder(ShieldsItemTags.SHIELDS)
+        this.builder(ShieldsItemTags.SHIELDS)
                 .addAll(shieldKeys);
 
-        this.valueLookupBuilder(ItemTags.DURABILITY_ENCHANTABLE)
+        this.builder(ItemTags.DURABILITY_ENCHANTABLE)
                 .addOptionalTag(ShieldsItemTags.SHIELDS);
 
-        this.valueLookupBuilder(ConventionalItemTags.SHIELD_TOOLS)
+        this.builder(ConventionalItemTags.SHIELD_TOOLS)
                 .addOptionalTag(ShieldsItemTags.SHIELDS);
     }
 }

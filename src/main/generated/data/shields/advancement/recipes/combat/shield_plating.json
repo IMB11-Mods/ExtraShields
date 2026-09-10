@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "shields:shield_plating"
+        "recipes": "shields:shield_plating"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

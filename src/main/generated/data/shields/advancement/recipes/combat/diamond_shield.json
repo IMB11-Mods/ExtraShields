@@ -25,7 +25,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "shields:diamond_shield"
+        "recipes": "shields:diamond_shield"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

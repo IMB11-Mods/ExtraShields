@@ -25,7 +25,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "shields:gold_shield"
+        "recipes": "shields:gold_shield"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
